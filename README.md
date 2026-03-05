@@ -1,88 +1,71 @@
--️ #PROJETO PRIVADO – USO EXTERNO NÃO AUTORIZADO!
+- ⚠️ PROJETO PRIVADO – NÃO UTILIZAR
+
+> **Este projeto não é destinado a uso público ou distribuição. A utilização não autorizada é estritamente proibida.**
 
 ---
 
-#Visão Geral do Projeto
+# 📌 Visão Geral do Projeto
 
-Ctrl Vault é um projeto fullstack desenvolvido em Java, concebido para gerir dados sensíveis de forma segura, oferecendo uma interface robusta, escalável e intuitiva para armazenamento e consulta de informação. O projeto dá ênfase à segurança, acessibilidade e manutenibilidade.
----
-
-#Âmbito do Projeto
-
-Incluído:
-
-Armazenamento e consulta segura de dados
-
-Autenticação de utilizadores e gestão de perfis (roles)
-
-Implementação fullstack em Java (Frontend + Backend)
-
-Interface web com design responsivo
-
-Excluído:
-
-Integrações com APIs públicas de terceiros
-
-Implementação de aplicação móvel
-
-Acesso externo para além dos colaboradores designados
----
-
-#Stack Tecnológica
-
-Backend: Java, Spring Boot
-
-Frontend: JSP, HTML, CSS, JavaScript
-
-Base de Dados: SQL Server
-
-Controlo de Versões: Git + GitHub
-
-Ferramenta de Build: Maven
-
-Metodologias: Scrum + Kanban
+**Ctrl Vault** 🔐 é um projeto **fullstack baseado em Java**, desenvolvido para gerir dados sensíveis de forma segura, fornecendo uma interface robusta, escalável e fácil de utilizar para armazenamento e recuperação de informação. O projeto enfatiza **segurança**, **acessibilidade** e **manutenibilidade**.
 
 ---
 
-#Arquitetura do Sistema
+# 🗂️ Âmbito do Projeto
 
-Frontend: Interface para operações CRUD e visualização segura de dados
+**Included:**
+- Armazenamento e recuperação segura de dados
+- Autenticação de utilizadores e gestão de papéis (roles)
+- Implementação fullstack em Java (Frontend + Backend)
+- Interface web com design responsivo 
 
-Backend: Lógica de negócio, autenticação e endpoints da API
-
-Base de Dados: Armazenamento relacional com controlo de acessos seguro
+**Excluído:**
+- Integrações com APIs públicas de terceiros 
+- Implementação de aplicação móvel
+- Acesso de utilizadores externos além dos colaboradores autorizados 
 
 ---
 
-#Metodologia
+# 💻 Tecnologias Utilizadas
 
-Modelo híbrido Scrum + Kanban:
+- **Backend:** Java, Spring Boot ☕  
+- **Frontend:** JSP, HTML, CSS, JavaScript 🌐  
+- **Base de Dados:** SQL Server 🗄️  
+- **Controlo de Versão:** Git + GitHub 🐙  
+- **Ferramenta de Build:** Maven ⚙️  
+- **Metodologias:** Scrum + Kanban 📋  
 
-Desenvolvimento iterativo baseado em sprints
-
-Priorização de tarefas e acompanhamento do fluxo de trabalho
-
-Tipo de programação: Desenvolvimento Fullstack em Java
-
-Alocação de recursos: Cada colaborador é responsável por módulos específicos de acordo com a sua especialização
 ---
 
-#Funcionalidades Mínimas
+# 🏗️ Arquitetura do Sistema
 
-Login e logout seguro de utilizadores
+- **Frontend:** Interface de utilizador para operações CRUD e visualização segura de dados  
+- **Backend:** Lógica de negócio, autenticação e endpoints de API  
+- **Base de Dados:** Armazenamento relacional de dados com controlos de acesso seguros 
 
-Adicionar, Editar, Eliminar e Visualizar registos
-
-Controlo de acessos baseado em perfis (roles)
-
-Integração com base de dados SQL Server
-
-Interface responsiva e intuitiva
-
-Registo básico (logging) e auditoria das ações dos utilizadores
 ---
 
-#Colaboradores
+# 🛠️ Metodologia
+
+- **Híbrido Scrum + Kanban:**  
+  - Desenvolvimento iterativo baseado em sprints ⏱️  
+  - Priorização de tarefas e acompanhamento do fluxo de trabalho ✅  
+- **Tipo de programação:** Desenvolvimento Fullstack em Java ☕🌐 
+- **Alocação de recursos:** Cada colaborador é responsável por módulos específicos de acordo com a sua especialização 🧑‍💻  
+
+---
+
+# 🎯 Funcionalidades Mínimas
+
+1. 🔑 Login e logout seguro de utilizadores
+2. ➕ Adicionar, ✏️ Editar, 🗑️ Eliminar e 👁️ Visualizar registos
+3. 🛡️ Controlo de acesso baseado em papéis (roles)
+4. 🗄️ Integração com base de dados SQL Server
+5. 📱 Interface responsiva e intuitiva
+6. 📜 Registo básico (logging) e auditoria das ações dos utilizadores 
+
+---
+
+# 👥 Colaboradores
 
 - ALICE SANTOS LOMBARDI              https://github.com/aliceslombardi
 - CAMILA PEREIRA RIAL                https://github.com/rialcamila
@@ -90,31 +73,78 @@ Registo básico (logging) e auditoria das ações dos utilizadores
 
 ---
 
-# Licença
+# 📜 Licença
 
-Este projeto é proprietário. Consulte o ficheiro LICENSE para obter informações completas sobre direitos e termos.
+Este projeto é proprietário. Consulte o ficheiro `LICENSE` para os direitos completos e termos de utilização.
 
 © 2026 Ctrl Vault – Todos os Direitos Reservados
 
 ---
 
-# Estrutura do Projeto
+# 📁 Estrutura do Projeto
 
 ```text
-CtrlVault/
+Crtl-Vault/
 │
 ├─ src/
-│ ├─ main/
-│ │ ├─ java/
-│ │ └─ resources/
-│ └─ webapp/
-│ ├─ WEB-INF/
-│ └─ index.jsp
+│  └─ main/
+│     ├─ java/
+│     │  └─ pt/com/ctrl/vault/
+│     │     ├─ controller/
+│     │     │  ├─ DashboardController.java
+│     │     │  ├─ LoginController.java
+│     │     │  ├─ LogoutController.java
+│     │     │  └─ RegisterController.java
+│     │     │
+│     │     ├─ exception/
+│     │     │  ├─ CampoObrigatorioException.java
+│     │     │  ├─ EmailJaRegistadoException.java
+│     │     │  ├─ SenhaInvalidaException.java
+│     │     │  └─ UsuarioNaoEncontradoException.java
+│     │     │
+│     │     ├─ model/
+│     │     │  ├─ Contato.java
+│     │     │  ├─ Conteudo.java
+│     │     │  ├─ Projeto.java
+│     │     │  ├─ TipoUsuario.java
+│     │     │  ├─ Usuario.java
+│     │     │  └─ UsuarioProjeto.java
+│     │     │
+│     │     ├─ repository/
+│     │     │  └─ UsuarioRepository.java
+│     │     │
+│     │     ├─ service/
+│     │     │  ├─ BCrypt.java
+│     │     │  └─ UsuarioService.java
+│     │     │
+│     │     └─ util/
+│     │        ├─ ConnectionFactory.java
+│     │        └─ ServletUtil.java
+│     │
+│     └─ webapp/
+│        ├─ css/
+│        │  └─ style.css
+│        ├─ images/
+│        │  └─ logo.png
+│        ├─ META-INF/
+│        │  └─ context.xml
+│        └─ WEB-INF/
+│           ├─ applicationContext.xml
+│           ├─ dispatcher-servlet.xml
+│           ├─ web.xml
+│           │
+│           ├─ dashboard/
+│           │  └─ dashboard.jsp
+│           │
+│           ├─ login/
+│           │  └─ login.jsp
+│           │
+│           └─ register/
+│              └─ register.jsp
 │
-├─ pom.xml
-├─ README.md
-├─ LICENSE
+├─ target/
 ├─ .gitignore
-└─ docs/
- 
-
+├─ LICENSE.txt
+├─ nb-configuration.xml
+├─ pom.xml
+└─ README.md
