@@ -32,6 +32,22 @@
         <servlet-name>DashboardServlet</servlet-name>
         <url-pattern>/dashboard</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>AdminUsuariosServlet</servlet-name>
+        <servlet-class>pt.com.ctrl.vault.controller.AdminUsuariosController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdminUsuariosServlet</servlet-name>
+        <url-pattern>/admin/usuarios</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>AdminUsuarioAcessoServlet</servlet-name>
+        <servlet-class>pt.com.ctrl.vault.controller.AdminUsuarioAcessoController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdminUsuarioAcessoServlet</servlet-name>
+        <url-pattern>/admin/usuarios/acesso</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>
     </session-config>

@@ -28,5 +28,16 @@ public class ServletUtil {
     public static void addErro(HttpServletRequest req, String mensagem) {
         req.setAttribute("erro", mensagem);
     }
+
+    public static void addSucesso(HttpServletRequest req, String mensagem) {
+        req.setAttribute("mensagem", mensagem);
+    }
+
+    public static boolean usuarioEhAdmin(Usuario usuario) {
+        return usuario != null
+                && usuario.getTipoUsuario() != null
+                && usuario.getTipoUsuario().getDescricao() != null
+                && usuario.getTipoUsuario().getDescricao().trim().toUpperCase().contains("ADMIN");
+    }
     
 }
