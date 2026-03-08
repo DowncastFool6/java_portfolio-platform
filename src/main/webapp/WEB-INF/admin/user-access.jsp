@@ -4,18 +4,18 @@
 <html>
 <head>
     <title>Atualizar Acesso - CTRL+VAULT</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css">
 </head>
 <body>
 
 <div class="">
 <div class="">
+    <%@ include file="/WEB-INF/fragments/app-header.jspf" %>
     <div class="">
         <div>
             <h2>Gerir acesso do utilizador</h2>
             <p class="">Atualize projeto e tipo de utilizador para liberar o acesso ao sistema.</p>
         </div>
-        <a class="btn-secondary" href="${pageContext.request.contextPath}/admin/usuarios">Voltar</a>
     </div>
 
     <p><strong>Nome:</strong> <c:out value="${usuarioSelecionado.nome}"/></p>
@@ -25,27 +25,24 @@
         <p class="erro"><c:out value="${erro}"/></p>
     </c:if>
 
-    <form action="${pageContext.request.contextPath}/admin/usuarios/acesso" method="post">
+    <form action="<%= request.getContextPath() %>/admin/usuarios/acesso" method="post">
         <input type="hidden" name="idUsuario" value="${usuarioSelecionado.id}">
 
-        <label for="idProjeto">Projeto</label><br>
-        <select id="idProjeto" name="idProjeto" required>
-            <option value="">Selecione um projeto</option>
-            <c:forEach var="projeto" items="${projetos}">
-                <c:choose>
-                    <c:when test="${projeto.id == projetoSelecionadoId}">
-                        <option value="${projeto.id}" selected>
-                            <c:out value="${projeto.descricao}"/>
-                        </option>
-                    </c:when>
-                    <c:otherwise>
-                        <option value="${projeto.id}">
-                            <c:out value="${projeto.descricao}"/>
-                        </option>
-                    </c:otherwise>
-                </c:choose>
+        <label>Projetos</label><br>
+        <c:forEach var="projeto" items="${projetos}">
+            <c:set var="projetoMarcado" value="false"/>
+            <c:forEach var="idSelecionado" items="${projetoSelecionadoIds}">
+                <c:if test="${idSelecionado == projeto.id}">
+                    <c:set var="projetoMarcado" value="true"/>
+                </c:if>
             </c:forEach>
-        </select>
+            <label>
+                <input type="checkbox" name="idProjeto" value="${projeto.id}"
+                    <c:if test="${projetoMarcado}">checked</c:if>>
+                <c:out value="${projeto.descricao}"/>
+            </label>
+            <br>
+        </c:forEach>
         <br><br>
 
         <label for="idTipoUsuario">Tipo de utilizador</label><br>
@@ -70,7 +67,6 @@
 
         <div class="">
             <button type="submit" class="btn-primary">Guardar acesso</button>
-            <a class="btn-secondary" href="${pageContext.request.contextPath}/admin/usuarios">Cancelar</a>
         </div>
     </form>
 </div>

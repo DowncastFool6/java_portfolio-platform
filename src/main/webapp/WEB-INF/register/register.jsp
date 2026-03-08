@@ -4,7 +4,7 @@
 <html>
 <head>
     <title>Registar Utilizador</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css">
 </head>
 <body>
 
@@ -16,7 +16,7 @@
         <p class="erro"><c:out value="${erro}"/></p>
     </c:if>
 
-    <form action="${pageContext.request.contextPath}/register" method="post">
+    <form action="<%= request.getContextPath() %>/register" method="post">
         <label>Nome:</label><br>
         <input type="text" name="nome" value="${param.nome}" required>
         <br><br>
