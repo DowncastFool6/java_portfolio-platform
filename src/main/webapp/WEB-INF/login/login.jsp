@@ -1,3 +1,9 @@
+<%-- 
+    Document   : login
+    Created on : 001/03/2026, 12:50:07
+    Author     : aliceslombardi
+--%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
