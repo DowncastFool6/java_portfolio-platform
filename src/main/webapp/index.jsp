@@ -1,40 +1,109 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
-<html>
+<html lang="pt">
 
 <head>
-    <meta charset="UTF-8">
-    <title>CTRL+VAULT – Your Knowledge Under Control</title>
 
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css">
+<meta charset="UTF-8">
+<title>CTRL+VAULT – Your Knowledge Under Control</title>
+
+<link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
 </head>
+
 
 <body>
 
-<div class="container">
-    
-    <img src="<%= request.getContextPath() %>/images/logo.png"
-         alt="CTRL+VAULT Logo"
-         class="logo">
+<header>
 
-    <h1>CTRL<span><span class="plus">+</span>VAULT</span></h1>
+<div class="logo">
+CTRL<span class="plus">+</span>VAULT
+</div>
 
-    <div class="tagline">
-        Uma aplicação web segura e estruturada, concebida para gerir informação 
-        modular com autenticação, controlo de acesso e armazenamento de dados 
-        encriptados.
-    </div>
+<nav>
+<a href="#">Home</a>
+<a href="#features">Funcionalidades</a>
+<a href="#sobre">Sobre</a>
+<a href="<%= request.getContextPath() %>/login">Login</a>
+</nav>
 
-    <div class="btn-group">
-        <a href="<%= request.getContextPath() %>/register" class="btn-primary">Register</a>
-        <a href="<%= request.getContextPath() %>/login" class="btn-secondary">Login</a>
-    </div>
+</header>
+
+
+
+<section class="hero">
+
+<div class="hero-text">
+
+<h1>Seu conhecimento sob controle</h1>
+
+<p>
+Uma aplicação web segura para armazenar,
+organizar e gerir credenciais, documentos
+e dados confidenciais.
+</p>
+
+<div class="btn-group">
+
+<a href="<%= request.getContextPath() %>/register" class="btn-primary">
+Criar Conta
+</a>
+
+<a href="<%= request.getContextPath() %>/login" class="btn-secondary">
+Login
+</a>
 
 </div>
 
+</div>
+
+
+<img src="<%= request.getContextPath() %>/images/logo.png"
+class="hero-img">
+
+</section>
+
+
+
+<section id="features" class="features">
+
+<h2>Funcionalidades</h2>
+
+<div class="cards">
+
+<div class="card">
+<h3>Autenticação Segura</h3>
+<p>Registo, login e gestão de sessão protegida.</p>
+</div>
+
+<div class="card">
+<h3>Armazenamento Seguro</h3>
+<p>Credenciais protegidas com encriptação.</p>
+</div>
+
+<div class="card">
+<h3>Gestão de Dados</h3>
+<p>CRUD completo para gerir informações sensíveis.</p>
+</div>
+
+</div>
+
+</section>
+
+
+
 <footer>
-    © 2026 CTRL+VAULT – Academic Project
+
+<p>© 2026 CTRL+VAULT – Academic Project</p>
+
+<p>
+Projeto desenvolvido por  
+Camila Rial • Alice Lombardi • Visselola
+</p>
+
 </footer>
 
 </body>
