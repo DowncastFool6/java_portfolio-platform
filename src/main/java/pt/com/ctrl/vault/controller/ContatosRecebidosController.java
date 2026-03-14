@@ -43,6 +43,12 @@ public class ContatosRecebidosController extends HttpServlet {
             return;
         }
 
+        if (!ServletUtil.usuarioEstaAtivo(usuarioLogado)) {
+            req.getSession().setAttribute("mensagemDashboard", "O seu utilizador esta inativo e apenas pode consultar informacao.");
+            resp.sendRedirect(req.getContextPath() + "/dashboard");
+            return;
+        }
+
         ContatoService contatoService = new ContatoService();
 
         try {

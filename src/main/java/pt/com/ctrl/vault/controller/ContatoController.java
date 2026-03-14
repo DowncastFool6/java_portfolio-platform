@@ -27,6 +27,12 @@ public class ContatoController extends HttpServlet {
             return;
         }
 
+        if (!ServletUtil.usuarioEstaAtivo(usuarioLogado)) {
+            req.getSession().setAttribute("mensagemDashboard", "O seu utilizador esta inativo e apenas pode consultar informacao.");
+            resp.sendRedirect(req.getContextPath() + "/dashboard");
+            return;
+        }
+
         carregarPagina(req, usuarioLogado);
 
         if ("true".equals(req.getParameter("sucesso"))) {
@@ -65,6 +71,7 @@ public class ContatoController extends HttpServlet {
 
         req.setAttribute("usuario", usuarioLogado);
         req.setAttribute("isAdmin", ServletUtil.usuarioEhAdmin(usuarioLogado));
+        req.setAttribute("isUsuarioAtivo", ServletUtil.usuarioEstaAtivo(usuarioLogado));
         req.setAttribute("projetos", projetos);
         ServletUtil.prepararHeader(req, usuarioLogado);
 

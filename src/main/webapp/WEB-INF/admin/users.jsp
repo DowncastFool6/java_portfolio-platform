@@ -4,19 +4,22 @@
 <html>
 <head>
     <title>Gestao de Acessos - CTRL+VAULT</title>
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/base.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/layout.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/components.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/pages.css">
 </head>
 <body>
 
-<div class="">
-<div class="">
+<div class="page-shell">
+<main class="app-container">
     <%@ include file="/WEB-INF/fragments/app-header.jspf" %>
-    <div class="">
+    <section class="section-heading">
         <div>
             <h2>Utilizadores sem acesso</h2>
-            <p class="">Clique numa linha para associar o utilizador a um projeto e definir o seu tipo.</p>
+            <p>Clique numa linha para associar o utilizador a um projeto e definir o seu tipo.</p>
         </div>
-    </div>
+    </section>
 
     <c:if test="${not empty mensagem}">
         <p class="sucesso"><c:out value="${mensagem}"/></p>
@@ -24,11 +27,11 @@
 
     <c:choose>
         <c:when test="${empty usuariosPendentes}">
-            <p>Nao existem utilizadores pendentes de aprovacao.</p>
+            <p class="empty-state">Nao existem utilizadores pendentes de aprovacao.</p>
         </c:when>
         <c:otherwise>
-            <div class="">
-                <table class="">
+            <div class="table-wrap">
+                <table class="data-table">
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -39,11 +42,11 @@
                     </thead>
                     <tbody>
                         <c:forEach var="item" items="${usuariosPendentes}">
-                            <tr onclick="window.location='<%= request.getContextPath() %>/admin/usuarios/acesso?id=${item.id}'">
+                            <tr class="clickable-row" onclick="window.location='<%= request.getContextPath() %>/admin/usuarios/acesso?id=${item.id}'">
                                 <td><c:out value="${item.id}"/></td>
                                 <td><c:out value="${item.nome}"/></td>
                                 <td><c:out value="${item.email}"/></td>
-                                <td><span class="">Pendente</span></td>
+                                <td><span class="status-chip">Pendente</span></td>
                             </tr>
                         </c:forEach>
                     </tbody>
@@ -51,8 +54,9 @@
             </div>
         </c:otherwise>
     </c:choose>
+</main>
 </div>
-</div>
+<%@ include file="/WEB-INF/fragments/app-footer.jspf" %>
 
 </body>
 </html>

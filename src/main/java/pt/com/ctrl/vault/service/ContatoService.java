@@ -19,6 +19,9 @@ import pt.com.ctrl.vault.repository.ProjetoRepository;
 public class ContatoService {
 
     public Contato enviarContato(Usuario usuario, Integer idProjeto, String mensagem) {
+        UsuarioService usuarioService = new UsuarioService();
+        usuarioService.validarUsuarioAtivoParaAcao(usuario);
+
         if (usuario == null || usuario.getId() == null) {
             throw new CampoObrigatorioException("Utilizador invalido.");
         }
@@ -68,6 +71,8 @@ public class ContatoService {
 
     public void marcarContatosComoLidos(Usuario usuario, List<Integer> idsContato) {
         validarUsuarioParticipante(usuario);
+        UsuarioService usuarioService = new UsuarioService();
+        usuarioService.validarUsuarioAtivoParaAcao(usuario);
 
         if (idsContato == null || idsContato.isEmpty()) {
             throw new CampoObrigatorioException("Selecione pelo menos um contato.");

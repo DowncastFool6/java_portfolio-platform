@@ -4,32 +4,43 @@
 <html>
 <head>
     <title>Login - CTRL+VAULT</title>
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/base.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/layout.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/components.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/pages.css">
 </head>
 <body>
 
-<div class="">
-<div class="">
-    <h2>Login</h2>
+<div class="page-shell">
+<main class="app-container portal-narrow">
+    <section class="portal-panel">
+        <div class="section-heading">
+            <div>
+                <h2>Login</h2>
+                <p>Aceda ao portal para consultar projetos e gerir conteudos.</p>
+            </div>
+        </div>
 
-    <form action="<%= request.getContextPath() %>/login" method="post">
-        <label>Email:</label><br>
-        <input type="email" name="email" value="${param.email}" required><br><br>
+        <form action="<%= request.getContextPath() %>/login" method="post">
+            <label>Email</label>
+            <input type="email" name="email" value="${param.email}" required>
 
-        <label>Senha:</label><br>
-        <input type="password" name="senha" required><br><br>
+            <label>Senha</label>
+            <input type="password" name="senha" required>
 
-        <button type="submit" class="btn-primary">Entrar</button>
-    </form>
+            <button type="submit" class="btn-secondary">Entrar</button>
+        </form>
 
-    <c:if test="${not empty mensagem}">
-        <p class="sucesso"><c:out value="${mensagem}"/></p>
-    </c:if>
-    <c:if test="${not empty erro}">
-        <p class="erro"><c:out value="${erro}"/></p>
-    </c:if>
+        <c:if test="${not empty mensagem}">
+            <p class="sucesso"><c:out value="${mensagem}"/></p>
+        </c:if>
+        <c:if test="${not empty erro}">
+            <p class="erro"><c:out value="${erro}"/></p>
+        </c:if>
+    </section>
+</main>
 </div>
-</div>
+<%@ include file="/WEB-INF/fragments/app-footer.jspf" %>
 
 </body>
 </html>

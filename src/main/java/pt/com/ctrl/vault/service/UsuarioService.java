@@ -75,6 +75,16 @@ public class UsuarioService {
         return usuario;
     }
 
+    public void validarUsuarioAtivoParaAcao(Usuario usuario) {
+        if (usuario == null || usuario.getId() == null) {
+            throw new CampoObrigatorioException("Utilizador invalido.");
+        }
+
+        if (!Boolean.TRUE.equals(usuario.getAtivo())) {
+            throw new CampoObrigatorioException("O seu utilizador esta inativo e apenas pode consultar informacao.");
+        }
+    }
+
     public List<Usuario> listarUsuariosSemAcesso() {
         UsuarioRepository usuarioRepository = new UsuarioRepository();
         return usuarioRepository.listarUsuariosSemAcesso();
@@ -127,5 +137,37 @@ public class UsuarioService {
         List<Integer> idsProjetosNormalizados = new ArrayList<>(new LinkedHashSet<>(idsProjetos));
         UsuarioRepository usuarioRepository = new UsuarioRepository();
         usuarioRepository.atualizarAcessoUsuario(idUsuario, idsProjetosNormalizados, idTipoUsuario);
+    }
+
+    public List<Usuario> listarUsuariosDoProjeto(Integer idProjeto) {
+        if (idProjeto == null) {
+            throw new CampoObrigatorioException("Projeto invalido.");
+        }
+
+        UsuarioRepository usuarioRepository = new UsuarioRepository();
+        return usuarioRepository.listarUsuariosDoProjeto(idProjeto);
+    }
+
+    public void atualizarStatusUsuarioNoProjeto(Integer idProjeto, Integer idUsuario, boolean ativo) {
+        if (idProjeto == null || idUsuario == null) {
+            throw new CampoObrigatorioException("Projeto ou utilizador invalido.");
+        }
+
+        UsuarioRepository usuarioRepository = new UsuarioRepository();
+        List<Usuario> usuariosProjeto = usuarioRepository.listarUsuariosDoProjeto(idProjeto);
+        boolean pertenceAoProjeto = false;
+
+        for (Usuario usuario : usuariosProjeto) {
+            if (idUsuario.equals(usuario.getId())) {
+                pertenceAoProjeto = true;
+                break;
+            }
+        }
+
+        if (!pertenceAoProjeto) {
+            throw new CampoObrigatorioException("O utilizador nao pertence a este projeto.");
+        }
+
+        usuarioRepository.atualizarStatusUsuario(idUsuario, ativo);
     }
 }

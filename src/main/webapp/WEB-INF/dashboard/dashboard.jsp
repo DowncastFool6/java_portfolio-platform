@@ -4,23 +4,23 @@
 <html>
 <head>
     <title>Dashboard - CTRL+VAULT</title>
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/base.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/layout.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/components.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/pages.css">
 </head>
 <body>
 
-<div class="">
-<div class="">
+<div class="page-shell">
+<main class="app-container">
     <%@ include file="/WEB-INF/fragments/app-header.jspf" %>
 
-    <div class="">
+    <section class="portal-section">
         <div>
             <h2>Dashboard</h2>
-            <p class="">Bem-vindo, <strong><c:out value="${usuario.nome}"/></strong>.</p>
-            <c:if test="${not empty projetoUsuario}">
-                <p>Projeto associado: <strong><c:out value="${projetoUsuario.descricao}"/></strong>.</p>
-            </c:if>
+            <p>Bem-vindo, <strong><c:out value="${usuario.nome}"/></strong>.</p>
         </div>
-    </div>
+    </section>
 
     <c:if test="${not empty mensagem}">
         <p class="sucesso"><c:out value="${mensagem}"/></p>
@@ -30,25 +30,38 @@
         <p class="erro"><c:out value="${erro}"/></p>
     </c:if>
 
-    <c:if test="${isAdmin}">
-        <div class="">
-            <a class="" href="<%= request.getContextPath() %>/admin/usuarios">
+    <c:if test="${not isUsuarioAtivo}">
+        <p class="empty-state">O seu utilizador esta inativo. Pode consultar informacao, mas nao pode enviar contatos nem editar conteudos.</p>
+    </c:if>
+
+    <div class="dashboard-grid">
+        <c:if test="${isAdmin and isUsuarioAtivo}">
+            <a class="dashboard-card" href="<%= request.getContextPath() %>/admin/usuarios">
+                <span class="status-chip">Administracao</span>
                 <strong>Gerir acessos</strong>
                 <span>Administrar utilizadores sem acesso, projeto associado e tipo de utilizador.</span>
             </a>
-        </div>
-    </c:if>
+        </c:if>
 
-    <c:if test="${not empty projetoUsuario}">
-        <div class="">
-            <a class="" href="<%= request.getContextPath() %>/contatos">
+        <c:if test="${not empty projetoUsuario and isUsuarioAtivo}">
+            <a class="dashboard-card" href="<%= request.getContextPath() %>/contatos">
+                <span class="status-chip">Contato</span>
                 <strong>Contato do projeto</strong>
                 <span>Enviar uma mensagem associada ao seu projeto atual.</span>
             </a>
-        </div>
-    </c:if>
+        </c:if>
+
+        <c:if test="${not empty projetosUsuario}">
+            <a class="dashboard-card" href="<%= request.getContextPath() %>/projetos">
+                <span class="status-chip">Projetos</span>
+                <strong>Meus projetos</strong>
+                <span>Ver todos os projetos em que participa e abrir o conteudo de cada um.</span>
+            </a>
+        </c:if>
+    </div>
+</main>
 </div>
-</div>
+<%@ include file="/WEB-INF/fragments/app-footer.jspf" %>
 
 </body>
 </html>

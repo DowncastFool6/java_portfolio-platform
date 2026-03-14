@@ -274,6 +274,58 @@ public class UsuarioRepository {
         }
     }
 
+    public List<Usuario> listarUsuariosDoProjeto(Integer idProjeto) {
+        String sql =
+                "SELECT DISTINCT u.id, u.nome, u.email, u.senha, u.ativo, u.data_criacao, " +
+                "tu.id AS tipo_id, tu.descricao AS tipo_descricao " +
+                "FROM tb_usuario_projeto up " +
+                "INNER JOIN tb_usuario u ON u.id = up.id_usuario " +
+                "LEFT JOIN tb_tipo_usuario tu ON tu.id = u.id_tipo_usuario " +
+                "WHERE up.id_projeto = ? " +
+                "ORDER BY u.nome";
+
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        List<Usuario> usuarios = new ArrayList<>();
+
+        try {
+            conn = ConnectionFactory.getConnection();
+            stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, idProjeto);
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                usuarios.add(mapearUsuario(rs));
+            }
+
+            return usuarios;
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao listar usuarios do projeto", e);
+        } finally {
+            ConnectionFactory.close(conn, stmt, rs);
+        }
+    }
+
+    public void atualizarStatusUsuario(Integer idUsuario, boolean ativo) {
+        String sql = "UPDATE tb_usuario SET ativo = ? WHERE id = ?";
+
+        Connection conn = null;
+        PreparedStatement stmt = null;
+
+        try {
+            conn = ConnectionFactory.getConnection();
+            stmt = conn.prepareStatement(sql);
+            stmt.setBoolean(1, ativo);
+            stmt.setInt(2, idUsuario);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao atualizar status do usuario", e);
+        } finally {
+            ConnectionFactory.close(conn, stmt);
+        }
+    }
+
     public Integer salvarNovoUsuario(Usuario usuario) {
 
         String sql =

@@ -49,6 +49,14 @@ public class ServletUtil {
                 && usuario.getTipoUsuario().getDescricao().trim().toUpperCase().contains("GESTOR");
     }
 
+    public static boolean usuarioEstaAtivo(Usuario usuario) {
+        return usuario != null && Boolean.TRUE.equals(usuario.getAtivo());
+    }
+
+    public static boolean usuarioPodeGerirProjeto(Usuario usuario) {
+        return usuarioEstaAtivo(usuario) && (usuarioEhGestor(usuario) || usuarioEhAdmin(usuario));
+    }
+
     public static void prepararHeader(HttpServletRequest req, Usuario usuario) {
         if (req.getAttribute("mostrarBotaoHome") == null) {
             req.setAttribute("mostrarBotaoHome", true);

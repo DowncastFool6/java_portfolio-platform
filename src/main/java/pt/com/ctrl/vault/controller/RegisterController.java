@@ -27,6 +27,12 @@ public class RegisterController extends HttpServlet {
         String nome = req.getParameter("nome");
         String email = req.getParameter("email");
         String senha = req.getParameter("senha");
+        String aceitouRgpd = req.getParameter("aceitouRgpd");
+
+        if (!"on".equalsIgnoreCase(aceitouRgpd)) {
+            devolverErro(req, resp, new CampoObrigatorioException("Deve aceitar a informacao de tratamento de dados ao abrigo do RGPD."));
+            return;
+        }
         
         try {
             UsuarioService usuarioService = new UsuarioService();

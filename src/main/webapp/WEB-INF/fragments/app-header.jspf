@@ -6,14 +6,15 @@
 %>
 
 <header>
-    <div style="display: flex; justify-content: space-between; align-items: center;">
+    <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
         <div style="display: flex; gap: 8px; align-items: center;">
             <% if (!paginaEhDashboard) { %>
                 <a class="btn-secondary" href="<%= request.getContextPath() %>/dashboard">Home</a>
                 <a class="btn-secondary" href="javascript:history.back()">Voltar</a>
             <% } %>
+            <a class="btn-secondary" href="<%= request.getContextPath() %>/projetos">Projetos</a>
         </div>
-        <div style="display: flex; gap: 8px; align-items: center;">
+        <div style="display: flex; gap: 8px; align-items: center; margin-left: auto;">
             <c:if test="${mostrarBotaoContatos}">
                 <a class="btn-secondary" href="<%= request.getContextPath() %>/contatos/recebidos">
                     &#9993; Contatos

@@ -33,6 +33,46 @@
         <url-pattern>/dashboard</url-pattern>
     </servlet-mapping>
     <servlet>
+        <servlet-name>ProjetosServlet</servlet-name>
+        <servlet-class>pt.com.ctrl.vault.controller.ProjetosController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ProjetosServlet</servlet-name>
+        <url-pattern>/projetos</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ProjetoDetalheServlet</servlet-name>
+        <servlet-class>pt.com.ctrl.vault.controller.ProjetoDetalheController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ProjetoDetalheServlet</servlet-name>
+        <url-pattern>/projeto</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ProjetoNovoConteudoServlet</servlet-name>
+        <servlet-class>pt.com.ctrl.vault.controller.ProjetoNovoConteudoController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ProjetoNovoConteudoServlet</servlet-name>
+        <url-pattern>/projeto/conteudos/novo</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ConteudoArquivoServlet</servlet-name>
+        <servlet-class>pt.com.ctrl.vault.controller.ConteudoArquivoController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ConteudoArquivoServlet</servlet-name>
+        <url-pattern>/conteudos/arquivo</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ProjetoUsuariosServlet</servlet-name>
+        <servlet-class>pt.com.ctrl.vault.controller.ProjetoUsuariosController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ProjetoUsuariosServlet</servlet-name>
+        <url-pattern>/projeto/usuarios</url-pattern>
+    </servlet-mapping>
+    <servlet>
         <servlet-name>ContatoServlet</servlet-name>
         <servlet-class>pt.com.ctrl.vault.controller.ContatoController</servlet-class>
     </servlet>
