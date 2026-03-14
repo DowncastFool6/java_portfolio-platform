@@ -1,6 +1,7 @@
 package pt.com.ctrl.vault.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -50,32 +51,35 @@ public class AdminUsuarioAcessoController extends HttpServlet {
         }
 
         Integer idUsuario = parseInt(req.getParameter("idUsuario"));
-        Integer idProjeto = parseInt(req.getParameter("idProjeto"));
+        List<Integer> idsProjetos = parseIntList(req.getParameterValues("idProjeto"));
         Integer idTipoUsuario = parseInt(req.getParameter("idTipoUsuario"));
 
         UsuarioService usuarioService = new UsuarioService();
 
         try {
-            usuarioService.atualizarAcessoUsuario(idUsuario, idProjeto, idTipoUsuario);
+            usuarioService.atualizarAcessoUsuario(idUsuario, idsProjetos, idTipoUsuario);
             resp.sendRedirect(req.getContextPath() + "/admin/usuarios?sucesso=true");
         } catch (CampoObrigatorioException | UsuarioNaoEncontradoException e) {
             ServletUtil.addErro(req, e.getMessage());
-            carregarFormulario(req, idUsuario, idProjeto, idTipoUsuario);
+            carregarFormulario(req, idUsuario, idsProjetos, idTipoUsuario);
             req.getRequestDispatcher("/WEB-INF/admin/user-access.jsp").forward(req, resp);
         }
     }
 
-    private void carregarFormulario(HttpServletRequest req, Integer idUsuario, Integer idProjetoSelecionado,
+    private void carregarFormulario(HttpServletRequest req, Integer idUsuario, List<Integer> idsProjetosSelecionados,
             Integer idTipoSelecionado) throws ServletException {
         UsuarioService usuarioService = new UsuarioService();
         Usuario usuario = usuarioService.buscarPorId(idUsuario);
-        Projeto projetoAtual = usuarioService.buscarProjetoDoUsuario(idUsuario);
+        List<Projeto> projetosAtuais = usuarioService.listarProjetosDoUsuario(idUsuario);
         List<Projeto> projetos = usuarioService.listarProjetos();
         List<TipoUsuario> tiposUsuario = usuarioService.listarTiposUsuario();
 
-        Integer projetoSelecionadoId = idProjetoSelecionado;
-        if (projetoSelecionadoId == null && projetoAtual != null) {
-            projetoSelecionadoId = projetoAtual.getId();
+        List<Integer> projetoSelecionadoIds = idsProjetosSelecionados;
+        if (projetoSelecionadoIds == null || projetoSelecionadoIds.isEmpty()) {
+            projetoSelecionadoIds = new ArrayList<>();
+            for (Projeto projetoAtual : projetosAtuais) {
+                projetoSelecionadoIds.add(projetoAtual.getId());
+            }
         }
 
         Integer tipoSelecionadoId = idTipoSelecionado;
@@ -84,11 +88,12 @@ public class AdminUsuarioAcessoController extends HttpServlet {
         }
 
         req.setAttribute("usuarioSelecionado", usuario);
-        req.setAttribute("projetoAtual", projetoAtual);
+        req.setAttribute("projetosAtuais", projetosAtuais);
         req.setAttribute("projetos", projetos);
         req.setAttribute("tiposUsuario", tiposUsuario);
-        req.setAttribute("projetoSelecionadoId", projetoSelecionadoId);
+        req.setAttribute("projetoSelecionadoIds", projetoSelecionadoIds);
         req.setAttribute("tipoSelecionadoId", tipoSelecionadoId);
+        ServletUtil.prepararHeader(req, (Usuario) req.getSession(false).getAttribute("usuarioLogado"));
     }
 
     private Integer parseInt(String valor) {
@@ -97,5 +102,22 @@ public class AdminUsuarioAcessoController extends HttpServlet {
         } catch (NumberFormatException e) {
             return null;
         }
+    }
+
+    private List<Integer> parseIntList(String[] valores) {
+        List<Integer> ids = new ArrayList<>();
+
+        if (valores == null) {
+            return ids;
+        }
+
+        for (String valor : valores) {
+            Integer id = parseInt(valor);
+            if (id != null) {
+                ids.add(id);
+            }
+        }
+
+        return ids;
     }
 }

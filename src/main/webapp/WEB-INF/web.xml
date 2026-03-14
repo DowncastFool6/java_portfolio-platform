@@ -33,6 +33,22 @@
         <url-pattern>/dashboard</url-pattern>
     </servlet-mapping>
     <servlet>
+        <servlet-name>ContatoServlet</servlet-name>
+        <servlet-class>pt.com.ctrl.vault.controller.ContatoController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ContatoServlet</servlet-name>
+        <url-pattern>/contatos</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ContatosRecebidosServlet</servlet-name>
+        <servlet-class>pt.com.ctrl.vault.controller.ContatosRecebidosController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ContatosRecebidosServlet</servlet-name>
+        <url-pattern>/contatos/recebidos</url-pattern>
+    </servlet-mapping>
+    <servlet>
         <servlet-name>AdminUsuariosServlet</servlet-name>
         <servlet-class>pt.com.ctrl.vault.controller.AdminUsuariosController</servlet-class>
     </servlet>

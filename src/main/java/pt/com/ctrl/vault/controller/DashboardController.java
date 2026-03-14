@@ -5,7 +5,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import pt.com.ctrl.vault.model.Projeto;
 import pt.com.ctrl.vault.model.Usuario;
+import pt.com.ctrl.vault.service.UsuarioService;
 import pt.com.ctrl.vault.util.ServletUtil;
 
 /**
@@ -22,10 +24,17 @@ public class DashboardController extends HttpServlet {
             return;
         }
 
+        UsuarioService usuarioService = new UsuarioService();
+        Projeto projetoUsuario = usuarioService.buscarProjetoDoUsuario(usuarioLogado.getId());
+
         req.setAttribute("usuario", usuarioLogado);
         req.setAttribute("isAdmin", ServletUtil.usuarioEhAdmin(usuarioLogado));
+        req.setAttribute("projetoUsuario", projetoUsuario);
+        req.setAttribute("mostrarBotaoHome", false);
+        req.setAttribute("mostrarBotaoVoltar", false);
+        ServletUtil.prepararHeader(req, usuarioLogado);
 
-        if (usuarioLogado.getTipoUsuario() == null) {
+        if (projetoUsuario == null) {
             ServletUtil.addErro(req, "Seu utilizador nao tem projetos associados. Entre em contacto com o administrador.");
         }
 

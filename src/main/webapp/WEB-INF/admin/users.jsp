@@ -4,18 +4,18 @@
 <html>
 <head>
     <title>Gestao de Acessos - CTRL+VAULT</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css">
 </head>
 <body>
 
 <div class="">
 <div class="">
+    <%@ include file="/WEB-INF/fragments/app-header.jspf" %>
     <div class="">
         <div>
             <h2>Utilizadores sem acesso</h2>
             <p class="">Clique numa linha para associar o utilizador a um projeto e definir o seu tipo.</p>
         </div>
-        <a class="btn-secondary" href="${pageContext.request.contextPath}/dashboard">Voltar</a>
     </div>
 
     <c:if test="${not empty mensagem}">
@@ -39,7 +39,7 @@
                     </thead>
                     <tbody>
                         <c:forEach var="item" items="${usuariosPendentes}">
-                            <tr onclick="window.location='${pageContext.request.contextPath}/admin/usuarios/acesso?id=${item.id}'">
+                            <tr onclick="window.location='<%= request.getContextPath() %>/admin/usuarios/acesso?id=${item.id}'">
                                 <td><c:out value="${item.id}"/></td>
                                 <td><c:out value="${item.nome}"/></td>
                                 <td><c:out value="${item.email}"/></td>

@@ -1,6 +1,8 @@
 package pt.com.ctrl.vault.service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
 import org.mindrot.jbcrypt.BCrypt;
 import pt.com.ctrl.vault.exception.CampoObrigatorioException;
@@ -98,6 +100,15 @@ public class UsuarioService {
         return usuarioRepository.buscarProjetoDoUsuario(idUsuario);
     }
 
+    public List<Projeto> listarProjetosDoUsuario(Integer idUsuario) {
+        if (idUsuario == null) {
+            throw new CampoObrigatorioException("Usuario invalido.");
+        }
+
+        UsuarioRepository usuarioRepository = new UsuarioRepository();
+        return usuarioRepository.listarProjetosDoUsuario(idUsuario);
+    }
+
     public List<Projeto> listarProjetos() {
         ProjetoRepository projetoRepository = new ProjetoRepository();
         return projetoRepository.listarTodos();
@@ -108,12 +119,13 @@ public class UsuarioService {
         return tipoUsuarioRepository.listarTodos();
     }
 
-    public void atualizarAcessoUsuario(Integer idUsuario, Integer idProjeto, Integer idTipoUsuario) {
-        if (idUsuario == null || idProjeto == null || idTipoUsuario == null) {
-            throw new CampoObrigatorioException("Utilizador, projeto e tipo de utilizador sao obrigatorios.");
+    public void atualizarAcessoUsuario(Integer idUsuario, List<Integer> idsProjetos, Integer idTipoUsuario) {
+        if (idUsuario == null || idsProjetos == null || idsProjetos.isEmpty() || idTipoUsuario == null) {
+            throw new CampoObrigatorioException("Utilizador, pelo menos um projeto e tipo de utilizador sao obrigatorios.");
         }
 
+        List<Integer> idsProjetosNormalizados = new ArrayList<>(new LinkedHashSet<>(idsProjetos));
         UsuarioRepository usuarioRepository = new UsuarioRepository();
-        usuarioRepository.atualizarAcessoUsuario(idUsuario, idProjeto, idTipoUsuario);
+        usuarioRepository.atualizarAcessoUsuario(idUsuario, idsProjetosNormalizados, idTipoUsuario);
     }
 }

@@ -1,16 +1,10 @@
-<%-- 
-    Document   : login
-    Created on : 001/03/2026, 12:50:07
-    Author     : aliceslombardi
---%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
     <title>Login - CTRL+VAULT</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css">
 </head>
 <body>
 
@@ -18,7 +12,7 @@
 <div class="">
     <h2>Login</h2>
 
-    <form action="${pageContext.request.contextPath}/login" method="post">
+    <form action="<%= request.getContextPath() %>/login" method="post">
         <label>Email:</label><br>
         <input type="email" name="email" value="${param.email}" required><br><br>
 
