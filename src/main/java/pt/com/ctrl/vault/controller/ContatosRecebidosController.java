@@ -31,6 +31,8 @@ public class ContatosRecebidosController extends HttpServlet {
 
         if ("selecionados".equals(req.getParameter("sucesso"))) {
             ServletUtil.addSucesso(req, "Contatos selecionados marcados como lidos.");
+        } else if ("removidos".equals(req.getParameter("sucesso"))) {
+            ServletUtil.addSucesso(req, "Contatos selecionados removidos.");
         }
 
         req.getRequestDispatcher("/WEB-INF/contact/received-contacts.jsp").forward(req, resp);
@@ -53,6 +55,14 @@ public class ContatosRecebidosController extends HttpServlet {
 
         try {
             List<Integer> idsContato = parseIntList(req.getParameterValues("idContato"));
+            String acao = req.getParameter("acao");
+
+            if ("remover".equals(acao)) {
+                contatoService.removerContatos(usuarioLogado, idsContato);
+                resp.sendRedirect(req.getContextPath() + "/contatos/recebidos?sucesso=removidos");
+                return;
+            }
+
             contatoService.marcarContatosComoLidos(usuarioLogado, idsContato);
             resp.sendRedirect(req.getContextPath() + "/contatos/recebidos?sucesso=selecionados");
 

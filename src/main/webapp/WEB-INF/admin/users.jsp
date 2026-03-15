@@ -11,9 +11,10 @@
 </head>
 <body>
 
-<div class="page-shell">
-<main class="app-container">
+<div class="page-shell app-layout">
     <%@ include file="/WEB-INF/fragments/app-header.jspf" %>
+<main class="app-main">
+    <div class="app-container">
     <section class="section-heading">
         <div>
             <h2>Utilizadores sem acesso</h2>
@@ -54,6 +55,7 @@
             </div>
         </c:otherwise>
     </c:choose>
+    </div>
 </main>
 </div>
 <%@ include file="/WEB-INF/fragments/app-footer.jspf" %>

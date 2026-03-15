@@ -145,6 +145,32 @@ public class ContatoRepository {
         }
     }
 
+    public void removerContatos(Integer idUsuario, List<Integer> idsContato) {
+        String sql =
+                "DELETE FROM tb_contato " +
+                "WHERE id = ?";
+
+        Connection conn = null;
+        PreparedStatement stmt = null;
+
+        try {
+            conn = ConnectionFactory.getConnection();
+            stmt = conn.prepareStatement(sql);
+
+            for (Integer idContato : idsContato) {
+                stmt.setInt(1, idContato);
+                stmt.addBatch();
+            }
+
+            stmt.executeBatch();
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao remover contatos", e);
+        } finally {
+            ConnectionFactory.close(conn, stmt);
+        }
+    }
+
     private Contato mapearContatoRecebido(ResultSet rs) throws SQLException {
         Contato contato = new Contato();
         contato.setId(rs.getInt("id"));

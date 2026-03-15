@@ -11,10 +11,11 @@
 </head>
 <body>
 
-<div class="page-shell">
+<div class="page-shell app-layout">
     <%@ include file="/WEB-INF/fragments/app-header.jspf" %>
 
-    <main class="app-container form-container">
+    <main class="app-main">
+        <div class="app-container form-container">
         <section class="section-heading">
             <div>
                 <h2>Novo conteudo</h2>
@@ -53,6 +54,7 @@
                 <button type="submit" class="btn-secondary">Criar conteudo</button>
             </div>
         </form>
+        </div>
 </main>
 </div>
 <%@ include file="/WEB-INF/fragments/app-footer.jspf" %>
