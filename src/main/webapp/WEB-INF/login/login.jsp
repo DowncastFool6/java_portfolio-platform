@@ -1,46 +1,38 @@
+<%-- 
+    Document   : login
+    Created on : 001/03/2026, 12:50:07
+    Author     : aliceslombardi
+--%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
     <title>Login - CTRL+VAULT</title>
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/base.css">
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/layout.css">
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/components.css">
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/pages.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<div class="page-shell">
-<main class="app-container portal-narrow">
-    <section class="portal-panel">
-        <div class="section-heading">
-            <div>
-                <h2>Login</h2>
-                <p>Aceda ao portal para consultar projetos e gerir conteudos.</p>
-            </div>
-        </div>
+<h2>Login</h2>
 
-        <form action="<%= request.getContextPath() %>/login" method="post">
-            <label>Email</label>
-            <input type="email" name="email" value="${param.email}" required>
+<form action="login" method="post">
+    
+    <label>Email:</label><br>
+    <input type="email" name="email" required /><br><br>
+    
+    <label>Senha:</label><br>
+    <input type="password" name="senha" required /><br><br>
 
-            <label>Senha</label>
-            <input type="password" name="senha" required>
+    <button type="submit">Entrar</button>
+</form>
 
-            <button type="submit" class="btn-secondary">Entrar</button>
-        </form>
-
-        <c:if test="${not empty mensagem}">
-            <p class="sucesso"><c:out value="${mensagem}"/></p>
-        </c:if>
-        <c:if test="${not empty erro}">
-            <p class="erro"><c:out value="${erro}"/></p>
-        </c:if>
-    </section>
-</main>
-</div>
-<%@ include file="/WEB-INF/fragments/app-footer.jspf" %>
+<c:if test="${not empty mensagem}">
+    <p class="sucesso">${mensagem}</p>
+</c:if>
+<c:if test="${not empty erro}">
+    <p class="erro">${erro}</p>
+</c:if>
 
 </body>
 </html>

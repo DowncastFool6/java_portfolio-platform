@@ -11,13 +11,8 @@ public class Conteudo {
 
     private Integer id;
     private Projeto projeto;
-    private String titulo;
     private String tipoConteudo;
     private String conteudo;
-    private String nomeArquivo;
-    private String tipoMime;
-    private byte[] arquivo;
-    private boolean arquivoDisponivel;
     private Integer ordemExibicao;
     private LocalDateTime dataCriacao;
     private LocalDateTime dataEdicao;
@@ -42,14 +37,6 @@ public class Conteudo {
         this.projeto = projeto;
     }
 
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
-
     public String getTipoConteudo() {
         return tipoConteudo;
     }
@@ -64,38 +51,6 @@ public class Conteudo {
 
     public void setConteudo(String conteudo) {
         this.conteudo = conteudo;
-    }
-
-    public String getNomeArquivo() {
-        return nomeArquivo;
-    }
-
-    public void setNomeArquivo(String nomeArquivo) {
-        this.nomeArquivo = nomeArquivo;
-    }
-
-    public String getTipoMime() {
-        return tipoMime;
-    }
-
-    public void setTipoMime(String tipoMime) {
-        this.tipoMime = tipoMime;
-    }
-
-    public byte[] getArquivo() {
-        return arquivo;
-    }
-
-    public void setArquivo(byte[] arquivo) {
-        this.arquivo = arquivo;
-    }
-
-    public boolean isArquivoDisponivel() {
-        return arquivoDisponivel;
-    }
-
-    public void setArquivoDisponivel(boolean arquivoDisponivel) {
-        this.arquivoDisponivel = arquivoDisponivel;
     }
 
     public Integer getOrdemExibicao() {

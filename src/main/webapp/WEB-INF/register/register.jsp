@@ -1,60 +1,46 @@
+<%-- 
+    Document   : register
+    Created on : 28/02/2026, 17:47:35
+    Author     : aliceslombardi
+--%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
-<!DOCTYPE html>
 <html>
 <head>
-    <title>Registar Utilizador</title>
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/base.css">
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/layout.css">
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/components.css">
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/pages.css">
+    <title>Registar Usuário</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<div class="page-shell">
-<main class="app-container portal-narrow">
-    <section class="portal-panel">
-        <div class="section-heading">
-            <div>
-                <h2>Registar Novo Utilizador</h2>
-                <p>Crie a sua conta para aceder ao portal.</p>
-            </div>
-        </div>
+<h2>Registar Novo Usuário</h2>
 
-        <c:if test="${not empty erro}">
-            <p class="erro"><c:out value="${erro}"/></p>
-        </c:if>
+<!-- Mensagem de erro -->
+<c:if test="${not empty erro}">
+    <p class="erro">
+        ${erro}
+    </p>
+</c:if>
 
-        <form action="<%= request.getContextPath() %>/register" method="post">
-            <label>Nome</label>
-            <input type="text" name="nome" value="${param.nome}" required>
+<form action="register" method="post">
 
-            <label>Email</label>
-            <input type="email" name="email" value="${param.email}" required>
+    <label>Nome:</label><br>
+    <input type="text" name="nome"
+           value="${param.nome}" required>
+    <br><br>
 
-            <label>Senha</label>
-            <input type="password" name="senha" required>
+    <label>Email:</label><br>
+    <input type="email" name="email"
+           value="${param.email}" required>
+    <br><br>
 
-            <div class="rgpd-box">
-                <strong>Informacao RGPD</strong>
-                <p>
-                    Nos termos do Regulamento Geral sobre a Protecao de Dados (RGPD) aplicavel em Portugal,
-                    os dados fornecidos neste formulario serao tratados apenas para criacao e gestao da sua conta no sistema.
-                </p>
-                <label class="checkbox-row">
-                    <input type="checkbox" name="aceitouRgpd" required>
-                    Declaro que li e compreendi a informacao relativa ao tratamento dos meus dados pessoais.
-                </label>
-            </div>
+    <label>Senha:</label><br>
+    <input type="password" name="senha" required>
+    <br><br>
 
-            <div class="action-row">
-                <button type="submit" class="btn-secondary">Registar</button>
-            </div>
-        </form>
-    </section>
-</main>
-</div>
-<%@ include file="/WEB-INF/fragments/app-footer.jspf" %>
+    <button type="submit">Registar</button>
+
+</form>
 
 </body>
 </html>
