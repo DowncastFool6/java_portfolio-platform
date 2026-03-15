@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 /**
  * Classe que representa o conteudo de um projeto
- * @author aliceslombardi
+ * @author aliceslombardi, CamilaRial, VissolelaCundi
  * @since 28/02/2026
  */
 public class Conteudo {

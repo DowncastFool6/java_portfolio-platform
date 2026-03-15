@@ -16,7 +16,7 @@ import pt.com.ctrl.vault.util.ConnectionFactory;
 
 /**
  * Classe responsavel pela leitura e manipulacao dos dados de um usuario
- * @author aliceslombardi
+ * @author aliceslombardi, CamilaRial, VissolelaCundi
  * @since 28/02/2026
  */
 public class UsuarioRepository {

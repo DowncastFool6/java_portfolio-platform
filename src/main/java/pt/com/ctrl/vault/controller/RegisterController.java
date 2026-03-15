@@ -12,7 +12,7 @@ import pt.com.ctrl.vault.util.ServletUtil;
 
 /**
  * Controller do resgistro de um novo usuario no sistema
- * @author aliceslombardi
+ * @author aliceslombardi, CamilaRial, VissolelaCundi
  * @since 28/02/2026
  */
 public class RegisterController extends HttpServlet {

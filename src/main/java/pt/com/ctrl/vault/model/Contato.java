@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 /**
  * Classe que representa o Contato realizado no sistema
- * @author aliceslombardi
+ * @author aliceslombardi, CamilaRial, VissolelaCundi
  * @since 28/02/2026
  */
 public class Contato {

@@ -11,6 +11,10 @@ import pt.com.ctrl.vault.model.Usuario;
 import pt.com.ctrl.vault.service.ConteudoService;
 import pt.com.ctrl.vault.util.ServletUtil;
 
+/**
+ * Controller para entrega de ficheiros associados aos conteudos.
+ * @author aliceslombardi, CamilaRial, VissolelaCundi
+ */
 public class ConteudoArquivoController extends HttpServlet {
 
     @Override

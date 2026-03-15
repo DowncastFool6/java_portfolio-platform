@@ -13,7 +13,7 @@ import pt.com.ctrl.vault.util.ServletUtil;
 
 /**
  * Classe com logica apresentacao do dashboard do usuario
- * @author aliceslombardi
+ * @author aliceslombardi, CamilaRial, VissolelaCundi
  * @since 01/03/2026
  */
 public class DashboardController extends HttpServlet {

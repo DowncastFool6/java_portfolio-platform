@@ -123,6 +123,34 @@
 
 }
 
+.about-cards{
+
+    flex-direction:column;
+
+    align-items:stretch;
+
+    max-width:860px;
+
+    margin:40px auto 0;
+
+}
+
+.about-cards .card{
+
+    min-height:220px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    width:100%;
+
+    text-align:left;
+
+}
+
 .project-grid,
 .dashboard-grid{
 

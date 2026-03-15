@@ -2,7 +2,7 @@ package pt.com.ctrl.vault.model;
 
 /**
  * Classe que representa a ligacao entre um usuario e um projeto
- * @author aliceslombardi
+ * @author aliceslombardi, CamilaRial, VissolelaCundi
  * @since 28/02/2026
  */
 public class UsuarioProjeto {

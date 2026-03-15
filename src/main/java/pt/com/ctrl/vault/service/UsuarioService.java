@@ -18,7 +18,7 @@ import pt.com.ctrl.vault.repository.UsuarioRepository;
 
 /**
  * Classe com logica de negocio referente ao usuario
- * @author aliceslombardi
+ * @author aliceslombardi, CamilaRial, VissolelaCundi
  * @since 28/02/2026
  */
 public class UsuarioService {

@@ -15,7 +15,7 @@ import pt.com.ctrl.vault.util.ServletUtil;
 
 /**
  * Controller para envio de contatos associados ao projeto do utilizador
- * @author aliceslombardi
+ * @author aliceslombardi, CamilaRial, VissolelaCundi
  * @since 08/03/2026
  */
 public class ContatoController extends HttpServlet {

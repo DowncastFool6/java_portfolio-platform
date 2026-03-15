@@ -6,6 +6,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/**
+ * Classe responsavel pela criacao e fecho de ligacoes a base de dados.
+ * @author aliceslombardi, CamilaRial, VissolelaCundi
+ */
 public class ConnectionFactory {
 
     private static final String URL =

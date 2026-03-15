@@ -13,7 +13,7 @@ import pt.com.ctrl.vault.repository.ProjetoRepository;
 
 /**
  * Classe com logica de negocio referente aos contatos
- * @author aliceslombardi
+ * @author aliceslombardi, CamilaRial, VissolelaCundi
  * @since 08/03/2026
  */
 public class ContatoService {

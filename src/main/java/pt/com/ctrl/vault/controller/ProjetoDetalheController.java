@@ -16,6 +16,10 @@ import pt.com.ctrl.vault.model.Usuario;
 import pt.com.ctrl.vault.service.ConteudoService;
 import pt.com.ctrl.vault.util.ServletUtil;
 
+/**
+ * Controller para detalhe e ordenacao de conteudos do projeto.
+ * @author aliceslombardi, CamilaRial, VissolelaCundi
+ */
 @MultipartConfig
 public class ProjetoDetalheController extends HttpServlet {
 

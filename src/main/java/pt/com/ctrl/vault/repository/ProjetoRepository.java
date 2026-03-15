@@ -11,6 +11,10 @@ import java.util.List;
 import pt.com.ctrl.vault.model.Projeto;
 import pt.com.ctrl.vault.util.ConnectionFactory;
 
+/**
+ * Repositorio responsavel pela leitura de projetos.
+ * @author aliceslombardi, CamilaRial, VissolelaCundi
+ */
 public class ProjetoRepository {
 
     public Projeto buscarPorId(Integer idProjeto) {

@@ -7,6 +7,7 @@ import java.sql.SQLException;
 
 /**
  * Garante a existencia das estruturas de dados necessarias para o modulo de conteudos.
+ * @author aliceslombardi, CamilaRial, VissolelaCundi
  */
 public final class DatabaseInitializer {
 

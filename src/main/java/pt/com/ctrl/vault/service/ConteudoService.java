@@ -13,6 +13,10 @@ import pt.com.ctrl.vault.model.Projeto;
 import pt.com.ctrl.vault.model.Usuario;
 import pt.com.ctrl.vault.repository.ConteudoRepository;
 
+/**
+ * Classe com logica de negocio referente aos conteudos.
+ * @author aliceslombardi, CamilaRial, VissolelaCundi
+ */
 public class ConteudoService {
 
     public List<Projeto> listarProjetosDoUsuario(Usuario usuario) {
