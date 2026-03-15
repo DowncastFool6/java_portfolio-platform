@@ -1,51 +1,177 @@
 /* ======================================================
-   HEADER
+   SIDE PANEL
    ====================================================== */
 
-header{
+.app-layout{
+
+    display:flex;
+
+    align-items:stretch;
+
+    min-height:100vh;
+
+}
+
+.side-panel{
+
+    width:280px;
 
     background:var(--color-black);
 
     color:white;
 
+    padding:32px 22px;
+
     display:flex;
 
-    justify-content:space-between;
+    flex-direction:column;
+
+    gap:28px;
+
+    position:sticky;
+
+    top:0;
+
+    min-height:100vh;
+
+}
+
+.side-panel-brand{
+
+    display:grid;
+
+    gap:8px;
+
+}
+
+.side-panel-kicker{
+
+    color:rgba(255,255,255,0.64);
+
+    font-size:12px;
+
+    letter-spacing:0.18em;
+
+    text-transform:uppercase;
+
+}
+
+.side-panel-brand strong{
+
+    font-size:28px;
+
+    letter-spacing:0.03em;
+
+}
+
+.side-panel-nav{
+
+    display:grid;
+
+    gap:10px;
+
+}
+
+.side-panel-user{
+
+    display:grid;
+
+    gap:6px;
+
+    padding:14px 16px;
+
+    border:1px solid rgba(255,255,255,0.14);
+
+    border-radius:var(--radius-md);
+
+    background:rgba(255,255,255,0.08);
+
+}
+
+.side-panel-user-label{
+
+    color:rgba(255,255,255,0.64);
+
+    font-size:12px;
+
+    letter-spacing:0.12em;
+
+    text-transform:uppercase;
+
+}
+
+.side-panel-user strong{
+
+    font-size:16px;
+
+    line-height:1.4;
+
+}
+
+.side-panel-link{
+
+    display:flex;
 
     align-items:center;
 
-    padding:20px 60px;
+    justify-content:space-between;
 
-}
+    gap:12px;
 
-.logo{
+    padding:14px 16px;
 
-    font-size:24px;
+    border:1px solid rgba(255,255,255,0.14);
 
-    font-weight:600;
-
-    letter-spacing:1px;
-
-}
-
-
-/* NAVIGATION */
-
-nav a{
+    border-radius:var(--radius-md);
 
     color:white;
 
-    margin-left:30px;
+    text-decoration:none;
 
-    font-weight:300;
+    background:rgba(255,255,255,0.04);
 
     transition:var(--transition);
 
 }
 
-nav a:hover{
+.side-panel-link:hover,
+.side-panel-link.is-active{
 
-    color:var(--color-primary);
+    background:white;
+
+    color:var(--color-black);
+
+}
+
+.side-panel-badge{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:4px 10px;
+
+    border-radius:999px;
+
+    background:var(--color-primary);
+
+    color:white;
+
+    font-size:12px;
+
+}
+
+.side-panel-footer{
+
+    margin-top:auto;
+
+}
+
+.side-panel-link-logout{
+
+    border-color:rgba(255,255,255,0.24);
 
 }
 
@@ -64,7 +190,7 @@ footer{
 
     text-align:center;
 
-    margin-top:80px;
+    margin-top:0;
 
     font-size:14px;
 
@@ -87,7 +213,15 @@ footer{
 
 .page-shell{
 
-    min-height:100vh;
+    flex:1;
+
+}
+
+.app-main{
+
+    flex:1;
+
+    min-width:0;
 
 }
 
@@ -175,4 +309,23 @@ form > .action-row{
 
     gap:10px;
 
+}
+
+@media (max-width: 960px){
+
+    .app-layout{
+
+        flex-direction:column;
+
+    }
+
+    .side-panel{
+
+        width:100%;
+
+        min-height:auto;
+
+        position:relative;
+
+    }
 }

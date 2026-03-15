@@ -74,14 +74,29 @@ public class ContatoService {
         UsuarioService usuarioService = new UsuarioService();
         usuarioService.validarUsuarioAtivoParaAcao(usuario);
 
+        List<Integer> ids = validarEPadronizarIdsContato(idsContato);
+
+        ContatoRepository contatoRepository = new ContatoRepository();
+        contatoRepository.marcarContatosComoLidos(usuario.getId(), ids);
+    }
+
+    public void removerContatos(Usuario usuario, List<Integer> idsContato) {
+        validarUsuarioParticipante(usuario);
+        UsuarioService usuarioService = new UsuarioService();
+        usuarioService.validarUsuarioAtivoParaAcao(usuario);
+
+        List<Integer> ids = validarEPadronizarIdsContato(idsContato);
+
+        ContatoRepository contatoRepository = new ContatoRepository();
+        contatoRepository.removerContatos(ids);
+    }
+
+    private List<Integer> validarEPadronizarIdsContato(List<Integer> idsContato) {
         if (idsContato == null || idsContato.isEmpty()) {
             throw new CampoObrigatorioException("Selecione pelo menos um contato.");
         }
 
-        List<Integer> idsNormalizados = new ArrayList<>(new LinkedHashSet<>(idsContato));
-
-        ContatoRepository contatoRepository = new ContatoRepository();
-        contatoRepository.marcarContatosComoLidos(usuario.getId(), idsNormalizados);
+        return new ArrayList<>(new LinkedHashSet<>(idsContato));
     }
 
     private void validarUsuarioParticipante(Usuario usuario) {

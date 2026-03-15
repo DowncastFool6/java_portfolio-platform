@@ -21,14 +21,14 @@
             </div>
         </div>
 
-        <form action="<%= request.getContextPath() %>/login" method="post">
+        <form class="login-form" action="<%= request.getContextPath() %>/login" method="post">
             <label>Email</label>
             <input type="email" name="email" value="${param.email}" required>
 
             <label>Senha</label>
             <input type="password" name="senha" required>
 
-            <button type="submit" class="btn-secondary">Entrar</button>
+            <button type="submit" class="btn-secondary login-submit">Entrar</button>
         </form>
 
         <c:if test="${not empty mensagem}">

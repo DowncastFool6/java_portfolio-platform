@@ -5,25 +5,31 @@
     boolean paginaEhDashboard = (contexto + "/dashboard").equals(uriAtual);
 %>
 
-<header>
-    <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
-        <div style="display: flex; gap: 8px; align-items: center;">
-            <% if (!paginaEhDashboard) { %>
-                <a class="btn-secondary" href="<%= request.getContextPath() %>/dashboard">Home</a>
-                <a class="btn-secondary" href="javascript:history.back()">Voltar</a>
-            <% } %>
-            <a class="btn-secondary" href="<%= request.getContextPath() %>/projetos">Projetos</a>
-        </div>
-        <div style="display: flex; gap: 8px; align-items: center; margin-left: auto;">
-            <c:if test="${mostrarBotaoContatos}">
-                <a class="btn-secondary" href="<%= request.getContextPath() %>/contatos/recebidos">
-                    &#9993; Contatos
-                    <c:if test="${temContatosPendentes}">
-                        [Novo]
-                    </c:if>
-                </a>
-            </c:if>
-            <a class="btn-secondary" href="<%= request.getContextPath() %>/logout">Logout</a>
-        </div>
+<aside class="side-panel">
+    <div class="side-panel-brand">
+        <span class="side-panel-kicker">CTRL+VAULT</span>
+        <strong>Painel</strong>
     </div>
-</header>
+
+    <nav class="side-panel-nav">
+        <div class="side-panel-user">
+            <span class="side-panel-user-label">Utilizador</span>
+            <strong><c:out value="${sessionScope.usuarioLogado.nome}"/></strong>
+        </div>
+        <a class="side-panel-link <%= paginaEhDashboard ? "is-active" : "" %>" href="<%= request.getContextPath() %>/dashboard">Dashboard</a>
+        <a class="side-panel-link <%= uriAtual.startsWith(contexto + "/projetos") || uriAtual.startsWith(contexto + "/projeto") ? "is-active" : "" %>" href="<%= request.getContextPath() %>/projetos">Projetos</a>
+        <c:if test="${mostrarBotaoContatos}">
+            <a class="side-panel-link <%= uriAtual.startsWith(contexto + "/contatos") && !uriAtual.startsWith(contexto + "/contatos/recebidos") ? "is-active" : "" %>" href="<%= request.getContextPath() %>/contatos">Novo Contato</a>
+            <a class="side-panel-link <%= uriAtual.startsWith(contexto + "/contatos/recebidos") ? "is-active" : "" %>" href="<%= request.getContextPath() %>/contatos/recebidos">
+                Contatos
+                <c:if test="${temContatosPendentes}">
+                    <span class="side-panel-badge">Novo</span>
+                </c:if>
+            </a>
+        </c:if>
+    </nav>
+
+    <div class="side-panel-footer">
+        <a class="side-panel-link side-panel-link-logout" href="<%= request.getContextPath() %>/logout">Logout</a>
+    </div>
+</aside>

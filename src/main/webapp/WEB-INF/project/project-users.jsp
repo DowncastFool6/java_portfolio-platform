@@ -11,10 +11,11 @@
 </head>
 <body>
 
-<div class="page-shell">
+<div class="page-shell app-layout">
     <%@ include file="/WEB-INF/fragments/app-header.jspf" %>
 
-    <main class="app-container">
+    <main class="app-main">
+        <div class="app-container">
         <section class="section-heading section-heading-space">
             <div>
                 <h2>Utilizadores do projeto</h2>
@@ -74,6 +75,7 @@
                     </c:forEach>
                 </tbody>
             </table>
+        </div>
         </div>
 </main>
 </div>

@@ -11,10 +11,11 @@
 </head>
 <body>
 
-<div class="page-shell">
-<main class="app-container portal-narrow">
+<div class="page-shell app-layout">
     <%@ include file="/WEB-INF/fragments/app-header.jspf" %>
 
+<main class="app-main">
+    <div class="app-container">
     <section class="portal-panel">
         <div class="section-heading">
             <div>
@@ -22,8 +23,6 @@
                 <p>Selecione o projeto e envie a mensagem de contato.</p>
             </div>
         </div>
-
-        <p><strong>Utilizador:</strong> <c:out value="${usuario.nome}"/></p>
 
         <c:if test="${not empty mensagem}">
             <p class="sucesso"><c:out value="${mensagem}"/></p>
@@ -62,6 +61,7 @@
             </form>
         </c:if>
     </section>
+    </div>
 </main>
 </div>
 <%@ include file="/WEB-INF/fragments/app-footer.jspf" %>

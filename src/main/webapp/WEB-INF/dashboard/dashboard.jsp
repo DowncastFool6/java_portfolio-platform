@@ -11,14 +11,15 @@
 </head>
 <body>
 
-<div class="page-shell">
-<main class="app-container">
+<div class="page-shell app-layout">
     <%@ include file="/WEB-INF/fragments/app-header.jspf" %>
 
+<main class="app-main">
+    <div class="app-container">
     <section class="portal-section">
         <div>
             <h2>Dashboard</h2>
-            <p>Bem-vindo, <strong><c:out value="${usuario.nome}"/></strong>.</p>
+            <p>Consulte os seus atalhos e acompanhe o estado da sua area.</p>
         </div>
     </section>
 
@@ -43,14 +44,13 @@
             </a>
         </c:if>
 
-        <c:if test="${not empty projetoUsuario and isUsuarioAtivo}">
-            <a class="dashboard-card" href="<%= request.getContextPath() %>/contatos">
-                <span class="status-chip">Contato</span>
-                <strong>Contato do projeto</strong>
-                <span>Enviar uma mensagem associada ao seu projeto atual.</span>
-            </a>
-        </c:if>
+    </div>
+</main>
+</div>
+<%@ include file="/WEB-INF/fragments/app-footer.jspf" %>
 
+</body>
+</html>
         <c:if test="${not empty projetosUsuario}">
             <a class="dashboard-card" href="<%= request.getContextPath() %>/projetos">
                 <span class="status-chip">Projetos</span>
@@ -59,9 +59,3 @@
             </a>
         </c:if>
     </div>
-</main>
-</div>
-<%@ include file="/WEB-INF/fragments/app-footer.jspf" %>
-
-</body>
-</html>

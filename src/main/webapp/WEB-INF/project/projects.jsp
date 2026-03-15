@@ -11,10 +11,11 @@
 </head>
 <body>
 
-<div class="page-shell">
+<div class="page-shell app-layout">
     <%@ include file="/WEB-INF/fragments/app-header.jspf" %>
 
-    <main class="app-container">
+    <main class="app-main">
+        <div class="app-container">
         <section class="section-heading">
             <div>
                 <h2>Os seus projetos</h2>
@@ -34,6 +35,7 @@
                     <span>Abrir pagina do projeto</span>
                 </a>
             </c:forEach>
+        </div>
         </div>
     </main>
 </div>

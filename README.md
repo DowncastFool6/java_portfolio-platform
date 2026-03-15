@@ -84,7 +84,7 @@ Este projeto é proprietário. Consulte o ficheiro `LICENSE` para os direitos co
 # 📁 Estrutura do Projeto
 
 ```text
-Crtl-Vault/
+ctrl-vault/
 │
 ├─ src/
 │  └─ main/

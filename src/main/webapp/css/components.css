@@ -287,6 +287,13 @@ input, textarea, select{
 
 }
 
+input[type="checkbox"],
+input[type="radio"]{
+
+    width:auto;
+
+}
+
 input:focus{
 
     outline:none;
@@ -358,13 +365,40 @@ input:focus{
 
 }
 
+.content-list-edit .editable-card{
+
+    padding:20px;
+
+    gap:10px;
+
+}
+
+.content-list-edit .editable-card label{
+
+    font-size:14px;
+
+}
+
+.content-list-edit .editable-card .input-field,
+.content-list-edit .editable-card .textarea-field{
+
+    margin-bottom:8px;
+
+}
+
+.content-list-edit .editable-card .content-image-preview{
+
+    max-height:180px;
+
+}
+
 .drag-handle{
 
     font-size:13px;
 
     color:var(--color-muted);
 
-    margin-bottom:12px;
+    margin-bottom:4px;
 
     cursor:move;
 
@@ -372,7 +406,7 @@ input:focus{
 
 .content-actions{
 
-    margin-top:20px;
+    margin-top:8px;
 
 }
 
@@ -392,6 +426,12 @@ input:focus{
     padding:24px;
 
     box-shadow:var(--shadow-sm);
+
+}
+
+.table-wrap{
+
+    overflow-x:auto;
 
 }
 

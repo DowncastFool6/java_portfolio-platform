@@ -1,4 +1,62 @@
 /* ======================================================
+   LANDING PAGE
+   ====================================================== */
+
+.landing-page header{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:28px 80px 12px;
+
+}
+
+.landing-page .logo{
+
+    font-size:28px;
+
+    font-weight:600;
+
+    letter-spacing:0.04em;
+
+}
+
+.landing-page .plus{
+
+    color:var(--color-primary);
+
+}
+
+.landing-page nav{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:24px;
+
+}
+
+.landing-page nav a{
+
+    color:var(--color-black);
+
+    text-decoration:none;
+
+    font-weight:500;
+
+}
+
+.landing-page nav a:hover{
+
+    color:var(--color-primary);
+
+}
+
+/* ======================================================
    HERO SECTION
    ====================================================== */
 
@@ -79,5 +137,11 @@
 .dashboard-grid{
 
     margin-top:24px;
+
+}
+
+.login-submit{
+
+    margin-top:20px;
 
 }
