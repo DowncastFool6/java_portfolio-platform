@@ -1,0 +1,59 @@
+
+/* ======================================================
+   CTRL+VAULT DESIGN SYSTEM
+   ====================================================== */
+
+:root{
+
+/* ======================
+   CORES PRINCIPAIS
+====================== */
+
+--color-black:#101010;
+--color-text:#101010;
+
+--color-background:#F1F1F3;
+--color-surface:#FFFFFF;
+
+--color-olive:#757671;
+
+--color-primary:#6F3FB5;
+--color-primary-hover:#5D33A1;
+
+/* ======================
+   CORES AUXILIARES
+====================== */
+
+--color-border:#E4E4E7;
+--color-muted:#6B6B6B;
+--color-success:#22C55E;
+--color-danger:#EF4444;
+
+/* ======================
+   TIPOGRAFIA
+====================== */
+
+--font-main:'Poppins', sans-serif;
+
+/* ======================
+   TAMANHOS
+====================== */
+
+--radius-sm:6px;
+--radius-md:10px;
+--radius-lg:14px;
+
+/* ======================
+   SOMBRAS
+====================== */
+
+--shadow-sm:0 4px 10px rgba(0,0,0,0.05);
+--shadow-md:0 10px 30px rgba(0,0,0,0.08);
+
+/* ======================
+   TRANSIÇÕES
+====================== */
+
+--transition:0.25s ease;
+
+}

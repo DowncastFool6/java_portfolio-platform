@@ -1,0 +1,29 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+    String uriAtual = request.getRequestURI();
+    String contexto = request.getContextPath();
+    boolean paginaEhDashboard = (contexto + "/dashboard").equals(uriAtual);
+%>
+
+<header>
+    <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+        <div style="display: flex; gap: 8px; align-items: center;">
+            <% if (!paginaEhDashboard) { %>
+                <a class="btn-secondary" href="<%= request.getContextPath() %>/dashboard">Home</a>
+                <a class="btn-secondary" href="javascript:history.back()">Voltar</a>
+            <% } %>
+            <a class="btn-secondary" href="<%= request.getContextPath() %>/projetos">Projetos</a>
+        </div>
+        <div style="display: flex; gap: 8px; align-items: center; margin-left: auto;">
+            <c:if test="${mostrarBotaoContatos}">
+                <a class="btn-secondary" href="<%= request.getContextPath() %>/contatos/recebidos">
+                    &#9993; Contatos
+                    <c:if test="${temContatosPendentes}">
+                        [Novo]
+                    </c:if>
+                </a>
+            </c:if>
+            <a class="btn-secondary" href="<%= request.getContextPath() %>/logout">Logout</a>
+        </div>
+    </div>
+</header>
