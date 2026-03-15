@@ -14,6 +14,10 @@ import pt.com.ctrl.vault.model.Usuario;
 import pt.com.ctrl.vault.util.ConnectionFactory;
 import pt.com.ctrl.vault.util.DatabaseInitializer;
 
+/**
+ * Repositorio responsavel pela persistencia de conteudos.
+ * @author aliceslombardi, CamilaRial, VissolelaCundi
+ */
 public class ConteudoRepository {
 
     public ConteudoRepository() {

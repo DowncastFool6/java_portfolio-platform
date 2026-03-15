@@ -11,7 +11,7 @@ import pt.com.ctrl.vault.service.UsuarioService;
 
 /**
  * Classe com metodos uteis para utilizar nas Servlets
- * @author aliceslombardi
+ * @author aliceslombardi, CamilaRial, VissolelaCundi
  * @since 01/03/2026
  */
 public class ServletUtil {

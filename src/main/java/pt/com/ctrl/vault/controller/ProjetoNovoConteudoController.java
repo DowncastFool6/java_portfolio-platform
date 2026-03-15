@@ -13,6 +13,10 @@ import pt.com.ctrl.vault.model.Usuario;
 import pt.com.ctrl.vault.service.ConteudoService;
 import pt.com.ctrl.vault.util.ServletUtil;
 
+/**
+ * Controller legado para criacao de conteudos.
+ * @author aliceslombardi, CamilaRial, VissolelaCundi
+ */
 @MultipartConfig
 public class ProjetoNovoConteudoController extends HttpServlet {
 

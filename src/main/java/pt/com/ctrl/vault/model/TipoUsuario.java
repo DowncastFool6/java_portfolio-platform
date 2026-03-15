@@ -2,7 +2,7 @@ package pt.com.ctrl.vault.model;
 
 /**
  * Classe que representa o tipo do usuario
- * @author aliceslombardi
+ * @author aliceslombardi, CamilaRial, VissolelaCundi
  * @since 28/02/2026
  */
 public class TipoUsuario {

@@ -11,6 +11,10 @@ import pt.com.ctrl.vault.model.Usuario;
 import pt.com.ctrl.vault.service.ConteudoService;
 import pt.com.ctrl.vault.util.ServletUtil;
 
+/**
+ * Controller para listagem de projetos do utilizador.
+ * @author aliceslombardi, CamilaRial, VissolelaCundi
+ */
 public class ProjetosController extends HttpServlet {
 
     @Override

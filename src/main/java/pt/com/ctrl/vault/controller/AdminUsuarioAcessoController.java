@@ -15,6 +15,10 @@ import pt.com.ctrl.vault.model.Usuario;
 import pt.com.ctrl.vault.service.UsuarioService;
 import pt.com.ctrl.vault.util.ServletUtil;
 
+/**
+ * Controller para administracao de acessos de utilizadores.
+ * @author aliceslombardi, CamilaRial, VissolelaCundi
+ */
 public class AdminUsuarioAcessoController extends HttpServlet {
 
     @Override

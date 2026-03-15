@@ -4,6 +4,10 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
 
+/**
+ * Controller de encerramento de sessao.
+ * @author aliceslombardi, CamilaRial, VissolelaCundi
+ */
 public class LogoutController extends HttpServlet {
 
     @Override

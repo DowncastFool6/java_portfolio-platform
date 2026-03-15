@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 /**
  * Classe que representa um usuario do sistema
- * @author aliceslombardi
+ * @author aliceslombardi, CamilaRial, VissolelaCundi
  * @since 28/02/2026
  */
 public class Usuario {

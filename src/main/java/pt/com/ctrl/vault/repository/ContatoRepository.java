@@ -15,7 +15,7 @@ import pt.com.ctrl.vault.util.ConnectionFactory;
 
 /**
  * Classe responsavel pela escrita dos contatos enviados no sistema
- * @author aliceslombardi
+ * @author aliceslombardi, CamilaRial, VissolelaCundi
  * @since 08/03/2026
  */
 public class ContatoRepository {

@@ -15,7 +15,7 @@ import pt.com.ctrl.vault.util.ServletUtil;
 
 /**
  * Controller de login do sistema
- * @author aliceslombardi
+ * @author aliceslombardi, CamilaRial, VissolelaCundi
  * @since 28/02/2026
  */
 public class LoginController extends HttpServlet {

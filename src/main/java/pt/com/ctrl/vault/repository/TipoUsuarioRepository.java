@@ -9,6 +9,10 @@ import java.util.List;
 import pt.com.ctrl.vault.model.TipoUsuario;
 import pt.com.ctrl.vault.util.ConnectionFactory;
 
+/**
+ * Repositorio responsavel pela leitura de tipos de utilizador.
+ * @author aliceslombardi, CamilaRial, VissolelaCundi
+ */
 public class TipoUsuarioRepository {
 
     public List<TipoUsuario> listarTodos() {

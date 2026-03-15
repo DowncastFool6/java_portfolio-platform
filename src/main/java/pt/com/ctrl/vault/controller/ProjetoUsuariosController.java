@@ -13,6 +13,10 @@ import pt.com.ctrl.vault.service.ConteudoService;
 import pt.com.ctrl.vault.service.UsuarioService;
 import pt.com.ctrl.vault.util.ServletUtil;
 
+/**
+ * Controller para gestao de utilizadores do projeto.
+ * @author aliceslombardi, CamilaRial, VissolelaCundi
+ */
 public class ProjetoUsuariosController extends HttpServlet {
 
     @Override
