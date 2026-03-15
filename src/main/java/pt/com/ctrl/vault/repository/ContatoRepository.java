@@ -145,7 +145,7 @@ public class ContatoRepository {
         }
     }
 
-    public void removerContatos(Integer idUsuario, List<Integer> idsContato) {
+    public void removerContatos(List<Integer> idsContato) {
         String sql =
                 "DELETE FROM tb_contato " +
                 "WHERE id = ?";

@@ -74,10 +74,10 @@ public class ContatoService {
         UsuarioService usuarioService = new UsuarioService();
         usuarioService.validarUsuarioAtivoParaAcao(usuario);
 
-        List<Integer> idsNormalizados = validarEPadronizarIdsContato(idsContato);
+        List<Integer> ids = validarEPadronizarIdsContato(idsContato);
 
         ContatoRepository contatoRepository = new ContatoRepository();
-        contatoRepository.marcarContatosComoLidos(usuario.getId(), idsNormalizados);
+        contatoRepository.marcarContatosComoLidos(usuario.getId(), ids);
     }
 
     public void removerContatos(Usuario usuario, List<Integer> idsContato) {
@@ -85,10 +85,10 @@ public class ContatoService {
         UsuarioService usuarioService = new UsuarioService();
         usuarioService.validarUsuarioAtivoParaAcao(usuario);
 
-        List<Integer> idsNormalizados = validarEPadronizarIdsContato(idsContato);
+        List<Integer> ids = validarEPadronizarIdsContato(idsContato);
 
         ContatoRepository contatoRepository = new ContatoRepository();
-        contatoRepository.removerContatos(usuario.getId(), idsNormalizados);
+        contatoRepository.removerContatos(ids);
     }
 
     private List<Integer> validarEPadronizarIdsContato(List<Integer> idsContato) {
