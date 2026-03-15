@@ -44,6 +44,13 @@
             </a>
         </c:if>
 
+    </div>
+</main>
+</div>
+<%@ include file="/WEB-INF/fragments/app-footer.jspf" %>
+
+</body>
+</html>
         <c:if test="${not empty projetosUsuario}">
             <a class="dashboard-card" href="<%= request.getContextPath() %>/projetos">
                 <span class="status-chip">Projetos</span>
@@ -52,10 +59,3 @@
             </a>
         </c:if>
     </div>
-    </div>
-</main>
-</div>
-<%@ include file="/WEB-INF/fragments/app-footer.jspf" %>
-
-</body>
-</html>
