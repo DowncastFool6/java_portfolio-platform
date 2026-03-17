@@ -4,10 +4,7 @@
 <html>
 <head>
     <title>Registar Utilizador</title>
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/base.css">
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/layout.css">
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/components.css">
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/pages.css">
+    <link rel="stylesheet" href="<%= request.getContextPath()%>/css/styles.css">
 </head>
 <body>
 
@@ -36,14 +33,14 @@
             <input type="password" name="senha" required>
 
             <div class="rgpd-box">
-                <strong>Informacao RGPD</strong>
+                <strong>Informação RGPD</strong>
                 <p>
-                    Nos termos do Regulamento Geral sobre a Protecao de Dados (RGPD) aplicavel em Portugal,
-                    os dados fornecidos neste formulario serao tratados apenas para criacao e gestao da sua conta no sistema.
+                    Nos termos do Regulamento Geral sobre a Protecao de Dados (RGPD) aplicável em Portugal,
+                    os dados fornecidos neste formulário serão tratados apenas para criação e gestão da sua conta no sistema.
                 </p>
                 <label class="checkbox-row">
                     <input type="checkbox" name="aceitouRgpd" required>
-                    Declaro que li e compreendi a informacao relativa ao tratamento dos meus dados pessoais.
+                    Declaro que li e compreendi a informação relativa ao tratamento dos meus dados pessoais.
                 </label>
             </div>
 

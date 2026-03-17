@@ -4,10 +4,7 @@
 <html>
 <head>
     <title>Utilizadores do Projeto - CTRL+VAULT</title>
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/base.css">
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/layout.css">
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/components.css">
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/pages.css">
+    <link rel="stylesheet" href="<%= request.getContextPath()%>/css/styles.css">
 </head>
 <body>
 
