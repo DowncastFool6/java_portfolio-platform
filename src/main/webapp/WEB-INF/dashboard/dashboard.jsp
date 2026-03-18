@@ -29,7 +29,7 @@
     </c:if>
 
     <c:if test="${not isUsuarioAtivo}">
-        <p class="empty-state">O seu utilizador esta inativo. Pode consultar informacao, mas nao pode enviar contatos nem editar conteudos.</p>
+        <p class="empty-state">O seu utilizador está inativo. Pode consultar informação, mas não pode enviar contatos nem editar conteúdos.</p>
     </c:if>
 
     <div class="dashboard-grid">
@@ -52,7 +52,7 @@
             <a class="dashboard-card" href="<%= request.getContextPath() %>/projetos">
                 <span class="status-chip">Projetos</span>
                 <strong>Meus projetos</strong>
-                <span>Ver todos os projetos em que participa e abrir o conteudo de cada um.</span>
+                <span>Ver todos os projetos em que participa e abrir o conteúdo de cada um.</span>
             </a>
         </c:if>
     </div>

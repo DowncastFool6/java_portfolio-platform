@@ -15,9 +15,11 @@
     <div class="app-container">
         <section class="portal-section">
             <div class="section-heading">
+                <br>
+                <br>
                 <div>
                     <h2>Contatos recebidos</h2>
-                    <p>Veja os contatos recebidos pelos projetos sob sua gestao, marque-os como lidos ou remova varios de uma vez.</p>
+                    <p>Veja os contatos recebidos pelos projetos sob sua gestão, marque-os como lidos ou remova vários de uma vez.</p>
                 </div>
             </div>
 
@@ -31,7 +33,7 @@
 
             <c:choose>
                 <c:when test="${empty contatosRecebidos}">
-                    <p class="empty-state">Nao existem contatos recebidos para os seus projetos.</p>
+                    <p class="empty-state">Não existem contatos recebidos para os seus projetos.</p>
                 </c:when>
                 <c:otherwise>
                     <form action="<%= request.getContextPath() %>/contatos/recebidos" method="post" class="stack-form">

@@ -22,6 +22,7 @@
 html{
 scroll-behavior:smooth;
 }
+
 *{
 margin:0;
 padding:0;
@@ -301,20 +302,23 @@ background:var(--color-background);
 display:flex;
 min-height:100vh;
 }
+.app-container{
+align-self: center;
+}
 
 .side-panel{
 width:260px;
 background:var(--color-black);
 color:white;
-padding:30px 20px;
+padding:40px 30px;
 display:flex;
 flex-direction:column;
-gap:20px;
+gap:260px;
 }
 
 .side-panel a{
 color:white;
-padding:12px 14px;
+padding:5px 2px;
 border-radius:var(--radius-md);
 transition:var(--transition);
 }
@@ -409,10 +413,10 @@ to{opacity:1;transform:translateY(0);}
 .page-shell {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: normal;
     min-height: 100vh;
     background: var(--color-background);
-    padding: 20px;
+    padding: 0px;
 }
 
 .portal-narrow {
@@ -429,8 +433,9 @@ to{opacity:1;transform:translateY(0);}
     color: var(--color-grape-soda);
 }
 
+
 .section-heading h2 {
-    margin-bottom: 8px;
+    margin-bottom: 20px;
     font-size: 28px;
     color: var(--color-text);
 }
@@ -502,8 +507,8 @@ form select:focus {
 
 form .btn-secondary {
     background: var(--color-grape-soda);
-    color: purple;
-    padding: 14px 28px;
+    color: #FFFFFF;
+    padding: 5px 20px;
     border-radius: 999px;
     font-size: 16px;
     width: 100%;
@@ -518,4 +523,12 @@ form .btn-secondary:hover {
     background: #6F3FB5;
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(136,73,143,0.35);
+}
+
+#sobre.features{
+    padding-top: 0px;
+}
+
+h2 {
+    margin-top: 50px;
 }

@@ -25,7 +25,7 @@
 
     <c:choose>
         <c:when test="${empty usuariosPendentes}">
-            <p class="empty-state">Nao existem utilizadores pendentes de aprovacao.</p>
+            <p class="empty-state">Não existem utilizadores pendentes de aprovação.</p>
         </c:when>
         <c:otherwise>
             <div class="table-wrap">

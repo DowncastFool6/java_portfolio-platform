@@ -16,12 +16,12 @@
         <section class="section-heading">
             <div>
                 <h2>Os seus projetos</h2>
-                <p>Selecione um projeto para ver e editar os seus conteudos.</p>
+                <p>Selecione um projeto para ver e editar os seus conteúdos.</p>
             </div>
         </section>
 
         <c:if test="${empty projetos}">
-            <p class="erro">Nao existem projetos associados ao seu utilizador.</p>
+            <p class="erro">Não existem projetos associados ao seu utilizador.</p>
         </c:if>
 
         <div class="project-grid">
@@ -29,7 +29,7 @@
                 <a class="project-card" href="<%= request.getContextPath() %>/projeto?id=${projeto.id}">
                     <span class="project-card-label">Projeto</span>
                     <strong><c:out value="${projeto.descricao}"/></strong>
-                    <span>Abrir pagina do projeto</span>
+                    <span>Abrir página do projeto</span>
                 </a>
             </c:forEach>
         </div>
