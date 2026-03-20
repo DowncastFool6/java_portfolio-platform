@@ -127,10 +127,13 @@ background:var(--color-primary-hover);
 }
 
 .btn-secondary{
+display: inline-block;	
 border:2px solid var(--color-primary);
 color:var(--color-primary);
 background:white;
 border-radius:999px;
+padding: 8px 20px;
+cursor: pointer;
 }
 
 .btn-secondary:hover{
@@ -317,6 +320,7 @@ min-height:100vh;
 
 .app-main{
 flex:1;
+padding: 30px;
 }
 
 .side-panel{
