@@ -57,7 +57,7 @@
             </div>
 
 
-            <img src="<%= request.getContextPath()%>/images/logo.png"
+            <img src="<%= request.getContextPath()%>/images/logo.svg"
                  class="hero-img">
 
         </section>
@@ -71,16 +71,22 @@
             <div class="cards">
 
                 <div class="card">
+                    <img src="${pageContext.request.contextPath}/images/authentication.png" alt="Authentication Icon" width="100">
+                    
                     <h3>Autenticação Segura</h3>
                     <p>Registo, login e gestão de sessão protegida.</p>
                 </div>
 
                 <div class="card">
+                    <img src="${pageContext.request.contextPath}/images/storage.png" alt="Storage Icon" width="100">
+
                     <h3>Armazenamento Seguro</h3>
                     <p>Credenciais protegidas com encriptação.</p>
                 </div>
 
                 <div class="card">
+                    <img src="${pageContext.request.contextPath}/images/data.png" alt="Data Icon" width="100">
+                    
                     <h3>Gestão de Dados</h3>
                     <p>CRUD completo para gerir informações sensíveis.</p>
                 </div>
@@ -96,6 +102,8 @@
             <div class="cards about-cards">
 
                 <div class="card">
+                    <img src="${pageContext.request.contextPath}/images/team.png" alt="Team Icon" width="100">
+                    
                     <p>
                         Somos uma equipa de estudantes apaixonados por tecnologia e desenvolvimento
                         de software. Este projeto foi desenvolvido no ambito da formacao EFA NS PRO - Programacao
@@ -104,13 +112,15 @@
                 </div>
 
                 <div class="card">
-                    <h3>A nossa equipa</h3>
+                    <h3 class="no-icon">A nossa equipa</h3>
                     <p>Alice Lombardi - Desenvolvedora Full Stack</p>
                     <p>Camila Rial - Product Owner</p>
                     <p>Vissolela Cundi - Scrum Master</p>
                 </div>
 
                 <div class="card">
+                    <img src="${pageContext.request.contextPath}/images/contribution.png" alt="Contribution Icon" width="100">
+                    
                     <h3>Contribuicao</h3>
                     <p>
                         Cada membro contribuiu para diferentes areas do projeto, incluindo desenvolvimento backend,
@@ -125,13 +135,15 @@
             <div class="cards about-cards">
 
                 <div class="card">
-                    <p>
+                    <p class="no-icon">
                         O CTRL+VAULT e uma aplicacao web desenvolvida em Java, criada para armazenar
                         e organizar informacoes sensiveis de forma segura.
                     </p>
                 </div>
 
                 <div class="card">
+                    <img src="${pageContext.request.contextPath}/images/permission.png" alt="Permission Icon" width="100">
+                    
                     <h3>O que a aplicacao permite</h3>
                     <p>Criem uma conta e facam login de forma segura.</p>
                     <p>Organizem projetos pessoais.</p>
@@ -140,6 +152,8 @@
                 </div>
 
                 <div class="card">
+                    <img src="${pageContext.request.contextPath}/images/architecture.png" alt="Architecture Icon" width="100">
+                    
                     <h3>Arquitetura</h3>
                     <p>
                         O sistema foi desenvolvido seguindo a arquitetura MVC (Model-View-Controller),
@@ -154,6 +168,8 @@
             <div class="cards about-cards">
 
                 <div class="card">
+                    <img src="${pageContext.request.contextPath}/images/technology.png" alt="Technology Icon" width="100">
+                    
                     <p>
                         Durante o desenvolvimento do projeto utilizamos diversas tecnologias comuns
                         no desenvolvimento de aplicacoes web:
@@ -161,7 +177,7 @@
                 </div>
 
                 <div class="card">
-                    <h3>Tecnologias</h3>
+                    <h3 class="no-icon">Tecnologias</h3>
                     <p>Java</p>
                     <p>JSP / Servlets</p>
                     <p>MySQL</p>
@@ -171,6 +187,7 @@
                 </div>
 
                 <div class="card">
+                    <img src="${pageContext.request.contextPath}/images/result.png" alt="Result Icon" width="100">
                     <h3>Resultado</h3>
                     <p>
                         Estas tecnologias permitiram criar uma aplicacao funcional,
@@ -185,6 +202,7 @@
             <div class="cards about-cards">
 
                 <div class="card">
+                    <img src="${pageContext.request.contextPath}/images/concept.png" alt="Concepts Icon" width="100">
                     <p>
                         O principal objetivo do CTRL+VAULT e demonstrar na pratica a construcao
                         de uma aplicacao web completa, aplicando conceitos importantes como:
@@ -192,7 +210,7 @@
                 </div>
 
                 <div class="card">
-                    <h3>Conceitos aplicados</h3>
+                    <h3 class="no-icon">Conceitos aplicados</h3>
                     <p>Arquitetura MVC</p>
                     <p>Programacao orientada a objetos</p>
                     <p>Seguranca de dados</p>
@@ -201,6 +219,7 @@
                 </div>
 
                 <div class="card">
+                    <img src="${pageContext.request.contextPath}/images/learning.png" alt="Learning Icon" width="100">
                     <h3>Aprendizagem</h3>
                     <p>
                         Este projeto representa nao apenas um exercicio tecnico, mas tambem uma
@@ -259,7 +278,7 @@
 
             <p>
                 Projeto desenvolvido por  
-                Camila Rial • Alice Lombardi • Visselola
+                Camila Rial • Alice Lombardi • Vissolela Cundi
             </p>
 
         </footer>
