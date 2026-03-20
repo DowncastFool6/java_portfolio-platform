@@ -16,9 +16,10 @@
     <section class="portal-section">
         <div>
             <h2>Dashboard</h2>
-            <p>Consulte os seus atalhos e acompanhe o estado da sua area.</p>
+            <p>Consulte os seus atalhos e acompanhe o estado da sua área.</p>
         </div>
     </section>
+    
 
     <c:if test="${not empty mensagem}">
         <p class="sucesso"><c:out value="${mensagem}"/></p>
@@ -41,13 +42,6 @@
             </a>
         </c:if>
 
-    </div>
-</main>
-</div>
-<%@ include file="/WEB-INF/fragments/app-footer.jspf" %>
-
-</body>
-</html>
         <c:if test="${not empty projetosUsuario}">
             <a class="dashboard-card" href="<%= request.getContextPath() %>/projetos">
                 <span class="status-chip">Projetos</span>
@@ -56,3 +50,12 @@
             </a>
         </c:if>
     </div>
+    </div>
+
+</main>
+</div>
+
+<%@ include file="/WEB-INF/fragments/app-footer.jspf" %>
+
+</body>
+</html>

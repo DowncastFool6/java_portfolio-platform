@@ -16,14 +16,14 @@
         <section class="section-heading section-heading-space">
             <div>
                 <h2><c:out value="${projeto.descricao}"/></h2>
-                <p>Visualize os conteudos do projeto e reorganize-os quando necessario.</p>
+                <p>Visualize os conteúdos do projeto e reorganize-os quando necessário.</p>
             </div>
             <div class="action-row">
                 <c:if test="${usuarioPodeGerirUsuariosProjeto}">
                     <a class="btn-secondary" href="<%= request.getContextPath() %>/projeto/usuarios?idProjeto=${projeto.id}">Gerir utilizadores</a>
                 </c:if>
                 <c:if test="${usuarioPodeEditarProjeto and not modoEdicao}">
-                    <a class="btn-secondary" href="<%= request.getContextPath() %>/projeto/conteudos/novo?idProjeto=${projeto.id}">Novo conteudo</a>
+                    <a class="btn-secondary" href="<%= request.getContextPath() %>/projeto/conteudos/novo?idProjeto=${projeto.id}">Novo conteúdo</a>
                 </c:if>
                 <c:choose>
                     <c:when test="${usuarioPodeEditarProjeto and not modoEdicao}">
@@ -42,7 +42,7 @@
         </c:if>
 
         <c:if test="${empty conteudos}">
-            <p class="empty-state">Este projeto ainda nao tem conteudos.</p>
+            <p class="empty-state">Este projeto ainda não tem conteúdos.</p>
         </c:if>
 
         <c:choose>
@@ -60,7 +60,7 @@
 
                                 <div class="drag-handle">Arraste para reordenar</div>
 
-                                <label>Titulo</label>
+                                <label>Título</label>
                                 <input type="text" name="titulo_${conteudo.id}" value="<c:out value="${conteudo.titulo}"/>" class="input-field">
 
                                 <p class="meta-chip"><c:out value="${conteudo.tipoConteudo}"/></p>
@@ -74,7 +74,7 @@
                                         <label>Substituir ficheiro</label>
                                         <input type="file" name="arquivo_${conteudo.id}" accept="image/*">
                                         <img class="content-media content-image content-image-preview" src="<%= request.getContextPath() %>/conteudos/arquivo?idProjeto=${projeto.id}&idConteudo=${conteudo.id}" alt="<c:out value="${conteudo.titulo}"/>">
-                                        <p class="helper-text">Se nao enviar um novo ficheiro, o atual sera mantido.</p>
+                                        <p class="helper-text">Se não enviar um novo ficheiro, o atual será mantido.</p>
                                     </c:otherwise>
                                 </c:choose>
 
@@ -82,7 +82,7 @@
                                     <button type="submit" name="acao" value="remover" class="btn-secondary"
                                             onclick="document.getElementById('idConteudoRemover').value='${conteudo.id}'; return confirm('Remover este conteudo do projeto?');"
                                             formnovalidate>
-                                        Remover conteudo
+                                        Remover conteúdo
                                     </button>
                                 </div>
                             </article>
@@ -90,8 +90,8 @@
                     </div>
 
                     <div class="action-row">
-                        <button type="submit" name="acao" value="guardar" class="btn-secondary">Guardar alteracoes</button>
-                        <a class="btn-secondary" href="<%= request.getContextPath() %>/projeto?id=${projeto.id}">Cancelar edicao</a>
+                        <button type="submit" name="acao" value="guardar" class="btn-secondary">Guardar alterações</button>
+                        <a class="btn-secondary" href="<%= request.getContextPath() %>/projeto?id=${projeto.id}">Cancelar edição</a>
                     </div>
                 </form>
             </c:when>

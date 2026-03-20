@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<div class="page-shell">
+<div class="page-shell-login">
 <main class="app-container portal-narrow">
     <section class="portal-panel">
         <div class="section-heading">
