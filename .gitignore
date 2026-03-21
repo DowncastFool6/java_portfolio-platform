@@ -9,6 +9,18 @@ nbbuild/
 nbdist/
 .nb-gradle/
 
+# Eclipse
+.classpath
+.project
+.settings/
+.factorypath
+.apt_generated/
+.apt_generated_tests/
+
+# IntelliJ IDEA
+.idea/
+*.iml
+
 # Logs
 *.log
 

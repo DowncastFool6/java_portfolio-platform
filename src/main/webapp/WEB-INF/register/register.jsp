@@ -1,8 +1,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
     <title>Registar Utilizador</title>
     <link rel="stylesheet" href="<%= request.getContextPath()%>/css/styles.css">
 </head>
@@ -10,13 +11,13 @@
 
 <div class="page-shell-register">
 <main class="app-container portal-narrow">
-    <section class="portal-panel">
+    
         <div class="section-heading">
             <div>
                 <h2>Registar Novo Utilizador</h2>
                 <p>Crie a sua conta para aceder ao portal.</p>
-            </div>
-        </div>
+            
+        
 
         <c:if test="${not empty erro}">
             <p class="erro"><c:out value="${erro}"/></p>
@@ -42,7 +43,7 @@
                     <input type="checkbox" name="aceitouRgpd" required>
                     Declaro que li e compreendi a informação relativa ao tratamento dos meus dados pessoais.
                 </label>
-            </div>
+            
 
             <div class="action-row">
                 <button type="submit" class="btn-secondary">Registar</button>

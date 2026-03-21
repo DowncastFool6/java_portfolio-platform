@@ -1,8 +1,9 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
     <title>Dashboard - CTRL+VAULT</title>
     <link rel="stylesheet" href="<%= request.getContextPath()%>/css/styles.css">
 </head>
@@ -19,7 +20,6 @@
             <p>Consulte os seus atalhos e acompanhe o estado da sua área.</p>
         </div>
     </section>
-    
 
     <c:if test="${not empty mensagem}">
         <p class="sucesso"><c:out value="${mensagem}"/></p>
@@ -36,12 +36,11 @@
     <div class="dashboard-grid">
         <c:if test="${isAdmin and isUsuarioAtivo}">
             <a class="dashboard-card" href="<%= request.getContextPath() %>/admin/usuarios">
-                <span class="status-chip">Administracao</span>
+                <span class="status-chip">Administração</span>
                 <strong>Gerir acessos</strong>
                 <span>Administrar utilizadores sem acesso, projeto associado e tipo de utilizador.</span>
             </a>
         </c:if>
-
         <c:if test="${not empty projetosUsuario}">
             <a class="dashboard-card" href="<%= request.getContextPath() %>/projetos">
                 <span class="status-chip">Projetos</span>
@@ -51,10 +50,8 @@
         </c:if>
     </div>
     </div>
-
 </main>
 </div>
-
 <%@ include file="/WEB-INF/fragments/app-footer.jspf" %>
 
 </body>

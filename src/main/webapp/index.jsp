@@ -1,4 +1,4 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <html lang="pt">
@@ -6,8 +6,8 @@
     <head>
 
         <meta charset="UTF-8">
-        <title>CTRL+VAULT – Your Knowledge Under Control</title>
-        
+        <title>CTRL+VAULT - Your Knowledge Under Control</title>
+
         <link rel="stylesheet" href="<%= request.getContextPath()%>/css/styles.css">
 
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
@@ -72,7 +72,7 @@
 
                 <div class="card">
                     <img src="${pageContext.request.contextPath}/images/authentication.png" alt="Authentication Icon" width="100">
-                    
+
                     <h3>Autenticação Segura</h3>
                     <p>Registo, login e gestão de sessão protegida.</p>
                 </div>
@@ -86,7 +86,7 @@
 
                 <div class="card">
                     <img src="${pageContext.request.contextPath}/images/data.png" alt="Data Icon" width="100">
-                    
+
                     <h3>Gestão de Dados</h3>
                     <p>CRUD completo para gerir informações sensíveis.</p>
                 </div>
@@ -103,11 +103,11 @@
 
                 <div class="card">
                     <img src="${pageContext.request.contextPath}/images/team.png" alt="Team Icon" width="100">
-                    
+
                     <p>
                         Somos uma equipa de estudantes apaixonados por tecnologia e desenvolvimento
-                        de software. Este projeto foi desenvolvido no ambito da formacao EFA NS PRO - Programacao
-                        Informatica, com o objetivo de aplicar na pratica os conhecimentos adquiridos durante o curso.
+                        de software. Este projeto foi desenvolvido no âmbito da formação EFA NS PRO - Programação
+                        Informática, com o objetivo de aplicar na prática os conhecimentos adquiridos durante o curso.
                     </p>
                 </div>
 
@@ -120,11 +120,11 @@
 
                 <div class="card">
                     <img src="${pageContext.request.contextPath}/images/contribution.png" alt="Contribution Icon" width="100">
-                    
-                    <h3>Contribuicao</h3>
+
+                    <h3>Contribuição</h3>
                     <p>
-                        Cada membro contribuiu para diferentes areas do projeto, incluindo desenvolvimento backend,
-                        interface do utilizador, planeamento do produto e gestao do processo de desenvolvimento.
+                        Cada membro contribuiu para diferentes áreas do projeto, incluindo desenvolvimento backend,
+                        interface do utilizador, planeamento do produto e gestão do processo de desenvolvimento.
                     </p>
                 </div>
 
@@ -136,28 +136,28 @@
 
                 <div class="card">
                     <p class="no-icon">
-                        O CTRL+VAULT e uma aplicacao web desenvolvida em Java, criada para armazenar
-                        e organizar informacoes sensiveis de forma segura.
+                        O CTRL+VAULT é uma aplicação web desenvolvida em Java, criada para armazenar
+                        e organizar informações sensíveis de forma segura.
                     </p>
                 </div>
 
                 <div class="card">
                     <img src="${pageContext.request.contextPath}/images/permission.png" alt="Permission Icon" width="100">
-                    
-                    <h3>O que a aplicacao permite</h3>
-                    <p>Criem uma conta e facam login de forma segura.</p>
+
+                    <h3>O que a aplicação permite</h3>
+                    <p>Criem uma conta e façam login de forma segura.</p>
                     <p>Organizem projetos pessoais.</p>
-                    <p>Guardem conteudos e informacoes importantes.</p>
+                    <p>Guardem conteúdos e informações importantes.</p>
                     <p>Gerenciem os seus dados de forma simples e estruturada.</p>
                 </div>
 
                 <div class="card">
                     <img src="${pageContext.request.contextPath}/images/architecture.png" alt="Architecture Icon" width="100">
-                    
+
                     <h3>Arquitetura</h3>
                     <p>
                         O sistema foi desenvolvido seguindo a arquitetura MVC (Model-View-Controller),
-                        separando claramente a logica da aplicacao, a interface e o acesso aos dados.
+                        separando claramente a lógica da aplicação, a interface e o acesso aos dados.
                     </p>
                 </div>
 
@@ -169,10 +169,10 @@
 
                 <div class="card">
                     <img src="${pageContext.request.contextPath}/images/technology.png" alt="Technology Icon" width="100">
-                    
+
                     <p>
                         Durante o desenvolvimento do projeto utilizamos diversas tecnologias comuns
-                        no desenvolvimento de aplicacoes web:
+                        no desenvolvimento de aplicações web:
                     </p>
                 </div>
 
@@ -183,14 +183,14 @@
                     <p>MySQL</p>
                     <p>Apache Tomcat</p>
                     <p>Maven</p>
-                    <p>BCrypt para seguranca das passwords</p>
+                    <p>BCrypt para segurança das passwords</p>
                 </div>
 
                 <div class="card">
                     <img src="${pageContext.request.contextPath}/images/result.png" alt="Result Icon" width="100">
                     <h3>Resultado</h3>
                     <p>
-                        Estas tecnologias permitiram criar uma aplicacao funcional,
+                        Estas tecnologias permitiram criar uma aplicação funcional,
                         segura e organizada.
                     </p>
                 </div>
@@ -204,27 +204,27 @@
                 <div class="card">
                     <img src="${pageContext.request.contextPath}/images/concept.png" alt="Concepts Icon" width="100">
                     <p>
-                        O principal objetivo do CTRL+VAULT e demonstrar na pratica a construcao
-                        de uma aplicacao web completa, aplicando conceitos importantes como:
+                        O principal objetivo do CTRL+VAULT é demonstrar na prática a construção
+                        de uma aplicação web completa, aplicando conceitos importantes como:
                     </p>
                 </div>
 
                 <div class="card">
                     <h3 class="no-icon">Conceitos aplicados</h3>
                     <p>Arquitetura MVC</p>
-                    <p>Programacao orientada a objetos</p>
-                    <p>Seguranca de dados</p>
-                    <p>Organizacao em camadas (Controller, Service, Repository)</p>
-                    <p>Integracao com base de dados</p>
+                    <p>Programação orientada a objetos</p>
+                    <p>Segurança de dados</p>
+                    <p>Organização em camadas (Controller, Service, Repository)</p>
+                    <p>Integração com base de dados</p>
                 </div>
 
                 <div class="card">
                     <img src="${pageContext.request.contextPath}/images/learning.png" alt="Learning Icon" width="100">
                     <h3>Aprendizagem</h3>
                     <p>
-                        Este projeto representa nao apenas um exercicio tecnico, mas tambem uma
-                        oportunidade de desenvolver competencias de trabalho em equipa, planeamento
-                        de projeto e boas praticas de programacao.
+                        Este projeto representa não apenas um exercício técnico, mas também uma
+                        oportunidade de desenvolver competências de trabalho em equipa, planeamento
+                        de projeto e boas práticas de programação.
                     </p>
                 </div>
 
@@ -274,10 +274,10 @@
 
         <footer>
 
-            <p>© 2026 CTRL+VAULT – Academic Project</p>
+            <p>© 2026 CTRL+VAULT - Academic Project</p>
 
             <p>
-                Projeto desenvolvido por  
+                Projeto desenvolvido por
                 Camila Rial • Alice Lombardi • Vissolela Cundi
             </p>
 
