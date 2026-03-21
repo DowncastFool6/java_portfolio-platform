@@ -1,6 +1,8 @@
 package pt.com.ctrl.vault.util;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,6 +17,16 @@ import pt.com.ctrl.vault.service.UsuarioService;
  * @since 01/03/2026
  */
 public class ServletUtil {
+
+    public static void configurarUtf8(HttpServletRequest req, HttpServletResponse resp) {
+        try {
+			req.setCharacterEncoding("UTF-8");
+			resp.setCharacterEncoding("UTF-8");
+			resp.setContentType("text/html;charset=UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+    }
         
     public static Usuario obterUsuarioLogado(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession(false);

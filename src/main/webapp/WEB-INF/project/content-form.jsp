@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Novo Conteudo - CTRL+VAULT</title>
+    <title>Novo Conteúdo - CTRL+VAULT</title>
     <link rel="stylesheet" href="<%= request.getContextPath()%>/css/styles.css">
 </head>
 <body>
@@ -16,7 +16,7 @@
         <div class="app-container form-container">
         <section class="section-heading">
             <div>
-                <h2>Novo conteudo</h2>
+                <h2>Novo conteúdo</h2>
                 <p>Projeto: <strong><c:out value="${projeto.descricao}"/></strong></p>
             </div>
         </section>
@@ -25,31 +25,47 @@
             <p class="erro"><c:out value="${erro}"/></p>
         </c:if>
 
-        <form action="<%= request.getContextPath() %>/projeto/conteudos/novo" method="post" enctype="multipart/form-data" class="stack-form">
+        <form action="<%= request.getContextPath() %>/projeto/conteudos/novo" method="post" enctype="multipart/form-data" class="stack-form content-editor-form">
             <input type="hidden" name="idProjeto" value="${projeto.id}">
 
-            <label for="titulo">Titulo</label>
-            <input id="titulo" name="titulo" type="text" value="<c:out value="${tituloConteudo}"/>" class="input-field">
+            <section class="content-editor-card">
+                <div class="content-editor-header">
+                    <span class="meta-chip">Base</span>
+                    <h3>Identificação do conteúdo</h3>
+                    <p>Defina o título e a estrutura principal antes de preencher o material.</p>
+                </div>
 
-            <label for="tipoConteudo">Tipo de conteudo</label>
-            <select id="tipoConteudo" name="tipoConteudo" class="input-field" required>
-                <option value="">Selecione</option>
-                <option value="TEXTO" <c:if test="${tipoConteudoSelecionado == 'TEXTO'}">selected</c:if>>Texto</option>
-                <option value="IMAGEM" <c:if test="${tipoConteudoSelecionado == 'IMAGEM'}">selected</c:if>>Imagem</option>
-            </select>
+                <label for="titulo">Título</label>
+                <input id="titulo" name="titulo" type="text" value="<c:out value="${tituloConteudo}"/>" class="input-field">
 
-            <div id="texto-wrapper">
-                <label for="texto">Texto</label>
-                <textarea id="texto" name="texto" rows="8" class="textarea-field"><c:out value="${textoConteudo}"/></textarea>
-            </div>
+                <label for="tipoConteudo">Tipo de conteúdo</label>
+                <select id="tipoConteudo" name="tipoConteudo" class="input-field" required>
+                    <option value="">Selecione</option>
+                    <option value="TEXTO" <c:if test="${tipoConteudoSelecionado == 'TEXTO'}">selected</c:if>>Texto</option>
+                    <option value="IMAGEM" <c:if test="${tipoConteudoSelecionado == 'IMAGEM'}">selected</c:if>>Imagem</option>
+                </select>
+            </section>
 
-            <div id="arquivo-wrapper">
-                <label for="arquivo">Ficheiro</label>
-                <input id="arquivo" name="arquivo" type="file">
-            </div>
+            <section class="content-editor-card">
+                <div class="content-editor-header">
+                    <span class="meta-chip">Conteúdo</span>
+                    <h3>Material do projeto</h3>
+                    <p>Preencha o texto ou carregue o ficheiro que será apresentado no projeto.</p>
+                </div>
+
+                <div id="texto-wrapper" class="content-editor-body">
+                    <label for="texto">Texto</label>
+                    <textarea id="texto" name="texto" rows="8" class="textarea-field"><c:out value="${textoConteudo}"/></textarea>
+                </div>
+
+                <div id="arquivo-wrapper" class="content-editor-body">
+                    <label for="arquivo">Ficheiro</label>
+                    <input id="arquivo" name="arquivo" type="file">
+                </div>
+            </section>
 
             <div class="action-row">
-                <button type="submit" class="btn-secondary">Criar conteudo</button>
+                <button type="submit" class="btn-primary">Criar conteúdo</button>
             </div>
         </form>
         </div>

@@ -70,8 +70,7 @@ public class AdminUsuarioAcessoController extends HttpServlet {
         }
     }
 
-    private void carregarFormulario(HttpServletRequest req, Integer idUsuario, List<Integer> idsProjetosSelecionados,
-            Integer idTipoSelecionado) throws ServletException {
+    private void carregarFormulario(HttpServletRequest req, Integer idUsuario, List<Integer> idsProjetosSelecionados, Integer idTipoSelecionado) throws ServletException {
         UsuarioService usuarioService = new UsuarioService();
         Usuario usuario = usuarioService.buscarPorId(idUsuario);
         List<Projeto> projetosAtuais = usuarioService.listarProjetosDoUsuario(idUsuario);

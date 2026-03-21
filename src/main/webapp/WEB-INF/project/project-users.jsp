@@ -20,7 +20,7 @@
                 <p>Projeto: <strong><c:out value="${projeto.descricao}"/></strong></p>
             </div>
             <div class="action-row">
-                <a class="btn-secondary" href="<%= request.getContextPath() %>/projeto?id=${projeto.id}&modo=editar">Voltar ao projeto</a>
+                <a class="btn-primary" href="<%= request.getContextPath() %>/projeto?id=${projeto.id}&modo=editar">Voltar ao projeto</a>
             </div>
         </section>
 
@@ -61,10 +61,10 @@
                                     <input type="hidden" name="idUsuario" value="${usuarioProjeto.id}">
                                     <c:choose>
                                         <c:when test="${usuarioProjeto.ativo}">
-                                            <button type="submit" name="acao" value="desativar" class="btn-secondary">Desativar</button>
+                                            <button type="submit" name="acao" value="desativar" class="btn-primary">Desativar</button>
                                         </c:when>
                                         <c:otherwise>
-                                            <button type="submit" name="acao" value="ativar" class="btn-secondary">Ativar</button>
+                                            <button type="submit" name="acao" value="ativar" class="btn-primary">Ativar</button>
                                         </c:otherwise>
                                     </c:choose>
                                 </form>

@@ -46,7 +46,7 @@
             
 
             <div class="action-row">
-                <button type="submit" class="btn-secondary">Registar</button>
+                <button type="submit" class="btn-primary">Registar</button>
             </div>
         </form>
     </section>

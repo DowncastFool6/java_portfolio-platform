@@ -68,7 +68,7 @@
             </select>
 
             <div class="action-row">
-                <button type="submit" class="btn-secondary">Guardar acesso</button>
+                <button type="submit" class="btn-primary">Guardar acesso</button>
             </div>
         </form>
     </section>

@@ -54,7 +54,7 @@
                 <textarea id="mensagem" name="mensagem" rows="6" class="textarea-field" required><c:out value="${mensagemContato}"/></textarea>
 
                 <div class="action-row">
-                    <button type="submit" class="btn-secondary">Enviar contato</button>
+                    <button type="submit" class="btn-primary">Enviar contato</button>
                 </div>
             </form>
         </c:if>

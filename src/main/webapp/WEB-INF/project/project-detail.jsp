@@ -17,18 +17,18 @@
         <section class="section-heading section-heading-space">
             <div>
                 <h2><c:out value="${projeto.descricao}"/></h2>
-                <p>Visualize os conteúdos do projeto e reorganize-os quando necessário.</p>
+                <p>Visualize os conteúdos do projeto e reorganize-os quando necessário. Arraste para reordenar</p>
             </div>
             <div class="action-row">
                 <c:if test="${usuarioPodeGerirUsuariosProjeto}">
-                    <a class="btn-secondary" href="<%= request.getContextPath() %>/projeto/usuarios?idProjeto=${projeto.id}">Gerir utilizadores</a>
+                    <a class="btn-primary" href="<%= request.getContextPath() %>/projeto/usuarios?idProjeto=${projeto.id}">Gerir utilizadores</a>
                 </c:if>
                 <c:if test="${usuarioPodeEditarProjeto and not modoEdicao}">
-                    <a class="btn-secondary" href="<%= request.getContextPath() %>/projeto/conteudos/novo?idProjeto=${projeto.id}">Novo conteúdo</a>
+                    <a class="btn-primary" href="<%= request.getContextPath() %>/projeto/conteudos/novo?idProjeto=${projeto.id}">Novo conteúdo</a>
                 </c:if>
                 <c:choose>
                     <c:when test="${usuarioPodeEditarProjeto and not modoEdicao}">
-                        <a class="btn-secondary" href="<%= request.getContextPath() %>/projeto?id=${projeto.id}&modo=editar">Editar</a>
+                        <a class="btn-primary" href="<%= request.getContextPath() %>/projeto?id=${projeto.id}&modo=editar">Editar</a>
                     </c:when>
                 </c:choose>
             </div>
@@ -48,7 +48,7 @@
 
         <c:choose>
             <c:when test="${modoEdicao && usuarioPodeEditarProjeto}">
-                <form action="<%= request.getContextPath() %>/projeto" method="post" enctype="multipart/form-data">
+                <form action="<%= request.getContextPath() %>/projeto" method="post" enctype="multipart/form-data" class="content-edit-form">
                     <input type="hidden" name="idProjeto" value="${projeto.id}">
                     <input type="hidden" name="idConteudoRemover" id="idConteudoRemover">
 
@@ -59,40 +59,41 @@
                                 <input type="hidden" name="ordem_${conteudo.id}" class="ordem-input" value="${conteudo.ordemExibicao}">
                                 <input type="hidden" name="conteudoOrdem" class="ordem-id-input" value="${conteudo.id}">
 
-                                <div class="drag-handle">Arraste para reordenar</div>
+                                <div class="content-editor-card">
 
-                                <label>Título</label>
-                                <input type="text" name="titulo_${conteudo.id}" value="<c:out value="${conteudo.titulo}"/>" class="input-field">
+                                    <label>Título</label>
+                                    <input type="text" name="titulo_${conteudo.id}" value="<c:out value="${conteudo.titulo}"/>" class="input-field">
 
-                                <p class="meta-chip"><c:out value="${conteudo.tipoConteudo}"/></p>
-
-                                <c:choose>
-                                    <c:when test="${conteudo.tipoConteudo == 'TEXTO'}">
-                                        <label>Texto</label>
-                                        <textarea name="texto_${conteudo.id}" class="textarea-field" rows="7"><c:out value="${conteudo.conteudo}"/></textarea>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <label>Substituir ficheiro</label>
-                                        <input type="file" name="arquivo_${conteudo.id}" accept="image/*">
-                                        <img class="content-media content-image content-image-preview" src="<%= request.getContextPath() %>/conteudos/arquivo?idProjeto=${projeto.id}&idConteudo=${conteudo.id}" alt="<c:out value="${conteudo.titulo}"/>">
-                                        <p class="helper-text">Se não enviar um novo ficheiro, o atual será mantido.</p>
-                                    </c:otherwise>
-                                </c:choose>
-
-                                <div class="action-row content-actions">
-                                    <button type="submit" name="acao" value="remover" class="btn-secondary"
-                                            onclick="document.getElementById('idConteudoRemover').value='${conteudo.id}'; return confirm('Remover este conteudo do projeto?');"
-                                            formnovalidate>
-                                        Remover conteúdo
-                                    </button>
+                                    <c:choose>
+                                        <c:when test="${conteudo.tipoConteudo == 'TEXTO'}">
+                                            <label>Texto</label>
+                                            <textarea name="texto_${conteudo.id}" class="textarea-field" rows="7"><c:out value="${conteudo.conteudo}"/></textarea>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <label>Substituir ficheiro</label>
+                                            <input type="file" name="arquivo_${conteudo.id}" accept="image/*">
+                                            <img class="content-media content-image content-image-preview" src="<%= request.getContextPath() %>/conteudos/arquivo?idProjeto=${projeto.id}&idConteudo=${conteudo.id}" alt="<c:out value="${conteudo.titulo}"/>">
+                                            <p class="helper-text">Se não enviar um novo ficheiro, o atual será mantido.</p>
+                                        </c:otherwise>
+                                    </c:choose>
+	                                
+	                                <div class="action-row content-actions">
+	                                    <button type="submit" name="acao" value="remover" class="btn-primary"
+	                                            onclick="document.getElementById('idConteudoRemover').value='${conteudo.id}'; return confirm('Remover este conteúdo do projeto?');"
+	                                            formnovalidate>
+	                                        Remover conteúdo
+	                                    </button>
+	                                </div>                                    
+                                    
                                 </div>
+
                             </article>
                         </c:forEach>
                     </div>
 
                     <div class="action-row">
-                        <button type="submit" name="acao" value="guardar" class="btn-secondary">Guardar alterações</button>
-                        <a class="btn-secondary" href="<%= request.getContextPath() %>/projeto?id=${projeto.id}">Cancelar edição</a>
+                        <button type="submit" name="acao" value="guardar" class="btn-primary">Guardar alterações</button>
+                        <a class="btn-primary" href="<%= request.getContextPath() %>/projeto?id=${projeto.id}">Cancelar edição</a>
                     </div>
                 </form>
             </c:when>

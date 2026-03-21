@@ -16,8 +16,6 @@
     <div class="app-container">
         <section class="portal-section">
             <div class="section-heading">
-                <br>
-                <br>
                 <div>
                     <h2>Contatos recebidos</h2>
                     <p>Veja os contatos recebidos pelos projetos sob sua gestão, marque-os como lidos ou remova vários de uma vez.</p>
@@ -39,10 +37,10 @@
                 <c:otherwise>
                     <form action="<%= request.getContextPath() %>/contatos/recebidos" method="post" class="stack-form">
                         <div class="action-row">
-                            <button type="submit" name="acao" value="ler" class="btn-secondary">
+                            <button type="submit" name="acao" value="ler" class="btn-primary">
                                 Marcar selecionados como lidos
                             </button>
-                            <button type="submit" name="acao" value="remover" class="btn-secondary"
+                            <button type="submit" name="acao" value="remover" class="btn-primary"
                                     onclick="return confirm('Remover os contatos selecionados?');">
                                 Remover selecionados
                             </button>

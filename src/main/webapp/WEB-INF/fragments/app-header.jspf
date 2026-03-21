@@ -8,22 +8,15 @@
 <aside class="side-panel">
     <div class="side-panel-brand">
         <span class="side-panel-kicker">CTRL+VAULT</span>
-        <strong>Painel</strong>
+            <span class="side-panel-user-label">Utilizador</span>
+            <strong><c:out value="${sessionScope.usuarioLogado.nome}"/></strong>
     </div>
 
     <nav class="side-panel-nav">
-        <div class="side-panel-user">
-            <span class="side-panel-user-label">Utilizador</span>
-            <strong><c:out value="${sessionScope.usuarioLogado.nome}"/></strong>
-        </div>
-        <br>
         <a class="side-panel-link <%= paginaEhDashboard ? "is-active" : "" %>" href="<%= request.getContextPath() %>/dashboard">Dashboard</a>
-        <br>
         <a class="side-panel-link <%= uriAtual.startsWith(contexto + "/projetos") || uriAtual.startsWith(contexto + "/projeto") ? "is-active" : "" %>" href="<%= request.getContextPath() %>/projetos">Projetos</a>
-        <br>
         <c:if test="${mostrarBotaoContatos}">
             <a class="side-panel-link <%= uriAtual.startsWith(contexto + "/contatos") && !uriAtual.startsWith(contexto + "/contatos/recebidos") ? "is-active" : "" %>" href="<%= request.getContextPath() %>/contatos">Novo Contato</a>
-            <br>
             <a class="side-panel-link <%= uriAtual.startsWith(contexto + "/contatos/recebidos") ? "is-active" : "" %>" href="<%= request.getContextPath() %>/contatos/recebidos">
                 Contatos
                 <c:if test="${temContatosPendentes}">

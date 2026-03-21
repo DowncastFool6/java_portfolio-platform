@@ -48,6 +48,8 @@ public class ProjetoDetalheController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        ServletUtil.configurarUtf8(req, resp);
+
         Usuario usuarioLogado = ServletUtil.obterUsuarioLogado(req, resp);
         if (usuarioLogado == null) {
             return;
