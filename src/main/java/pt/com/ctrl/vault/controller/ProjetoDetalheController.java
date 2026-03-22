@@ -114,7 +114,7 @@ public class ProjetoDetalheController extends HttpServlet {
         req.setAttribute("usuarioPodeEditarProjeto", ServletUtil.usuarioEstaAtivo(usuarioLogado));
         req.setAttribute("usuarioPodeGerirUsuariosProjeto", ServletUtil.usuarioPodeGerirProjeto(usuarioLogado));
         req.setAttribute("modoEdicao", "editar".equalsIgnoreCase(req.getParameter("modo")));
-        ServletUtil.prepararHeader(req, usuarioLogado);
+        ServletUtil.prepararSidePanel(req, usuarioLogado);
     }
 
     private Integer parseInt(String valor) {

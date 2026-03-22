@@ -2,12 +2,14 @@ package pt.com.ctrl.vault.util;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import pt.com.ctrl.vault.model.Projeto;
 import pt.com.ctrl.vault.model.Usuario;
 import pt.com.ctrl.vault.service.ContatoService;
 import pt.com.ctrl.vault.service.ProjetoService;
@@ -62,24 +64,25 @@ public class ServletUtil {
                 && usuario.getTipoUsuario().getDescricao().trim().toUpperCase().contains("GESTOR");
     }
 
-    //FIXME deixar mais facil
     public static boolean usuarioEstaAtivo(Usuario usuario) {
-        return usuario != null && Boolean.TRUE.equals(usuario.getAtivo());
+        return usuario != null && usuario.getAtivo();
     }
 
     public static boolean usuarioPodeGerirProjeto(Usuario usuario) {
         return usuarioEstaAtivo(usuario) && (usuarioEhGestor(usuario) || usuarioEhAdmin(usuario));
     }
 
-    //FIXME mudar para side panel
-    public static void prepararHeader(HttpServletRequest req, Usuario usuario) {
+    public static void prepararSidePanel(HttpServletRequest req, Usuario usuario) {
         boolean mostrarBotaoContatos = false;
         boolean temContatosPendentes = false;
 
         if (usuario != null && usuario.getId() != null) {
+        	//mostra botoes de contato somente para usuarios que tem projeto associado
             ProjetoService projetoService = new ProjetoService();
-            //FIXME verificar se  regra ainda existe
-            mostrarBotaoContatos = !projetoService.listarProjetosDoUsuario(usuario.getId()).isEmpty();
+            List<Projeto> projetosDoUsuario = projetoService.listarProjetosDoUsuario(usuario.getId());
+            if(projetosDoUsuario.isEmpty() == false) {
+            	mostrarBotaoContatos = true;            	
+            }
         }
 
         if (mostrarBotaoContatos) {

@@ -203,6 +203,109 @@ form .btn-primary:hover {
   color: var(--color-muted);
 }
 
+/* Lista de conteudos do projeto com separacao entre itens. */
+.content-list {
+  display: grid;
+  gap: 18px;
+  margin-top: 18px;
+}
+
+.content-list-edit {
+  gap: 22px;
+}
+
+/* Card base para visualizacao e edicao de conteudos. */
+.content-card {
+  border: 1px solid rgba(136, 73, 143, 0.14);
+  border-radius: 28px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(249, 245, 252, 0.92));
+  box-shadow: 0 18px 38px rgba(33, 18, 52, 0.08);
+  overflow: hidden;
+}
+
+.content-card-view {
+  padding: 26px 28px;
+}
+
+.content-card-header {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.content-card-title {
+  margin: 0;
+  font-size: 26px;
+  line-height: 1.2;
+  color: var(--color-text);
+}
+
+.content-card-body {
+  display: grid;
+  gap: 16px;
+}
+
+.content-card-footer {
+  display: grid;
+  gap: 6px;
+  margin-top: 18px;
+  padding-top: 14px;
+  font-size: 13px;
+  color: var(--color-muted);
+  border-top: 1px solid rgba(136, 73, 143, 0.12);
+}
+
+.content-card-footer p {
+  margin: 0;
+}
+
+.content-card-footer strong {
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+.content-text {
+  font-size: 16px;
+  line-height: 1.85;
+  color: var(--color-text);
+  white-space: pre-wrap;
+}
+
+.content-media {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+}
+
+.content-image {
+  width: min(100%, 500px);
+  max-height: 400px;
+  margin: 0 auto;
+  object-fit: contain;
+  padding: 12px;
+}
+
+.content-image-preview {
+  width: min(100%, 320px);
+  max-height: 220px;
+  margin: 8px 0 0;
+}
+
+.editable-card {
+  cursor: grab;
+}
+
+.editable-card.dragging {
+  opacity: 0.72;
+}
+
+.helper-text {
+  font-size: 13px;
+  color: var(--color-muted);
+}
+
 /* AQUI ESTÃO OS FORMULÁRIOS */
 /* Aparência dos campos dentro de formulários. */
 form input,
@@ -216,6 +319,16 @@ form select {
   border: 2px solid var(--color-border);
   border-radius: 20px;
   transition: all 0.3s ease;
+}
+
+/* Checkboxes não devem herdar largura total dos outros campos. */
+form input[type="checkbox"] {
+  width: auto;
+  margin: 0;
+  padding: 0;
+  border-radius: 0;
+  box-shadow: none;
+  vertical-align: middle;
 }
 
 /* Realce de foco em campos de formulário. */
@@ -232,6 +345,39 @@ form select:focus {
 .content-editor-form {
   display: grid;
   gap: 22px;
+}
+
+/* Alinha checkbox e legenda lado a lado. */
+.checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 0;
+  text-align: left;
+  cursor: pointer;
+}
+
+/* Agrupa listas de checkboxes em coluna. */
+.checkbox-list {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+/* Bloco informativo do aceite RGPD. */
+.form-info-block {
+  margin: 8px 0 16px;
+  text-align: left;
+}
+
+.form-info-block p {
+  margin: 8px 0 12px;
+}
+
+.field-help {
+  margin-top: 8px;
+  font-size: 13px;
+  color: var(--color-muted);
 }
 
 /* AQUI ESTÃO AS MENSAGENS */

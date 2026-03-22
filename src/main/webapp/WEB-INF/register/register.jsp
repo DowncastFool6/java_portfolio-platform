@@ -10,13 +10,14 @@
 <body>
 
 <div class="page-shell-register">
-<main class="app-container portal-narrow">
-    
-        <div class="section-heading">
+    <main class="app-container portal-narrow">
+        <div>
             <div>
                 <h2>Registar Novo Utilizador</h2>
                 <p>Crie a sua conta para aceder ao portal.</p>
-            
+            </div>
+        </div>
+
         <c:if test="${not empty erro}">
             <p class="erro"><c:out value="${erro}"/></p>
         </c:if>
@@ -31,24 +32,23 @@
             <label>Senha</label>
             <input type="password" name="senha" required>
 
-            <div>
-                <strong>Informação RGPD</strong>
+            <div class="form-info-block">
+                <strong>Informações RGPD</strong>
                 <p>
                     Nos termos do Regulamento Geral sobre a Protecao de Dados (RGPD) aplicável em Portugal,
                     os dados fornecidos neste formulário serão tratados apenas para criação e gestão da sua conta no sistema.
                 </p>
-                <input type="checkbox" name="aceitouRgpd" required>
                 <label class="checkbox-row">
-                    
-                    Declaro que li e compreendi a informação relativa ao tratamento dos meus dados pessoais.
+                    <input type="checkbox" name="aceitouRgpd" required>
+                    <span>Declaro que li e compreendi a informação relativa ao tratamento dos meus dados pessoais.</span>
                 </label>
-            
+            </div>
+
             <div>
                 <button type="submit" class="btn-primary">Registar</button>
             </div>
         </form>
-    </section>
-</main>
+    </main>
 </div>
 <%@ include file="/WEB-INF/fragments/app-footer.jspf" %>
 

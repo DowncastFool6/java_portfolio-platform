@@ -76,7 +76,7 @@ public class ProjetoUsuariosController extends HttpServlet {
 		req.setAttribute("projeto", projeto);
 		req.setAttribute("usuariosProjeto", usuariosProjeto);
 		req.setAttribute("usuario", usuarioLogado);
-		ServletUtil.prepararHeader(req, usuarioLogado);
+		ServletUtil.prepararSidePanel(req, usuarioLogado);
 	}
 
 	private void validarAcessoGestao(Usuario usuarioLogado, Integer idProjeto) {

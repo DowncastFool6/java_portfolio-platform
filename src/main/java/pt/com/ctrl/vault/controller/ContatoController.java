@@ -76,7 +76,7 @@ public class ContatoController extends HttpServlet {
         req.setAttribute("isAdmin", ServletUtil.usuarioEhAdmin(usuarioLogado));
         req.setAttribute("isUsuarioAtivo", ServletUtil.usuarioEstaAtivo(usuarioLogado));
         req.setAttribute("projetos", projetos);
-        ServletUtil.prepararHeader(req, usuarioLogado);
+        ServletUtil.prepararSidePanel(req, usuarioLogado);
 
         if (projetos == null || projetos.isEmpty()) {
             ServletUtil.addErro(req, "Nao existem projetos disponiveis para contato.");

@@ -73,10 +73,10 @@ public class AdminUsuarioAcessoController extends HttpServlet {
         }
     }
 
-    private void carregarFormulario(HttpServletRequest req, Integer idUsuario, List<Integer> idsProjetosSelecionados, Integer idTipoSelecionado) throws ServletException {
+    private void carregarFormulario(HttpServletRequest req, Integer idUsuario, List<Integer> idsProjetosSelecionados, Integer tipoUsuarioSelecionadoId) throws ServletException {
         ProjetoService projetoService = new ProjetoService();
-        List<Projeto> projetosAtuais = projetoService.listarProjetosDoUsuario(idUsuario);
-        List<Projeto> projetos = projetoService.listarProjetos();
+        List<Projeto> projetosDoUsuario = projetoService.listarProjetosDoUsuario(idUsuario);
+        List<Projeto> todosOsProjetos = projetoService.listarProjetos();
 
         UsuarioService usuarioService = new UsuarioService();
         Usuario usuario = usuarioService.buscarPorId(idUsuario);
@@ -85,23 +85,23 @@ public class AdminUsuarioAcessoController extends HttpServlet {
         List<Integer> projetoSelecionadoIds = idsProjetosSelecionados;
         if (projetoSelecionadoIds == null || projetoSelecionadoIds.isEmpty()) {
             projetoSelecionadoIds = new ArrayList<>();
-            for (Projeto projetoAtual : projetosAtuais) {
+            for (Projeto projetoAtual : projetosDoUsuario) {
                 projetoSelecionadoIds.add(projetoAtual.getId());
             }
         }
 
-        Integer tipoSelecionadoId = idTipoSelecionado;
-        if (tipoSelecionadoId == null && usuario.getTipoUsuario() != null) {
-            tipoSelecionadoId = usuario.getTipoUsuario().getId();
+        Integer tipoUsuarioId = tipoUsuarioSelecionadoId;
+        if (tipoUsuarioId == null && usuario.getTipoUsuario() != null) {
+            tipoUsuarioId = usuario.getTipoUsuario().getId();
         }
 
         req.setAttribute("usuarioSelecionado", usuario);
-        req.setAttribute("projetosAtuais", projetosAtuais);
-        req.setAttribute("projetos", projetos);
+        req.setAttribute("projetosAtuais", projetosDoUsuario);
+        req.setAttribute("projetos", todosOsProjetos);
         req.setAttribute("tiposUsuario", tiposUsuario);
         req.setAttribute("projetoSelecionadoIds", projetoSelecionadoIds);
-        req.setAttribute("tipoSelecionadoId", tipoSelecionadoId);
-        ServletUtil.prepararHeader(req, (Usuario) req.getSession(false).getAttribute("usuarioLogado"));
+        req.setAttribute("tipoSelecionadoId", tipoUsuarioId);
+        ServletUtil.prepararSidePanel(req, (Usuario) req.getSession(false).getAttribute("usuarioLogado"));
     }
 
     private Integer parseInt(String valor) {

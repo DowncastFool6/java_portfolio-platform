@@ -39,7 +39,7 @@ public class DashboardController extends HttpServlet {
         req.setAttribute("projetosUsuario", projetosUsuario);
         req.setAttribute("mostrarBotaoHome", false);
         req.setAttribute("mostrarBotaoVoltar", false);
-        ServletUtil.prepararHeader(req, usuarioLogado);
+        ServletUtil.prepararSidePanel(req, usuarioLogado);
 
         Object mensagemDashboard = req.getSession().getAttribute("mensagemDashboard");
         if (mensagemDashboard != null) {

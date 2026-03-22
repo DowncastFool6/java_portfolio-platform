@@ -39,7 +39,7 @@ public class AdminUsuariosController extends HttpServlet {
 
         req.setAttribute("usuario", usuarioLogado);
         req.setAttribute("usuariosPendentes", usuariosPendentes);
-        ServletUtil.prepararHeader(req, usuarioLogado);
+        ServletUtil.prepararSidePanel(req, usuarioLogado);
         req.getRequestDispatcher("/WEB-INF/admin/users.jsp").forward(req, resp);
     }
 }

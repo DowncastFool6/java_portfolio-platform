@@ -31,7 +31,7 @@ public class ProjetosController extends HttpServlet {
 
         req.setAttribute("projetos", projetos);
         req.setAttribute("usuario", usuarioLogado);
-        ServletUtil.prepararHeader(req, usuarioLogado);
+        ServletUtil.prepararSidePanel(req, usuarioLogado);
         req.getRequestDispatcher("/WEB-INF/project/projects.jsp").forward(req, resp);
     }
 }

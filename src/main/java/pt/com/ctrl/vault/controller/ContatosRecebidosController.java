@@ -82,7 +82,7 @@ public class ContatosRecebidosController extends HttpServlet {
 
         req.setAttribute("usuario", usuarioLogado);
         req.setAttribute("contatosRecebidos", contatos);
-        ServletUtil.prepararHeader(req, usuarioLogado);
+        ServletUtil.prepararSidePanel(req, usuarioLogado);
     }
 
     private List<Integer> parseIntList(String[] valores) {

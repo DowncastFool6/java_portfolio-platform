@@ -20,6 +20,7 @@ import pt.com.ctrl.vault.repository.ConteudoRepository;
  * @author aliceslombardi, CamilaRial, VissolelaCundi
  */
 public class ConteudoService {
+    private static final long TAMANHO_MAXIMO_IMAGEM_BYTES = 1024 * 1024;
 
 	/*
     public List<Projeto> listarProjetosDoUsuario(Usuario usuario) {
@@ -68,9 +69,9 @@ public class ConteudoService {
         conteudo.setTipoConteudo(tipoConteudo);
         conteudo.setOrdemExibicao(new ConteudoRepository().buscarProximaOrdem(idProjeto));
         conteudo.setDataCriacao(LocalDateTime.now());
-        conteudo.setDataEdicao(LocalDateTime.now());
+        conteudo.setDataEdicao(null);
         conteudo.setUsuarioCriacao(usuario);
-        conteudo.setUsuarioEdicao(usuario);
+        conteudo.setUsuarioEdicao(null);
 
         preencherConteudo(conteudo, texto, arquivoPart, true);
 
@@ -137,6 +138,7 @@ public class ConteudoService {
         atualizado.setConteudo(null);
 
         if (arquivoPart != null && arquivoPart.getSize() > 0) {
+            validarTamanhoArquivo(arquivoPart);
             atualizado.setNomeArquivo(extrairNomeArquivo(arquivoPart));
             atualizado.setTipoMime(arquivoPart.getContentType());
             atualizado.setArquivo(lerBytes(arquivoPart));
@@ -192,6 +194,8 @@ public class ConteudoService {
             throw new CampoObrigatorioException("Selecione um ficheiro para o conteudo.");
         }
 
+        validarTamanhoArquivo(arquivoPart);
+
         conteudo.setConteudo(null);
         conteudo.setNomeArquivo(extrairNomeArquivo(arquivoPart));
         conteudo.setTipoMime(arquivoPart.getContentType());
@@ -223,6 +227,12 @@ public class ConteudoService {
 
     public boolean isTexto(String tipoConteudo) {
         return "TEXTO".equalsIgnoreCase(tipoConteudo);
+    }
+
+    private void validarTamanhoArquivo(Part arquivoPart) {
+        if (arquivoPart != null && arquivoPart.getSize() > TAMANHO_MAXIMO_IMAGEM_BYTES) {
+            throw new CampoObrigatorioException("A imagem deve ter no maximo 1 MB.");
+        }
     }
 
     private void validarUsuario(Usuario usuario) {

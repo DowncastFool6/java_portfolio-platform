@@ -30,7 +30,6 @@
 
             <section class="content-editor-card">
                 <div class="content-editor-header">
-                    <span class="meta-chip">Base</span>
                     <h3>Identificação do conteúdo</h3>
                     <p>Defina o título e a estrutura principal antes de preencher o material.</p>
                 </div>
@@ -48,7 +47,6 @@
 
             <section class="content-editor-card">
                 <div class="content-editor-header">
-                    <span class="meta-chip">Conteúdo</span>
                     <h3>Material do projeto</h3>
                     <p>Preencha o texto ou carregue o ficheiro que será apresentado no projeto.</p>
                 </div>
@@ -61,6 +59,7 @@
                 <div id="arquivo-wrapper" class="content-editor-body">
                     <label for="arquivo">Ficheiro</label>
                     <input id="arquivo" name="arquivo" type="file">
+                    <p class="field-help">Para imagens, o tamanho máximo permitido é 1 MB.</p>
                 </div>
             </section>
 
@@ -75,12 +74,14 @@
 
 <script>
 (() => {
+    const tamanhoMaximoImagem = 1024 * 1024;
     const tipoSelect = document.getElementById('tipoConteudo');
     const textoWrapper = document.getElementById('texto-wrapper');
     const arquivoWrapper = document.getElementById('arquivo-wrapper');
     const arquivoInput = document.getElementById('arquivo');
+    const form = arquivoInput.closest('form');
 
-    const sync = () => {
+    const mudarInputParaTipoConteudoSelecionado = () => {
         const value = tipoSelect.value;
         const isText = value === 'TEXTO';
         textoWrapper.style.display = isText ? 'block' : 'none';
@@ -88,8 +89,21 @@
         arquivoInput.accept = value === 'IMAGEM' ? 'image/*' : '';
     };
 
-    tipoSelect.addEventListener('change', sync);
-    sync();
+    const validaTamanhoDaImagemNoSubmit = (event) => {
+        const value = tipoSelect.value;
+        const ficheiro = arquivoInput.files[0];
+        const isImagem = value === 'IMAGEM';
+        const isTooLarge = ficheiro && ficheiro.size > tamanhoMaximoImagem;
+
+        if (isImagem && isTooLarge) {
+            event.preventDefault();
+            alert('A imagem deve ter no máximo 1 MB.');
+        }
+    };
+
+    form.addEventListener('submit', validaTamanhoDaImagemNoSubmit);
+    tipoSelect.addEventListener('change', mudarInputParaTipoConteudoSelecionado);
+    mudarInputParaTipoConteudoSelecionado();
 })();
 </script>
 

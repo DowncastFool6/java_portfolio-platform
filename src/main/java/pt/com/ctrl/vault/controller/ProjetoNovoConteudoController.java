@@ -22,6 +22,7 @@ import pt.com.ctrl.vault.util.ServletUtil;
  */
 @MultipartConfig
 public class ProjetoNovoConteudoController extends HttpServlet {
+    private static final long TAMANHO_MAXIMO_IMAGEM_BYTES = 1024 * 1024;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -58,9 +59,9 @@ public class ProjetoNovoConteudoController extends HttpServlet {
         String titulo = req.getParameter("titulo");
         String tipoConteudo = req.getParameter("tipoConteudo");
         String texto = req.getParameter("texto");
-        Part arquivo = obterPartSilencioso(req, "arquivo");
 
         try {
+            Part arquivo = obterPartValidado(req, "arquivo");
             ConteudoService conteudoService = new ConteudoService();
             conteudoService.criarConteudo(usuarioLogado, idProjeto, titulo, tipoConteudo, texto, arquivo);
             resp.sendRedirect(req.getContextPath() + "/projeto?id=" + idProjeto + "&sucesso=conteudo-criado");
@@ -80,7 +81,7 @@ public class ProjetoNovoConteudoController extends HttpServlet {
 
         req.setAttribute("usuario", usuarioLogado);
         req.setAttribute("projeto", projeto);
-        ServletUtil.prepararHeader(req, usuarioLogado);
+        ServletUtil.prepararSidePanel(req, usuarioLogado);
     }
 
     private Integer parseInt(String valor) {
@@ -91,9 +92,15 @@ public class ProjetoNovoConteudoController extends HttpServlet {
         }
     }
 
-    private Part obterPartSilencioso(HttpServletRequest req, String nome) {
+    private Part obterPartValidado(HttpServletRequest req, String nome) {
         try {
-            return req.getPart(nome);
+            Part part = req.getPart(nome);
+            if (part != null && part.getSize() > TAMANHO_MAXIMO_IMAGEM_BYTES) {
+                throw new CampoObrigatorioException("A imagem deve ter no maximo 1 MB.");
+            }
+            return part;
+        } catch (IllegalStateException e) {
+            throw new CampoObrigatorioException("A imagem deve ter no maximo 1 MB.");
         } catch (IOException | ServletException e) {
             return null;
         }

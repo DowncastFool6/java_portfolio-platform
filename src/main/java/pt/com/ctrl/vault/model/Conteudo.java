@@ -1,5 +1,6 @@
 package pt.com.ctrl.vault.model;
 
+import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
 
 /**
@@ -9,6 +10,7 @@ import java.time.LocalDateTime;
  * @since 28/02/2026
  */
 public class Conteudo {
+    private static final DateTimeFormatter DATA_HORA_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
 
 	private Integer id;
 	private Projeto projeto;
@@ -138,5 +140,27 @@ public class Conteudo {
 
 	public void setUsuarioEdicao(Usuario usuarioEdicao) {
 		this.usuarioEdicao = usuarioEdicao;
+	}
+
+	public String getDataCriacaoFormatada() {
+		return formatarData(dataCriacao);
+	}
+
+	public String getDataEdicaoFormatada() {
+		return formatarData(dataEdicao);
+	}
+
+	public boolean isEditado() {
+		if (dataEdicao == null) {
+			return false;
+		}
+		if (dataCriacao == null) {
+			return true;
+		}
+		return dataEdicao.equals(dataCriacao) == false;
+	}
+
+	private String formatarData(LocalDateTime data) {
+		return data == null ? "" : data.format(DATA_HORA_FORMATTER);
 	}
 }

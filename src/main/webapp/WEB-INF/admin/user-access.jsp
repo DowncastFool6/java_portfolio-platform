@@ -32,21 +32,21 @@
             <input type="hidden" name="idUsuario" value="${usuarioSelecionado.id}">
 
             <label>Projetos</label>
-            <c:forEach var="projeto" items="${projetos}">
-                <c:set var="projetoMarcado" value="false"/>
-                <c:forEach var="idSelecionado" items="${projetoSelecionadoIds}">
-                    <c:if test="${idSelecionado == projeto.id}">
-                        <c:set var="projetoMarcado" value="true"/>
-                    </c:if>
+            <div class="checkbox-list">
+                <c:forEach var="projeto" items="${projetos}">
+                    <c:set var="projetoMarcado" value="false"/>
+                    <c:forEach var="idSelecionado" items="${projetoSelecionadoIds}">
+                        <c:if test="${idSelecionado == projeto.id}">
+                            <c:set var="projetoMarcado" value="true"/>
+                        </c:if>
+                    </c:forEach>
+                    <label class="checkbox-row">
+                        <input type="checkbox" name="idProjeto" value="${projeto.id}"
+                            <c:if test="${projetoMarcado}">checked</c:if>>
+                        <span><c:out value="${projeto.descricao}"/></span>
+                    </label>
                 </c:forEach>
-                <label>
-                    <input type="checkbox" name="idProjeto" value="${projeto.id}"
-                        <c:if test="${projetoMarcado}">checked</c:if>>
-                    <c:out value="${projeto.descricao}"/>
-                </label>
-                <br>
-            </c:forEach>
-            <br>
+            </div>
 
             <label for="idTipoUsuario">Tipo de utilizador</label>
             <select id="idTipoUsuario" name="idTipoUsuario" class="input-field" required>

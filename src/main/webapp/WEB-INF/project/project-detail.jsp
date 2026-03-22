@@ -17,7 +17,7 @@
         <section class="section-heading section-heading-space">
             <div>
                 <h2><c:out value="${projeto.descricao}"/></h2>
-                <p>Visualize os conteúdos do projeto e reorganize-os quando necessário. Arraste para reordenar</p>
+                <p>Visualize os conteúdos do projeto e reorganize-os quando necessário. Arraste para reordenar.</p>
             </div>
             <div class="action-row">
                 <c:if test="${usuarioPodeGerirUsuariosProjeto}">
@@ -60,7 +60,6 @@
                                 <input type="hidden" name="conteudoOrdem" class="ordem-id-input" value="${conteudo.id}">
 
                                 <div class="content-editor-card">
-
                                     <label>Título</label>
                                     <input type="text" name="titulo_${conteudo.id}" value="<c:out value="${conteudo.titulo}"/>" class="input-field">
 
@@ -73,20 +72,34 @@
                                             <label>Substituir ficheiro</label>
                                             <input type="file" name="arquivo_${conteudo.id}" accept="image/*">
                                             <img class="content-media content-image content-image-preview" src="<%= request.getContextPath() %>/conteudos/arquivo?idProjeto=${projeto.id}&idConteudo=${conteudo.id}" alt="<c:out value="${conteudo.titulo}"/>">
-                                            <p class="helper-text">Se não enviar um novo ficheiro, o atual será mantido.</p>
                                         </c:otherwise>
                                     </c:choose>
-	                                
-	                                <div class="action-row content-actions">
-	                                    <button type="submit" name="acao" value="remover" class="btn-primary"
-	                                            onclick="document.getElementById('idConteudoRemover').value='${conteudo.id}'; return confirm('Remover este conteúdo do projeto?');"
-	                                            formnovalidate>
-	                                        Remover conteúdo
-	                                    </button>
-	                                </div>                                    
-                                    
-                                </div>
 
+                                    <div class="action-row content-actions">
+                                        <button type="submit" name="acao" value="remover" class="btn-primary"
+                                                onclick="document.getElementById('idConteudoRemover').value='${conteudo.id}'; return confirm('Remover este conteúdo do projeto?');"
+                                                formnovalidate>
+                                            Remover conteúdo
+                                        </button>
+                                    </div>
+
+                                    <div class="content-card-footer">
+                                        <p>
+                                            Criado por
+                                            <strong><c:out value="${empty conteudo.usuarioCriacao ? 'Utilizador desconhecido' : conteudo.usuarioCriacao.nome}"/></strong>
+                                            em
+                                            <strong><c:out value="${conteudo.dataCriacaoFormatada}"/></strong>
+                                        </p>
+                                        <c:if test="${conteudo.editado}">
+                                            <p>
+                                                Editado por
+                                                <strong><c:out value="${empty conteudo.usuarioEdicao ? 'Utilizador desconhecido' : conteudo.usuarioEdicao.nome}"/></strong>
+                                                em
+                                                <strong><c:out value="${conteudo.dataEdicaoFormatada}"/></strong>
+                                            </p>
+                                        </c:if>
+                                    </div>
+                                </div>
                             </article>
                         </c:forEach>
                     </div>
@@ -100,19 +113,40 @@
             <c:otherwise>
                 <div class="content-list">
                     <c:forEach var="conteudo" items="${conteudos}">
-                        <article class="content-card">
+                        <article class="content-card content-card-view">
                             <c:if test="${not empty conteudo.titulo}">
-                                <h3><c:out value="${conteudo.titulo}"/></h3>
+                                <div class="content-card-header">
+                                    <h3 class="content-card-title"><c:out value="${conteudo.titulo}"/></h3>
+                                </div>
                             </c:if>
 
-                            <c:choose>
-                                <c:when test="${conteudo.tipoConteudo == 'TEXTO'}">
-                                    <div class="content-text"><c:out value="${conteudo.conteudo}"/></div>
-                                </c:when>
-                                <c:when test="${conteudo.tipoConteudo == 'IMAGEM'}">
-                                    <img class="content-media content-image" src="<%= request.getContextPath() %>/conteudos/arquivo?idProjeto=${projeto.id}&idConteudo=${conteudo.id}" alt="<c:out value="${conteudo.titulo}"/>">
-                                </c:when>
-                            </c:choose>
+                            <div class="content-card-body">
+                                <c:choose>
+                                    <c:when test="${conteudo.tipoConteudo == 'TEXTO'}">
+                                        <div class="content-text"><c:out value="${conteudo.conteudo}"/></div>
+                                    </c:when>
+                                    <c:when test="${conteudo.tipoConteudo == 'IMAGEM'}">
+                                        <img class="content-media content-image" src="<%= request.getContextPath() %>/conteudos/arquivo?idProjeto=${projeto.id}&idConteudo=${conteudo.id}" alt="<c:out value="${conteudo.titulo}"/>" loading="lazy">
+                                    </c:when>
+                                </c:choose>
+                            </div>
+
+                            <div class="content-card-footer">
+                                <p>
+                                    Criado por
+                                    <strong><c:out value="${empty conteudo.usuarioCriacao ? 'Utilizador desconhecido' : conteudo.usuarioCriacao.nome}"/></strong>
+                                    em
+                                    <strong><c:out value="${conteudo.dataCriacaoFormatada}"/></strong>
+                                </p>
+                                <c:if test="${conteudo.editado}">
+                                    <p>
+                                        Editado por
+                                        <strong><c:out value="${empty conteudo.usuarioEdicao ? 'Utilizador desconhecido' : conteudo.usuarioEdicao.nome}"/></strong>
+                                        em
+                                        <strong><c:out value="${conteudo.dataEdicaoFormatada}"/></strong>
+                                    </p>
+                                </c:if>
+                            </div>
                         </article>
                     </c:forEach>
                 </div>
