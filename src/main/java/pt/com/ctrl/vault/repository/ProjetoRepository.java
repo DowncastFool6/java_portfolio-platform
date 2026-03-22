@@ -21,7 +21,7 @@ import pt.com.ctrl.vault.util.ConnectionFactory;
 public class ProjetoRepository {
 
     public Projeto buscarPorId(Integer idProjeto) {
-        String sql = "SELECT id, descricao, data_inicio, data_fim, data_criacao FROM tb_projeto WHERE id = ?";
+        String sql = "SELECT id, titulo, descricao, data_inicio, data_fim, data_criacao FROM tb_projeto WHERE id = ?";
 
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -36,6 +36,7 @@ public class ProjetoRepository {
             if (rs.next()) {
                 Projeto projeto = new Projeto();
                 projeto.setId(rs.getInt("id"));
+                projeto.setTitulo(rs.getString("titulo"));
                 projeto.setDescricao(rs.getString("descricao"));
 
                 Date dataInicio = rs.getDate("data_inicio");
@@ -66,7 +67,7 @@ public class ProjetoRepository {
     }
 
     public List<Projeto> listarTodos() {
-        String sql = "SELECT id, descricao, data_inicio, data_fim, data_criacao FROM tb_projeto ORDER BY descricao";
+        String sql = "SELECT id, titulo, descricao, data_inicio, data_fim, data_criacao FROM tb_projeto ORDER BY descricao";
 
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -81,6 +82,7 @@ public class ProjetoRepository {
             while (rs.next()) {
                 Projeto projeto = new Projeto();
                 projeto.setId(rs.getInt("id"));
+                projeto.setTitulo(rs.getString("titulo"));
                 projeto.setDescricao(rs.getString("descricao"));
 
                 Date dataInicio = rs.getDate("data_inicio");
@@ -113,7 +115,7 @@ public class ProjetoRepository {
     
     public List<Projeto> listarProjetosDoUsuario(Integer idUsuario) {
         String sql =
-                "SELECT p.id, p.descricao, p.data_inicio, p.data_fim, p.data_criacao " +
+                "SELECT p.id, p.titulo, p.descricao, p.data_inicio, p.data_fim, p.data_criacao " +
                 "FROM tb_usuario_projeto up " +
                 "INNER JOIN tb_projeto p ON p.id = up.id_projeto " +
                 "WHERE up.id_usuario = ? " +
@@ -133,6 +135,7 @@ public class ProjetoRepository {
             while (rs.next()) {
                 Projeto projeto = new Projeto();
                 projeto.setId(rs.getInt("id"));
+                projeto.setTitulo(rs.getString("titulo"));
                 projeto.setDescricao(rs.getString("descricao"));
 
                 Date dataInicio = rs.getDate("data_inicio");
@@ -165,7 +168,7 @@ public class ProjetoRepository {
     public Projeto buscarProjetoDoUsuario(Integer idUsuario) {
 
         String sql =
-                "SELECT p.id, p.descricao, p.data_inicio, p.data_fim, p.data_criacao " +
+                "SELECT p.id, p.titulo, p.descricao, p.data_inicio, p.data_fim, p.data_criacao " +
                 "FROM tb_usuario_projeto up " +
                 "INNER JOIN tb_projeto p ON p.id = up.id_projeto " +
                 "WHERE up.id_usuario = ? " +
@@ -184,6 +187,7 @@ public class ProjetoRepository {
             if (rs.next()) {
                 Projeto projeto = new Projeto();
                 projeto.setId(rs.getInt("id"));
+                projeto.setTitulo(rs.getString("titulo"));
                 projeto.setDescricao(rs.getString("descricao"));
 
                 Date dataInicio = rs.getDate("data_inicio");

@@ -16,15 +16,32 @@
         <div class="app-container">
         <section class="section-heading section-heading-space">
             <div>
-                <h2><c:out value="${projeto.descricao}"/></h2>
-                <p>Visualize os conteúdos do projeto e reorganize-os quando necessário. Arraste para reordenar.</p>
+                <h2>
+                    <c:choose>
+                        <c:when test="${not empty projeto.titulo}">
+                            <c:out value="${projeto.titulo}"/>
+                        </c:when>
+                        <c:otherwise>
+                            <c:out value="${projeto.descricao}"/>
+                        </c:otherwise>
+                    </c:choose>
+                </h2>
+                <c:if test="${not empty projeto.descricao}">
+                    <p><c:out value="${projeto.descricao}"/></p>
+                </c:if>
+                <div class="project-header-meta">
+                    <span class="status-chip">Criado em ${projeto.dataCriacaoFormatada}</span>
+                    <c:if test="${not empty projeto.dataFim}">
+                        <span class="status-chip">Finalizado em ${projeto.dataFimFormatada}</span>
+                    </c:if>
+                </div>
             </div>
             <div class="action-row">
                 <c:if test="${usuarioPodeGerirUsuariosProjeto}">
                     <a class="btn-primary" href="<%= request.getContextPath() %>/projeto/usuarios?idProjeto=${projeto.id}">Gerir utilizadores</a>
                 </c:if>
                 <c:if test="${usuarioPodeEditarProjeto and not modoEdicao}">
-                    <a class="btn-primary" href="<%= request.getContextPath() %>/projeto/conteudos/novo?idProjeto=${projeto.id}">Novo conteúdo</a>
+                    <a class="btn-primary" href="<%= request.getContextPath() %>/projeto/conteudos/novo?idProjeto=${projeto.id}">Novo conteudo</a>
                 </c:if>
                 <c:choose>
                     <c:when test="${usuarioPodeEditarProjeto and not modoEdicao}">
@@ -43,7 +60,7 @@
         </c:if>
 
         <c:if test="${empty conteudos}">
-            <p class="empty-state">Este projeto ainda não tem conteúdos.</p>
+            <p class="empty-state">Este projeto ainda nao tem conteudos.</p>
         </c:if>
 
         <c:choose>
@@ -60,7 +77,7 @@
                                 <input type="hidden" name="conteudoOrdem" class="ordem-id-input" value="${conteudo.id}">
 
                                 <div class="content-editor-card">
-                                    <label>Título</label>
+                                    <label>Titulo</label>
                                     <input type="text" name="titulo_${conteudo.id}" value="<c:out value="${conteudo.titulo}"/>" class="input-field">
 
                                     <c:choose>
@@ -76,10 +93,10 @@
                                     </c:choose>
 
                                     <div class="action-row content-actions">
-                                        <button type="submit" name="acao" value="remover" class="btn-primary"
-                                                onclick="document.getElementById('idConteudoRemover').value='${conteudo.id}'; return confirm('Remover este conteúdo do projeto?');"
+                                        <button type="submit" name="acao" value="remover" class="btn-primary remove-content-button"
+                                                data-remover-conteudo-id="${conteudo.id}"
                                                 formnovalidate>
-                                            Remover conteúdo
+                                            Remover conteudo
                                         </button>
                                     </div>
 
@@ -105,8 +122,8 @@
                     </div>
 
                     <div class="action-row">
-                        <button type="submit" name="acao" value="guardar" class="btn-primary">Guardar alterações</button>
-                        <a class="btn-primary" href="<%= request.getContextPath() %>/projeto?id=${projeto.id}">Cancelar edição</a>
+                        <button type="submit" name="acao" value="guardar" class="btn-primary">Guardar alteracoes</button>
+                        <a class="btn-primary" href="<%= request.getContextPath() %>/projeto?id=${projeto.id}">Cancelar edicao</a>
                     </div>
                 </form>
             </c:when>
@@ -198,6 +215,22 @@
                 card.after(dragged);
             } else {
                 card.before(dragged);
+            }
+        });
+    });
+
+    list.querySelectorAll('.remove-content-button').forEach((button) => {
+        button.addEventListener('click', (event) => {
+            const confirmed = window.confirm('Remover este conteudo do projeto?');
+            if (!confirmed) {
+                event.preventDefault();
+                return;
+            }
+
+            const removerConteudoId = button.getAttribute('data-remover-conteudo-id');
+            const input = document.getElementById('idConteudoRemover');
+            if (input && removerConteudoId) {
+                input.value = removerConteudoId;
             }
         });
     });

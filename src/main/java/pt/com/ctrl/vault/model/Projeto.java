@@ -2,6 +2,7 @@ package pt.com.ctrl.vault.model;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Classe que presenta um projeto
@@ -9,8 +10,11 @@ import java.time.LocalDateTime;
  * @since 28/02/2026
  */
 public class Projeto {
+    private static final DateTimeFormatter DATA_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    private static final DateTimeFormatter DATA_HORA_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
 
     private Integer id;
+    private String titulo;
     private String descricao;
     private LocalDate dataInicio;
     private LocalDate dataFim;
@@ -24,6 +28,14 @@ public class Projeto {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
 
     public String getDescricao() {
@@ -56,6 +68,14 @@ public class Projeto {
 
     public void setDataCriacao(LocalDateTime dataCriacao) {
         this.dataCriacao = dataCriacao;
+    }
+
+    public String getDataCriacaoFormatada() {
+        return dataCriacao == null ? "" : dataCriacao.format(DATA_HORA_FORMATTER);
+    }
+
+    public String getDataFimFormatada() {
+        return dataFim == null ? "" : dataFim.format(DATA_FORMATTER);
     }
     
 }

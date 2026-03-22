@@ -22,14 +22,6 @@ import pt.com.ctrl.vault.repository.ConteudoRepository;
 public class ConteudoService {
     private static final long TAMANHO_MAXIMO_IMAGEM_BYTES = 1024 * 1024;
 
-	/*
-    public List<Projeto> listarProjetosDoUsuario(Usuario usuario) {
-        validarUsuario(usuario);
-        ProjetoService projetoService = new ProjetoService();
-        return projetoService.listarProjetosDoUsuario(usuario.getId());
-    }
-
-*/
     public List<Conteudo> listarConteudosDoProjeto(Usuario usuario, Integer idProjeto) {
         ProjetoService projetoService = new ProjetoService();
         projetoService.verificaSeUsuarioPercenteAoProjeto(usuario.getId(), idProjeto);

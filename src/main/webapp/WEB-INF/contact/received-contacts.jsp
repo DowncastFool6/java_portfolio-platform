@@ -40,8 +40,7 @@
                             <button type="submit" name="acao" value="ler" class="btn-primary">
                                 Marcar como lidos
                             </button>
-                            <button type="submit" name="acao" value="remover" class="btn-primary"
-                                    onclick="return confirm('Remover os contatos selecionados?');">
+                            <button type="submit" name="acao" value="remover" class="btn-primary" id="remove-contacts-button">
                                 Remover
                             </button>
                         </div>
@@ -95,6 +94,22 @@
 </main>
 </div>
 <%@ include file="/WEB-INF/fragments/app-footer.jspf" %>
+
+<script>
+(() => {
+    const button = document.getElementById('remove-contacts-button');
+    if (!button) {
+        return;
+    }
+
+    button.addEventListener('click', (event) => {
+        const confirmed = window.confirm('Remover os contatos selecionados?');
+        if (!confirmed) {
+            event.preventDefault();
+        }
+    });
+})();
+</script>
 
 </body>
 </html>
