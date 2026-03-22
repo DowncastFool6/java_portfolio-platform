@@ -10,7 +10,7 @@
 <body>
 
 <div class="page-shell app-layout">
-    <%@ include file="/WEB-INF/fragments/app-header.jspf" %>
+    <%@ include file="/WEB-INF/fragments/side-panel.jspf" %>
 
     <main class="app-main">
         <div class="app-container form-container">
