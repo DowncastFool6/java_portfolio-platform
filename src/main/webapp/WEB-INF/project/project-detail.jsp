@@ -30,6 +30,7 @@
                     <p><c:out value="${projeto.descricao}"/></p>
                 </c:if>
                 <div class="project-header-meta">
+                    <span class="status-chip">${projeto.statusDescricao}</span>
                     <span class="status-chip">Criado em ${projeto.dataCriacaoFormatada}</span>
                     <c:if test="${not empty projeto.dataFim}">
                         <span class="status-chip">Finalizado em ${projeto.dataFimFormatada}</span>
@@ -39,6 +40,19 @@
             <div class="action-row">
                 <c:if test="${usuarioPodeGerirUsuariosProjeto}">
                     <a class="btn-primary" href="<%= request.getContextPath() %>/projeto/usuarios?idProjeto=${projeto.id}">Gerir utilizadores</a>
+                </c:if>
+                <c:if test="${usuarioPodeAlterarStatusProjeto and not modoEdicao}">
+                    <form action="<%= request.getContextPath() %>/projeto" method="post">
+                        <input type="hidden" name="idProjeto" value="${projeto.id}">
+                        <c:choose>
+                            <c:when test="${projetoFechado}">
+                                <button type="submit" name="acao" value="reabrir-projeto" class="btn-primary">Re-abrir projeto</button>
+                            </c:when>
+                            <c:otherwise>
+                                <button type="submit" name="acao" value="fechar-projeto" class="btn-primary">Fechar projeto</button>
+                            </c:otherwise>
+                        </c:choose>
+                    </form>
                 </c:if>
                 <c:if test="${usuarioPodeEditarProjeto and not modoEdicao}">
                     <a class="btn-primary" href="<%= request.getContextPath() %>/projeto/conteudos/novo?idProjeto=${projeto.id}">Novo conteudo</a>
@@ -57,6 +71,10 @@
 
         <c:if test="${not empty erro}">
             <p class="erro"><c:out value="${erro}"/></p>
+        </c:if>
+
+        <c:if test="${projetoFechado}">
+            <p class="empty-state">Projeto fechado. O conteudo pode ser visualizado, mas nao pode ser alterado ate ser reaberto por um gestor.</p>
         </c:if>
 
         <c:if test="${empty conteudos}">

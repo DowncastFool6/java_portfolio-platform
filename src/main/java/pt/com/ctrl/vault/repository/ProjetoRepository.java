@@ -292,5 +292,24 @@ public class ProjetoRepository {
             ConnectionFactory.close(conn, stmt);
         }
     }
+
+    public void atualizarDataFimProjeto(Integer idProjeto, Date dataFim) {
+        String sql = "UPDATE tb_projeto SET data_fim = ? WHERE id = ?";
+
+        Connection conn = null;
+        PreparedStatement stmt = null;
+
+        try {
+            conn = ConnectionFactory.getConnection();
+            stmt = conn.prepareStatement(sql);
+            stmt.setDate(1, dataFim);
+            stmt.setInt(2, idProjeto);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao atualizar status do projeto", e);
+        } finally {
+            ConnectionFactory.close(conn, stmt);
+        }
+    }
     
 }

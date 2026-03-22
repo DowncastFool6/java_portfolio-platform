@@ -1,5 +1,7 @@
 package pt.com.ctrl.vault.service;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 import pt.com.ctrl.vault.exception.CampoObrigatorioException;
@@ -43,6 +45,21 @@ public class ProjetoService {
         }
         return null;
     }
+
+    public Projeto buscarProjetoPorId(Integer idProjeto) {
+        if (idProjeto == null) {
+            throw new CampoObrigatorioException("Projeto invalido.");
+        }
+
+        ProjetoRepository projetoRepository = new ProjetoRepository();
+        Projeto projeto = projetoRepository.buscarPorId(idProjeto);
+
+        if (projeto == null) {
+            throw new CampoObrigatorioException("Projeto invalido.");
+        }
+
+        return projeto;
+    }
     
     public Projeto verificaSeUsuarioPercenteAoProjeto(Integer idUsuario, Integer idProjeto) {
     	ProjetoRepository projetoRepository = new ProjetoRepository();
@@ -75,6 +92,36 @@ public class ProjetoService {
 
         ProjetoRepository projetoRepository = new ProjetoRepository();
         projetoRepository.atualizarStatusUsuario(idUsuario, ativo);
+    }
+
+    public Projeto fecharProjeto(Integer idProjeto) {
+        Projeto projeto = buscarProjetoPorId(idProjeto);
+        if (projeto.isFechado()) {
+            throw new CampoObrigatorioException("O projeto ja se encontra fechado.");
+        }
+
+        ProjetoRepository projetoRepository = new ProjetoRepository();
+        projetoRepository.atualizarDataFimProjeto(idProjeto, Date.valueOf(LocalDate.now()));
+        return buscarProjetoPorId(idProjeto);
+    }
+
+    public Projeto reabrirProjeto(Integer idProjeto) {
+        Projeto projeto = buscarProjetoPorId(idProjeto);
+        if (projeto.isAberto()) {
+            throw new CampoObrigatorioException("O projeto ja se encontra aberto.");
+        }
+
+        ProjetoRepository projetoRepository = new ProjetoRepository();
+        projetoRepository.atualizarDataFimProjeto(idProjeto, null);
+        return buscarProjetoPorId(idProjeto);
+    }
+
+    public Projeto validarProjetoAberto(Integer idProjeto) {
+        Projeto projeto = buscarProjetoPorId(idProjeto);
+        if (projeto.isFechado()) {
+            throw new CampoObrigatorioException("O projeto esta fechado e apenas pode ser visualizado.");
+        }
+        return projeto;
     }
 
 	private void verificaSeUsuarioPertenceAoProjeto(Integer idProjeto, Integer idUsuario) {

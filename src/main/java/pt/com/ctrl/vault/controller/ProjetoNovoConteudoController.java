@@ -39,10 +39,13 @@ public class ProjetoNovoConteudoController extends HttpServlet {
 
         try {
             Integer idProjeto = parseInt(req.getParameter("idProjeto"));
+            ProjetoService projetoService = new ProjetoService();
+            projetoService.validarProjetoAberto(idProjeto);
             carregarPagina(req, usuarioLogado, idProjeto);
             req.getRequestDispatcher("/WEB-INF/project/content-form.jsp").forward(req, resp);
         } catch (CampoObrigatorioException e) {
-            resp.sendRedirect(req.getContextPath() + "/projetos");
+            req.getSession().setAttribute("mensagemDashboard", e.getMessage());
+            resp.sendRedirect(req.getContextPath() + "/projeto?id=" + req.getParameter("idProjeto"));
         }
     }
 
@@ -61,6 +64,8 @@ public class ProjetoNovoConteudoController extends HttpServlet {
         String texto = req.getParameter("texto");
 
         try {
+            ProjetoService projetoService = new ProjetoService();
+            projetoService.validarProjetoAberto(idProjeto);
             Part arquivo = obterPartValidado(req, "arquivo");
             ConteudoService conteudoService = new ConteudoService();
             conteudoService.criarConteudo(usuarioLogado, idProjeto, titulo, tipoConteudo, texto, arquivo);

@@ -455,6 +455,16 @@ form select:focus {
   margin-bottom: 10px;
 }
 
+.action-row form {
+  margin: 0;
+}
+
+.action-row form .btn-primary {
+  width: auto;
+  max-width: none;
+  margin-top: 0;
+}
+
 /* =========================
    Utilities
    ========================= */

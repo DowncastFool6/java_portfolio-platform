@@ -77,5 +77,17 @@ public class Projeto {
     public String getDataFimFormatada() {
         return dataFim == null ? "" : dataFim.format(DATA_FORMATTER);
     }
+
+    public boolean isFechado() {
+        return dataFim != null;
+    }
+
+    public boolean isAberto() {
+        return !isFechado();
+    }
+
+    public String getStatusDescricao() {
+        return isFechado() ? "Fechado" : "Aberto";
+    }
     
 }

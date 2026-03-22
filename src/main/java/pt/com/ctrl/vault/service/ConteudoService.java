@@ -50,6 +50,7 @@ public class ConteudoService {
 
         ProjetoService projetoService = new ProjetoService();
         projetoService.verificaSeUsuarioPercenteAoProjeto(usuario.getId(), idProjeto);
+        projetoService.validarProjetoAberto(idProjeto);
         
         Projeto projeto = projetoService.buscarProjetoPorUsuarioEProjeto(usuario.getId(), idProjeto);
         
@@ -79,6 +80,7 @@ public class ConteudoService {
 
         ProjetoService projetoService = new ProjetoService();
         projetoService.verificaSeUsuarioPercenteAoProjeto(usuario.getId(), idProjeto);
+        projetoService.validarProjetoAberto(idProjeto);
 
         if (conteudosAtualizados == null || conteudosAtualizados.isEmpty()) {
             throw new CampoObrigatorioException("Nao existem conteudos para atualizar.");
@@ -153,6 +155,7 @@ public class ConteudoService {
 
         ProjetoService projetoService = new ProjetoService();
         projetoService.verificaSeUsuarioPercenteAoProjeto(usuario.getId(), idProjeto);
+        projetoService.validarProjetoAberto(idProjeto);
         
         Conteudo existente = buscarConteudoDoProjeto(usuario, idProjeto, idConteudo);
 

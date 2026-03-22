@@ -41,6 +41,14 @@ public class ProjetoDetalheController extends HttpServlet {
                 ServletUtil.addSucesso(req, "Conteudo criado com sucesso.");
             } else if ("conteudos-atualizados".equals(req.getParameter("sucesso"))) {
                 ServletUtil.addSucesso(req, "Conteudos atualizados com sucesso.");
+            } else if ("status-projeto-atualizado".equals(req.getParameter("sucesso"))) {
+                ServletUtil.addSucesso(req, "Status do projeto atualizado com sucesso.");
+            }
+
+            Object mensagemDashboard = req.getSession().getAttribute("mensagemDashboard");
+            if (mensagemDashboard != null) {
+                ServletUtil.addSucesso(req, String.valueOf(mensagemDashboard));
+                req.getSession().removeAttribute("mensagemDashboard");
             }
 
             req.getRequestDispatcher("/WEB-INF/project/project-detail.jsp").forward(req, resp);
@@ -61,8 +69,23 @@ public class ProjetoDetalheController extends HttpServlet {
         Integer idProjeto = parseInt(req.getParameter("idProjeto"));
 
         try {
-            ConteudoService conteudoService = new ConteudoService();
             String acao = req.getParameter("acao");
+            ProjetoService projetoService = new ProjetoService();
+
+            if ("fechar-projeto".equalsIgnoreCase(acao) || "reabrir-projeto".equalsIgnoreCase(acao)) {
+                validarGestaoProjeto(usuarioLogado, idProjeto);
+
+                if ("fechar-projeto".equalsIgnoreCase(acao)) {
+                    projetoService.fecharProjeto(idProjeto);
+                } else {
+                    projetoService.reabrirProjeto(idProjeto);
+                }
+
+                resp.sendRedirect(req.getContextPath() + "/projeto?id=" + idProjeto + "&sucesso=status-projeto-atualizado");
+                return;
+            }
+
+            ConteudoService conteudoService = new ConteudoService();
 
             if ("remover".equalsIgnoreCase(acao)) {
                 Integer idConteudoRemover = parseInt(req.getParameter("idConteudoRemover"));
@@ -107,14 +130,28 @@ public class ProjetoDetalheController extends HttpServlet {
     	
         ConteudoService conteudoService = new ConteudoService();
         List<Conteudo> conteudos = conteudoService.listarConteudosDoProjeto(usuarioLogado, idProjeto);
+        boolean usuarioPodeGerirProjeto = ServletUtil.usuarioPodeGerirProjeto(usuarioLogado);
+        boolean usuarioPodeEditarProjeto = ServletUtil.usuarioEstaAtivo(usuarioLogado) && projeto != null && projeto.isAberto();
+        boolean modoEdicaoSolicitado = "editar".equalsIgnoreCase(req.getParameter("modo"));
 
         req.setAttribute("usuario", usuarioLogado);
         req.setAttribute("projeto", projeto);
         req.setAttribute("conteudos", conteudos);
-        req.setAttribute("usuarioPodeEditarProjeto", ServletUtil.usuarioEstaAtivo(usuarioLogado));
-        req.setAttribute("usuarioPodeGerirUsuariosProjeto", ServletUtil.usuarioPodeGerirProjeto(usuarioLogado));
-        req.setAttribute("modoEdicao", "editar".equalsIgnoreCase(req.getParameter("modo")));
+        req.setAttribute("usuarioPodeEditarProjeto", usuarioPodeEditarProjeto);
+        req.setAttribute("usuarioPodeGerirUsuariosProjeto", usuarioPodeGerirProjeto);
+        req.setAttribute("usuarioPodeAlterarStatusProjeto", usuarioPodeGerirProjeto);
+        req.setAttribute("projetoFechado", projeto != null && projeto.isFechado());
+        req.setAttribute("modoEdicao", modoEdicaoSolicitado && usuarioPodeEditarProjeto);
         ServletUtil.prepararSidePanel(req, usuarioLogado);
+    }
+
+    private void validarGestaoProjeto(Usuario usuarioLogado, Integer idProjeto) {
+        if (!ServletUtil.usuarioPodeGerirProjeto(usuarioLogado)) {
+            throw new CampoObrigatorioException("Apenas gestores ativos podem alterar o status do projeto.");
+        }
+
+        ProjetoService projetoService = new ProjetoService();
+        projetoService.verificaSeUsuarioPercenteAoProjeto(usuarioLogado.getId(), idProjeto);
     }
 
     private Integer parseInt(String valor) {
