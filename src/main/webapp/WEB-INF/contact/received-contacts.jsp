@@ -38,59 +38,56 @@
                     <form action="<%= request.getContextPath() %>/contatos/recebidos" method="post" class="stack-form">
                         <div class="action-row">
                             <button type="submit" name="acao" value="ler" class="btn-primary">
-                                Marcar selecionados como lidos
+                                Marcar como lidos
                             </button>
                             <button type="submit" name="acao" value="remover" class="btn-primary"
                                     onclick="return confirm('Remover os contatos selecionados?');">
-                                Remover selecionados
+                                Remover
                             </button>
                         </div>
 
-                        <div class="table-wrap">
-                            <table class="data-table">
-                                <thead>
-                                    <tr>
-                                        <th></th>
-                                        <th>Projeto</th>
-                                        <th>Remetente</th>
-                                        <th>Email</th>
-                                        <th>Mensagem</th>
-                                        <th>Data</th>
-                                        <th>Estado</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <c:forEach var="contato" items="${contatosRecebidos}">
-                                        <c:set var="contatoMarcado" value="false"/>
-                                        <c:forEach var="idSelecionado" items="${idsContatoSelecionados}">
-                                            <c:if test="${idSelecionado == contato.id}">
-                                                <c:set var="contatoMarcado" value="true"/>
-                                            </c:if>
-                                        </c:forEach>
-                                        <tr>
-                                            <td>
-                                                <input type="checkbox" name="idContato" value="${contato.id}"
-                                                    <c:if test="${contatoMarcado}">checked</c:if>>
-                                            </td>
-                                            <td><c:out value="${contato.projeto.descricao}"/></td>
-                                            <td><c:out value="${contato.usuario.nome}"/></td>
-                                            <td><c:out value="${contato.usuario.email}"/></td>
-                                            <td><c:out value="${contato.mensagem}"/></td>
-                                            <td><c:out value="${contato.dataEnvio}"/></td>
-                                            <td>
-                                                <span class="status-chip">
-                                                    <c:choose>
-                                                        <c:when test="${contato.flgLida}">Lido</c:when>
-                                                        <c:otherwise>Pendente</c:otherwise>
-                                                    </c:choose>
-                                                </span>
-                                            </td>
-                                        </tr>
-                                    </c:forEach>
-                                </tbody>
-                            </table>
-                        </div>
-                    </form>
+								<div class="table-wrap">
+									<table class="data-table">
+										<thead>
+											<tr>
+												<th></th>
+												<th>Projeto</th>
+												<th>Remetente</th>
+												<th>Email</th>
+												<th>Mensagem</th>
+												<th>Data</th>
+												<th>Estado</th>
+											</tr>
+										</thead>
+										<tbody>
+											<c:forEach var="contato" items="${contatosRecebidos}">
+												<c:set var="contatoMarcado" value="false" />
+												<c:forEach var="idSelecionado"
+													items="${idsContatoSelecionados}">
+													<c:if test="${idSelecionado == contato.id}">
+														<c:set var="contatoMarcado" value="true" />
+													</c:if>
+												</c:forEach>
+												<tr>
+													<td><input type="checkbox" name="idContato"
+														value="${contato.id}"
+														<c:if test="${contatoMarcado}">checked</c:if>></td>
+													<td><c:out value="${contato.projeto.descricao}" /></td>
+													<td><c:out value="${contato.usuario.nome}" /></td>
+													<td><c:out value="${contato.usuario.email}" /></td>
+													<td><c:out value="${contato.mensagem}" /></td>
+													<td><c:out value="${contato.dataEnvio}" /></td>
+													<td><span class="status-chip"> <c:choose>
+																<c:when test="${contato.flgLida}">Lido</c:when>
+																<c:otherwise>Pendente</c:otherwise>
+															</c:choose>
+													</span></td>
+												</tr>
+											</c:forEach>
+										</tbody>
+									</table>
+								</div>
+							</form>
                 </c:otherwise>
             </c:choose>
         </section>

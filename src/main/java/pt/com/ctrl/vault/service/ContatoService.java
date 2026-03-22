@@ -1,9 +1,8 @@
 package pt.com.ctrl.vault.service;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.LinkedHashSet;
 import java.util.List;
+
 import pt.com.ctrl.vault.exception.CampoObrigatorioException;
 import pt.com.ctrl.vault.model.Contato;
 import pt.com.ctrl.vault.model.Projeto;
@@ -20,11 +19,9 @@ public class ContatoService {
 
     public Contato enviarContato(Usuario usuario, Integer idProjeto, String mensagem) {
         UsuarioService usuarioService = new UsuarioService();
-        usuarioService.validarUsuarioAtivoParaAcao(usuario);
+        usuarioService.validarUsuarioAtivoParaExecutarAcao(usuario);
 
-        if (usuario == null || usuario.getId() == null) {
-            throw new CampoObrigatorioException("Utilizador invalido.");
-        }
+        validarUsuario(usuario);
 
         if (idProjeto == null) {
             throw new CampoObrigatorioException("O projeto do contato e obrigatorio.");
@@ -56,52 +53,51 @@ public class ContatoService {
     }
 
     public boolean usuarioTemContatosPendentes(Usuario usuario) {
-        validarUsuarioParticipante(usuario);
+    	validarUsuario(usuario);
 
         ContatoRepository contatoRepository = new ContatoRepository();
         return contatoRepository.usuarioTemContatosPendentes(usuario.getId());
     }
 
     public List<Contato> listarContatosRecebidos(Usuario usuario) {
-        validarUsuarioParticipante(usuario);
+    	validarUsuario(usuario);
 
         ContatoRepository contatoRepository = new ContatoRepository();
         return contatoRepository.listarContatosRecebidosDoUsuario(usuario.getId());
     }
 
     public void marcarContatosComoLidos(Usuario usuario, List<Integer> idsContato) {
-        validarUsuarioParticipante(usuario);
+        validarDados(usuario, idsContato);
+        
         UsuarioService usuarioService = new UsuarioService();
-        usuarioService.validarUsuarioAtivoParaAcao(usuario);
-
-        List<Integer> ids = validarEPadronizarIdsContato(idsContato);
+        usuarioService.validarUsuarioAtivoParaExecutarAcao(usuario);
 
         ContatoRepository contatoRepository = new ContatoRepository();
-        contatoRepository.marcarContatosComoLidos(usuario.getId(), ids);
+        contatoRepository.marcarContatosComoLidos(usuario.getId(), idsContato);
     }
 
     public void removerContatos(Usuario usuario, List<Integer> idsContato) {
-        validarUsuarioParticipante(usuario);
+        validarDados(usuario, idsContato);
+        
         UsuarioService usuarioService = new UsuarioService();
-        usuarioService.validarUsuarioAtivoParaAcao(usuario);
-
-        List<Integer> ids = validarEPadronizarIdsContato(idsContato);
+        usuarioService.validarUsuarioAtivoParaExecutarAcao(usuario);
 
         ContatoRepository contatoRepository = new ContatoRepository();
-        contatoRepository.removerContatos(ids);
+        contatoRepository.removerContatos(idsContato);
     }
 
-    private List<Integer> validarEPadronizarIdsContato(List<Integer> idsContato) {
+    private void validarDados(Usuario usuario, List<Integer> idsContato) {
+        validarUsuario(usuario);
+        
         if (idsContato == null || idsContato.isEmpty()) {
             throw new CampoObrigatorioException("Selecione pelo menos um contato.");
-        }
-
-        return new ArrayList<>(new LinkedHashSet<>(idsContato));
+        }        
     }
-
-    private void validarUsuarioParticipante(Usuario usuario) {
+    
+    private void validarUsuario(Usuario usuario) {
         if (usuario == null || usuario.getId() == null) {
             throw new CampoObrigatorioException("Utilizador invalido.");
-        }
+        }      
     }
+    
 }

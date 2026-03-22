@@ -2,15 +2,17 @@ package pt.com.ctrl.vault.controller;
 
 import java.io.IOException;
 import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import pt.com.ctrl.vault.exception.CampoObrigatorioException;
 import pt.com.ctrl.vault.model.Projeto;
 import pt.com.ctrl.vault.model.Usuario;
 import pt.com.ctrl.vault.service.ContatoService;
-import pt.com.ctrl.vault.service.UsuarioService;
+import pt.com.ctrl.vault.service.ProjetoService;
 import pt.com.ctrl.vault.util.ServletUtil;
 
 /**
@@ -67,8 +69,8 @@ public class ContatoController extends HttpServlet {
     }
 
     private void carregarPagina(HttpServletRequest req, Usuario usuarioLogado) {
-        UsuarioService usuarioService = new UsuarioService();
-        List<Projeto> projetos = usuarioService.listarProjetos();
+        ProjetoService projetoService = new ProjetoService();
+        List<Projeto> projetos = projetoService.listarProjetos();
 
         req.setAttribute("usuario", usuarioLogado);
         req.setAttribute("isAdmin", ServletUtil.usuarioEhAdmin(usuarioLogado));

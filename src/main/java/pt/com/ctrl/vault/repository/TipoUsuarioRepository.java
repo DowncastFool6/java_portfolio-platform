@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
 import pt.com.ctrl.vault.model.TipoUsuario;
 import pt.com.ctrl.vault.util.ConnectionFactory;
 

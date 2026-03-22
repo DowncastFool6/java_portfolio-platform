@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+
 import pt.com.ctrl.vault.model.Contato;
 import pt.com.ctrl.vault.model.Projeto;
 import pt.com.ctrl.vault.model.Usuario;

@@ -1,18 +1,16 @@
 package pt.com.ctrl.vault.service;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.LinkedHashSet;
 import java.util.List;
+
 import org.mindrot.jbcrypt.BCrypt;
+
 import pt.com.ctrl.vault.exception.CampoObrigatorioException;
 import pt.com.ctrl.vault.exception.EmailJaRegistadoException;
 import pt.com.ctrl.vault.exception.SenhaInvalidaException;
 import pt.com.ctrl.vault.exception.UsuarioNaoEncontradoException;
-import pt.com.ctrl.vault.model.Projeto;
 import pt.com.ctrl.vault.model.TipoUsuario;
 import pt.com.ctrl.vault.model.Usuario;
-import pt.com.ctrl.vault.repository.ProjetoRepository;
 import pt.com.ctrl.vault.repository.TipoUsuarioRepository;
 import pt.com.ctrl.vault.repository.UsuarioRepository;
 
@@ -75,7 +73,7 @@ public class UsuarioService {
         return usuario;
     }
 
-    public void validarUsuarioAtivoParaAcao(Usuario usuario) {
+    public void validarUsuarioAtivoParaExecutarAcao(Usuario usuario) {
         if (usuario == null || usuario.getId() == null) {
             throw new CampoObrigatorioException("Utilizador invalido.");
         }
@@ -105,25 +103,6 @@ public class UsuarioService {
         return usuario;
     }
 
-    public Projeto buscarProjetoDoUsuario(Integer idUsuario) {
-        UsuarioRepository usuarioRepository = new UsuarioRepository();
-        return usuarioRepository.buscarProjetoDoUsuario(idUsuario);
-    }
-
-    public List<Projeto> listarProjetosDoUsuario(Integer idUsuario) {
-        if (idUsuario == null) {
-            throw new CampoObrigatorioException("Usuario invalido.");
-        }
-
-        UsuarioRepository usuarioRepository = new UsuarioRepository();
-        return usuarioRepository.listarProjetosDoUsuario(idUsuario);
-    }
-
-    public List<Projeto> listarProjetos() {
-        ProjetoRepository projetoRepository = new ProjetoRepository();
-        return projetoRepository.listarTodos();
-    }
-
     public List<TipoUsuario> listarTiposUsuario() {
         TipoUsuarioRepository tipoUsuarioRepository = new TipoUsuarioRepository();
         return tipoUsuarioRepository.listarTodos();
@@ -134,40 +113,8 @@ public class UsuarioService {
             throw new CampoObrigatorioException("Utilizador, pelo menos um projeto e tipo de utilizador sao obrigatorios.");
         }
 
-        List<Integer> idsProjetosNormalizados = new ArrayList<>(new LinkedHashSet<>(idsProjetos));
         UsuarioRepository usuarioRepository = new UsuarioRepository();
-        usuarioRepository.atualizarAcessoUsuario(idUsuario, idsProjetosNormalizados, idTipoUsuario);
+        usuarioRepository.atualizarAcessoUsuario(idUsuario, idsProjetos, idTipoUsuario);
     }
 
-    public List<Usuario> listarUsuariosDoProjeto(Integer idProjeto) {
-        if (idProjeto == null) {
-            throw new CampoObrigatorioException("Projeto invalido.");
-        }
-
-        UsuarioRepository usuarioRepository = new UsuarioRepository();
-        return usuarioRepository.listarUsuariosDoProjeto(idProjeto);
-    }
-
-    public void atualizarStatusUsuarioNoProjeto(Integer idProjeto, Integer idUsuario, boolean ativo) {
-        if (idProjeto == null || idUsuario == null) {
-            throw new CampoObrigatorioException("Projeto ou utilizador invalido.");
-        }
-
-        UsuarioRepository usuarioRepository = new UsuarioRepository();
-        List<Usuario> usuariosProjeto = usuarioRepository.listarUsuariosDoProjeto(idProjeto);
-        boolean pertenceAoProjeto = false;
-
-        for (Usuario usuario : usuariosProjeto) {
-            if (idUsuario.equals(usuario.getId())) {
-                pertenceAoProjeto = true;
-                break;
-            }
-        }
-
-        if (!pertenceAoProjeto) {
-            throw new CampoObrigatorioException("O utilizador nao pertence a este projeto.");
-        }
-
-        usuarioRepository.atualizarStatusUsuario(idUsuario, ativo);
-    }
 }

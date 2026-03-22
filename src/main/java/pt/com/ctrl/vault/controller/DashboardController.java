@@ -2,13 +2,15 @@ package pt.com.ctrl.vault.controller;
 
 import java.io.IOException;
 import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import pt.com.ctrl.vault.model.Projeto;
 import pt.com.ctrl.vault.model.Usuario;
-import pt.com.ctrl.vault.service.UsuarioService;
+import pt.com.ctrl.vault.service.ProjetoService;
 import pt.com.ctrl.vault.util.ServletUtil;
 
 /**
@@ -25,9 +27,9 @@ public class DashboardController extends HttpServlet {
             return;
         }
 
-        UsuarioService usuarioService = new UsuarioService();
-        Projeto projetoUsuario = usuarioService.buscarProjetoDoUsuario(usuarioLogado.getId());
-        List<Projeto> projetosUsuario = usuarioService.listarProjetosDoUsuario(usuarioLogado.getId());
+        ProjetoService projetoService = new ProjetoService();
+        Projeto projetoUsuario = projetoService.buscarProjetoDoUsuario(usuarioLogado.getId());
+        List<Projeto> projetosUsuario = projetoService.listarProjetosDoUsuario(usuarioLogado.getId());
 
         req.setAttribute("usuario", usuarioLogado);
         req.setAttribute("isAdmin", ServletUtil.usuarioEhAdmin(usuarioLogado));

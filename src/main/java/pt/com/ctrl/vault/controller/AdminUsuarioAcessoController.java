@@ -3,15 +3,18 @@ package pt.com.ctrl.vault.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import pt.com.ctrl.vault.exception.CampoObrigatorioException;
 import pt.com.ctrl.vault.exception.UsuarioNaoEncontradoException;
 import pt.com.ctrl.vault.model.Projeto;
 import pt.com.ctrl.vault.model.TipoUsuario;
 import pt.com.ctrl.vault.model.Usuario;
+import pt.com.ctrl.vault.service.ProjetoService;
 import pt.com.ctrl.vault.service.UsuarioService;
 import pt.com.ctrl.vault.util.ServletUtil;
 
@@ -71,10 +74,12 @@ public class AdminUsuarioAcessoController extends HttpServlet {
     }
 
     private void carregarFormulario(HttpServletRequest req, Integer idUsuario, List<Integer> idsProjetosSelecionados, Integer idTipoSelecionado) throws ServletException {
+        ProjetoService projetoService = new ProjetoService();
+        List<Projeto> projetosAtuais = projetoService.listarProjetosDoUsuario(idUsuario);
+        List<Projeto> projetos = projetoService.listarProjetos();
+
         UsuarioService usuarioService = new UsuarioService();
         Usuario usuario = usuarioService.buscarPorId(idUsuario);
-        List<Projeto> projetosAtuais = usuarioService.listarProjetosDoUsuario(idUsuario);
-        List<Projeto> projetos = usuarioService.listarProjetos();
         List<TipoUsuario> tiposUsuario = usuarioService.listarTiposUsuario();
 
         List<Integer> projetoSelecionadoIds = idsProjetosSelecionados;

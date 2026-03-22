@@ -7,9 +7,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 import pt.com.ctrl.vault.model.Usuario;
 import pt.com.ctrl.vault.service.ContatoService;
-import pt.com.ctrl.vault.service.UsuarioService;
+import pt.com.ctrl.vault.service.ProjetoService;
 
 /**
  * Classe com metodos uteis para utilizar nas Servlets
@@ -29,7 +30,7 @@ public class ServletUtil {
     }
         
     public static Usuario obterUsuarioLogado(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HttpSession session = req.getSession(false);
+        HttpSession session = req.getSession(false); //false, pois nao quer criar uma nova sessao
 
         if (session == null || session.getAttribute("usuarioLogado") == null) {
             resp.sendRedirect(req.getContextPath() + "/login");
@@ -61,6 +62,7 @@ public class ServletUtil {
                 && usuario.getTipoUsuario().getDescricao().trim().toUpperCase().contains("GESTOR");
     }
 
+    //FIXME deixar mais facil
     public static boolean usuarioEstaAtivo(Usuario usuario) {
         return usuario != null && Boolean.TRUE.equals(usuario.getAtivo());
     }
@@ -69,21 +71,15 @@ public class ServletUtil {
         return usuarioEstaAtivo(usuario) && (usuarioEhGestor(usuario) || usuarioEhAdmin(usuario));
     }
 
+    //FIXME mudar para side panel
     public static void prepararHeader(HttpServletRequest req, Usuario usuario) {
-        if (req.getAttribute("mostrarBotaoHome") == null) {
-            req.setAttribute("mostrarBotaoHome", true);
-        }
-
-        if (req.getAttribute("mostrarBotaoVoltar") == null) {
-            req.setAttribute("mostrarBotaoVoltar", true);
-        }
-
         boolean mostrarBotaoContatos = false;
         boolean temContatosPendentes = false;
 
         if (usuario != null && usuario.getId() != null) {
-            UsuarioService usuarioService = new UsuarioService();
-            mostrarBotaoContatos = !usuarioService.listarProjetosDoUsuario(usuario.getId()).isEmpty();
+            ProjetoService projetoService = new ProjetoService();
+            //FIXME verificar se  regra ainda existe
+            mostrarBotaoContatos = !projetoService.listarProjetosDoUsuario(usuario.getId()).isEmpty();
         }
 
         if (mostrarBotaoContatos) {

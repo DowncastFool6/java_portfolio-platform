@@ -6,7 +6,9 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
+
 import javax.servlet.http.Part;
+
 import pt.com.ctrl.vault.exception.CampoObrigatorioException;
 import pt.com.ctrl.vault.model.Conteudo;
 import pt.com.ctrl.vault.model.Projeto;
@@ -19,39 +21,25 @@ import pt.com.ctrl.vault.repository.ConteudoRepository;
  */
 public class ConteudoService {
 
+	/*
     public List<Projeto> listarProjetosDoUsuario(Usuario usuario) {
         validarUsuario(usuario);
-        UsuarioService usuarioService = new UsuarioService();
-        return usuarioService.listarProjetosDoUsuario(usuario.getId());
+        ProjetoService projetoService = new ProjetoService();
+        return projetoService.listarProjetosDoUsuario(usuario.getId());
     }
 
-    public Projeto buscarProjetoDoUsuario(Usuario usuario, Integer idProjeto) {
-        validarUsuario(usuario);
-
-        if (idProjeto == null) {
-            throw new CampoObrigatorioException("Projeto invalido.");
-        }
-
-        UsuarioService usuarioService = new UsuarioService();
-        List<Projeto> projetos = usuarioService.listarProjetosDoUsuario(usuario.getId());
-
-        for (Projeto projeto : projetos) {
-            if (idProjeto.equals(projeto.getId())) {
-                return projeto;
-            }
-        }
-
-        throw new CampoObrigatorioException("O utilizador nao faz parte deste projeto.");
-    }
-
+*/
     public List<Conteudo> listarConteudosDoProjeto(Usuario usuario, Integer idProjeto) {
-        buscarProjetoDoUsuario(usuario, idProjeto);
+        ProjetoService projetoService = new ProjetoService();
+        projetoService.verificaSeUsuarioPercenteAoProjeto(usuario.getId(), idProjeto);
+        
         ConteudoRepository conteudoRepository = new ConteudoRepository();
         return conteudoRepository.listarPorProjeto(idProjeto);
     }
 
     public Conteudo buscarConteudoDoProjeto(Usuario usuario, Integer idProjeto, Integer idConteudo) {
-        buscarProjetoDoUsuario(usuario, idProjeto);
+    	ProjetoService projetoService = new ProjetoService();
+    	projetoService.verificaSeUsuarioPercenteAoProjeto(usuario.getId(), idProjeto);
 
         ConteudoRepository conteudoRepository = new ConteudoRepository();
         Conteudo conteudo = conteudoRepository.buscarPorId(idConteudo);
@@ -65,14 +53,18 @@ public class ConteudoService {
 
     public Conteudo criarConteudo(Usuario usuario, Integer idProjeto, String titulo, String tipoConteudo, String texto, Part arquivoPart) {
         UsuarioService usuarioService = new UsuarioService();
-        usuarioService.validarUsuarioAtivoParaAcao(usuario);
+        usuarioService.validarUsuarioAtivoParaExecutarAcao(usuario);
 
-        Projeto projeto = buscarProjetoDoUsuario(usuario, idProjeto);
+        ProjetoService projetoService = new ProjetoService();
+        projetoService.verificaSeUsuarioPercenteAoProjeto(usuario.getId(), idProjeto);
+        
+        Projeto projeto = projetoService.buscarProjetoPorUsuarioEProjeto(usuario.getId(), idProjeto);
+        
         validarTipo(tipoConteudo);
 
         Conteudo conteudo = new Conteudo();
         conteudo.setProjeto(projeto);
-        conteudo.setTitulo(normalizarTextoOpcional(titulo));
+        conteudo.setTitulo(titulo);
         conteudo.setTipoConteudo(tipoConteudo);
         conteudo.setOrdemExibicao(new ConteudoRepository().buscarProximaOrdem(idProjeto));
         conteudo.setDataCriacao(LocalDateTime.now());
@@ -90,9 +82,10 @@ public class ConteudoService {
 
     public void atualizarConteudos(Usuario usuario, Integer idProjeto, List<Conteudo> conteudosAtualizados, List<Integer> idsOrdenados) {
         UsuarioService usuarioService = new UsuarioService();
-        usuarioService.validarUsuarioAtivoParaAcao(usuario);
+        usuarioService.validarUsuarioAtivoParaExecutarAcao(usuario);
 
-        buscarProjetoDoUsuario(usuario, idProjeto);
+        ProjetoService projetoService = new ProjetoService();
+        projetoService.verificaSeUsuarioPercenteAoProjeto(usuario.getId(), idProjeto);
 
         if (conteudosAtualizados == null || conteudosAtualizados.isEmpty()) {
             throw new CampoObrigatorioException("Nao existem conteudos para atualizar.");
@@ -106,7 +99,7 @@ public class ConteudoService {
                 throw new CampoObrigatorioException("Conteudo invalido.");
             }
 
-            existente.setTitulo(normalizarTextoOpcional(conteudoAtualizado.getTitulo()));
+            existente.setTitulo(conteudoAtualizado.getTitulo());
             existente.setConteudo(conteudoAtualizado.getConteudo());
             existente.setNomeArquivo(conteudoAtualizado.getNomeArquivo());
             existente.setTipoMime(conteudoAtualizado.getTipoMime());
@@ -162,9 +155,11 @@ public class ConteudoService {
 
     public void removerConteudo(Usuario usuario, Integer idProjeto, Integer idConteudo) {
         UsuarioService usuarioService = new UsuarioService();
-        usuarioService.validarUsuarioAtivoParaAcao(usuario);
+        usuarioService.validarUsuarioAtivoParaExecutarAcao(usuario);
 
-        buscarProjetoDoUsuario(usuario, idProjeto);
+        ProjetoService projetoService = new ProjetoService();
+        projetoService.verificaSeUsuarioPercenteAoProjeto(usuario.getId(), idProjeto);
+        
         Conteudo existente = buscarConteudoDoProjeto(usuario, idProjeto, idConteudo);
 
         ConteudoRepository conteudoRepository = new ConteudoRepository();
@@ -221,21 +216,13 @@ public class ConteudoService {
     }
 
     private void validarTipo(String tipoConteudo) {
-        if (!isTexto(tipoConteudo) && !isImagem(tipoConteudo)) {
+        if (isTexto(tipoConteudo) == false && "IMAGEM".equalsIgnoreCase(tipoConteudo) == false) {
             throw new CampoObrigatorioException("Tipo de conteudo invalido.");
         }
     }
 
     public boolean isTexto(String tipoConteudo) {
         return "TEXTO".equalsIgnoreCase(tipoConteudo);
-    }
-
-    public boolean isImagem(String tipoConteudo) {
-        return "IMAGEM".equalsIgnoreCase(tipoConteudo);
-    }
-
-    private String normalizarTextoOpcional(String valor) {
-        return valor == null || valor.isBlank() ? null : valor.trim();
     }
 
     private void validarUsuario(Usuario usuario) {

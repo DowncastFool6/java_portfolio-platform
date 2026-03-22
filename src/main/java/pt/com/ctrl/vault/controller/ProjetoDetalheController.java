@@ -3,17 +3,20 @@ package pt.com.ctrl.vault.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
+
 import pt.com.ctrl.vault.exception.CampoObrigatorioException;
 import pt.com.ctrl.vault.model.Conteudo;
 import pt.com.ctrl.vault.model.Projeto;
 import pt.com.ctrl.vault.model.Usuario;
 import pt.com.ctrl.vault.service.ConteudoService;
+import pt.com.ctrl.vault.service.ProjetoService;
 import pt.com.ctrl.vault.util.ServletUtil;
 
 /**
@@ -31,7 +34,7 @@ public class ProjetoDetalheController extends HttpServlet {
         }
 
         try {
-            Integer idProjeto = parseInt(req.getParameter("id"));
+            Integer idProjeto = parseInt(req.getParameter("id"));	
             carregarPagina(req, usuarioLogado, idProjeto);
 
             if ("conteudo-criado".equals(req.getParameter("sucesso"))) {
@@ -99,8 +102,10 @@ public class ProjetoDetalheController extends HttpServlet {
     }
 
     private void carregarPagina(HttpServletRequest req, Usuario usuarioLogado, Integer idProjeto) {
+    	ProjetoService projetoService = new ProjetoService();
+    	Projeto projeto = projetoService.buscarProjetoPorUsuarioEProjeto(usuarioLogado.getId(), idProjeto);
+    	
         ConteudoService conteudoService = new ConteudoService();
-        Projeto projeto = conteudoService.buscarProjetoDoUsuario(usuarioLogado, idProjeto);
         List<Conteudo> conteudos = conteudoService.listarConteudosDoProjeto(usuarioLogado, idProjeto);
 
         req.setAttribute("usuario", usuarioLogado);

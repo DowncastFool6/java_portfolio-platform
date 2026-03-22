@@ -250,6 +250,7 @@ footer {
 /* Wrapper visual para tabelas grandes. */
 .table-wrap {
   padding: 10px 18px;
+  margin-top: 10px;
 }
 
 /* Linha de ações com wrapping automático. */

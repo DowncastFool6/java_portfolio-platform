@@ -17,8 +17,6 @@
                 <h2>Registar Novo Utilizador</h2>
                 <p>Crie a sua conta para aceder ao portal.</p>
             
-        
-
         <c:if test="${not empty erro}">
             <p class="erro"><c:out value="${erro}"/></p>
         </c:if>
@@ -33,19 +31,19 @@
             <label>Senha</label>
             <input type="password" name="senha" required>
 
-            <div class="rgpd-box">
+            <div>
                 <strong>Informação RGPD</strong>
                 <p>
                     Nos termos do Regulamento Geral sobre a Protecao de Dados (RGPD) aplicável em Portugal,
                     os dados fornecidos neste formulário serão tratados apenas para criação e gestão da sua conta no sistema.
                 </p>
+                <input type="checkbox" name="aceitouRgpd" required>
                 <label class="checkbox-row">
-                    <input type="checkbox" name="aceitouRgpd" required>
+                    
                     Declaro que li e compreendi a informação relativa ao tratamento dos meus dados pessoais.
                 </label>
             
-
-            <div class="action-row">
+            <div>
                 <button type="submit" class="btn-primary">Registar</button>
             </div>
         </form>
