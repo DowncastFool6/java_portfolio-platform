@@ -14,7 +14,7 @@
 
 <main class="app-main">
     <div class="app-container">
-            <div class="section-heading">
+        <div class="section-heading">
             <div>
                 <h2>Contato do projeto</h2>
                 <p>Selecione o projeto e envie a mensagem de contato.</p>
