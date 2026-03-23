@@ -38,12 +38,12 @@
                         <c:choose>
                             <c:when test="${projeto.id == idProjetoSelecionado}">
                                 <option value="${projeto.id}" selected>
-                                    <c:out value="${projeto.descricao}"/>
+                                    <c:out value="${projeto.titulo}"/>
                                 </option>
                             </c:when>
                             <c:otherwise>
                                 <option value="${projeto.id}">
-                                    <c:out value="${projeto.descricao}"/>
+                                    <c:out value="${projeto.titulo}"/>
                                 </option>
                             </c:otherwise>
                         </c:choose>

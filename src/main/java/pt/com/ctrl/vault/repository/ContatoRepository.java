@@ -84,7 +84,7 @@ public class ContatoRepository {
     public List<Contato> listarContatosRecebidosDoUsuario(Integer idUsuario) {
         String sql =
                 "SELECT c.id, c.mensagem, c.flg_lida, c.data_envio, " +
-                "p.id AS projeto_id, p.descricao AS projeto_descricao, " +
+                "p.id AS projeto_id, p.titulo AS projeto_titulo, " +
                 "u.id AS usuario_id, u.nome AS usuario_nome, u.email AS usuario_email " +
                 "FROM tb_contato c " +
                 "INNER JOIN tb_usuario_projeto up ON up.id_projeto = c.id_projeto " +
@@ -185,7 +185,7 @@ public class ContatoRepository {
 
         Projeto projeto = new Projeto();
         projeto.setId(rs.getInt("projeto_id"));
-        projeto.setDescricao(rs.getString("projeto_descricao"));
+        projeto.setTitulo(rs.getString("projeto_titulo"));
         contato.setProjeto(projeto);
 
         Usuario usuario = new Usuario();

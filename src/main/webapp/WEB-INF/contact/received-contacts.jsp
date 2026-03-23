@@ -71,7 +71,7 @@
 													<td><input type="checkbox" name="idContato"
 														value="${contato.id}"
 														<c:if test="${contatoMarcado}">checked</c:if>></td>
-													<td><c:out value="${contato.projeto.descricao}" /></td>
+													<td><c:out value="${contato.projeto.titulo}" /></td>
 													<td><c:out value="${contato.usuario.nome}" /></td>
 													<td><c:out value="${contato.usuario.email}" /></td>
 													<td><c:out value="${contato.mensagem}" /></td>

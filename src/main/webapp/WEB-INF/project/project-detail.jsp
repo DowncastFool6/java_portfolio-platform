@@ -36,32 +36,32 @@
                         <span class="status-chip">Finalizado em ${projeto.dataFimFormatada}</span>
                     </c:if>
                 </div>
-            </div>
-            <div class="action-row">
-                <c:if test="${usuarioPodeGerirUsuariosProjeto}">
-                    <a class="btn-primary" href="<%= request.getContextPath() %>/projeto/usuarios?idProjeto=${projeto.id}">Gerir utilizadores</a>
-                </c:if>
-                <c:if test="${usuarioPodeAlterarStatusProjeto and not modoEdicao}">
-                    <form action="<%= request.getContextPath() %>/projeto" method="post">
-                        <input type="hidden" name="idProjeto" value="${projeto.id}">
-                        <c:choose>
-                            <c:when test="${projetoFechado}">
-                                <button type="submit" name="acao" value="reabrir-projeto" class="btn-primary">Re-abrir projeto</button>
-                            </c:when>
-                            <c:otherwise>
-                                <button type="submit" name="acao" value="fechar-projeto" class="btn-primary">Fechar projeto</button>
-                            </c:otherwise>
-                        </c:choose>
-                    </form>
-                </c:if>
-                <c:if test="${usuarioPodeEditarProjeto and not modoEdicao}">
-                    <a class="btn-primary" href="<%= request.getContextPath() %>/projeto/conteudos/novo?idProjeto=${projeto.id}">Novo conteudo</a>
-                </c:if>
-                <c:choose>
-                    <c:when test="${usuarioPodeEditarProjeto and not modoEdicao}">
-                        <a class="btn-primary" href="<%= request.getContextPath() %>/projeto?id=${projeto.id}&modo=editar">Editar</a>
-                    </c:when>
-                </c:choose>
+                <div class="action-row">
+                    <c:if test="${usuarioPodeGerirUsuariosProjeto}">
+                        <a class="btn-primary" href="<%= request.getContextPath() %>/projeto/usuarios?idProjeto=${projeto.id}">Gerir utilizadores</a>
+                    </c:if>
+                    <c:if test="${usuarioPodeAlterarStatusProjeto and not modoEdicao}">
+                        <form action="<%= request.getContextPath() %>/projeto" method="post">
+                            <input type="hidden" name="idProjeto" value="${projeto.id}">
+                            <c:choose>
+                                <c:when test="${projetoFechado}">
+                                    <button type="submit" name="acao" value="reabrir-projeto" class="btn-primary">Re-abrir projeto</button>
+                                </c:when>
+                                <c:otherwise>
+                                    <button type="submit" name="acao" value="fechar-projeto" class="btn-primary">Fechar projeto</button>
+                                </c:otherwise>
+                            </c:choose>
+                        </form>
+                    </c:if>
+                    <c:if test="${usuarioPodeEditarProjeto and not modoEdicao}">
+                        <a class="btn-primary" href="<%= request.getContextPath() %>/projeto/conteudos/novo?idProjeto=${projeto.id}">Novo conteudo</a>
+                    </c:if>
+                    <c:choose>
+                        <c:when test="${usuarioPodeEditarProjeto and not modoEdicao}">
+                            <a class="btn-primary" href="<%= request.getContextPath() %>/projeto?id=${projeto.id}&modo=editar">Editar</a>
+                        </c:when>
+                    </c:choose>
+                </div>
             </div>
         </section>
 
