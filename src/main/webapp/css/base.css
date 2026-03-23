@@ -58,17 +58,24 @@ a {
   text-decoration: none;
   color: var(--color-grape-soda);
   border-color: var(--color-primary);
+  transition: var(--transition);
 }
 
 /* Títulos de secção mantêm respiro superior padrão. */
-h2 {
-  margin-top: 50px;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1.2;
 }
 
 /* Campos nativos recebem a aparência base do projeto. */
 input,
 textarea,
-select {
+select,
+button {
   width: 100%;
   padding: 10px;
   border: 1px solid var(--color-border);
@@ -76,11 +83,20 @@ select {
   font-family: "Poppins", sans-serif;
 }
 
+button {
+  width: auto;
+}
+
 /* Estados de foco reforçam a cor primária. */
 input:focus,
-textarea:focus {
+textarea:focus,
+select:focus {
   outline: none;
   border-color: var(--color-primary);
+}
+
+textarea {
+  resize: vertical;
 }
 
 /* Labels seguem peso e espaçamento consistentes. */

@@ -77,7 +77,10 @@
 }
 
 /* Ajustes do botão principal dentro de formulários. */
-form .btn-primary {
+.portal-narrow form .btn-primary,
+.stack-form > .action-row .btn-primary,
+.content-edit-form > .action-row .btn-primary,
+.content-editor-form > .action-row .btn-primary {
   width: 100%;
   max-width: 200px;
   margin-top: 12px;
@@ -87,7 +90,10 @@ form .btn-primary {
 }
 
 /* Hover reforçado para botões em formulários. */
-form .btn-primary:hover {
+.portal-narrow form .btn-primary:hover,
+.stack-form > .action-row .btn-primary:hover,
+.content-edit-form > .action-row .btn-primary:hover,
+.content-editor-form > .action-row .btn-primary:hover {
   background: #6f3fb5;
   transform: translateY(-2px);
   box-shadow: 0 8px 25px rgba(136, 73, 143, 0.35);
@@ -347,6 +353,11 @@ form select:focus {
   gap: 22px;
 }
 
+.stack-form {
+  display: grid;
+  gap: 18px;
+}
+
 /* Alinha checkbox e legenda lado a lado. */
 .checkbox-row {
   display: flex;
@@ -462,6 +473,16 @@ form select:focus {
 .action-row form .btn-primary {
   width: auto;
   max-width: none;
+  margin-top: 0;
+}
+
+.data-table form {
+  display: inline-flex;
+  align-items: center;
+  margin: 0;
+}
+
+.data-table .btn-primary {
   margin-top: 0;
 }
 

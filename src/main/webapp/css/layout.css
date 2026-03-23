@@ -225,6 +225,7 @@ footer {
 /* Container central das páginas internas. */
 .app-container {
   max-width: 1180px;
+  width: 100%;
 }
 
 /* Superfícies principais usadas na área autenticada. */
@@ -251,10 +252,18 @@ footer {
   padding: 26px 28px;
 }
 
+.section-heading-space {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+}
+
 /* Wrapper visual para tabelas grandes. */
 .table-wrap {
   padding: 10px 18px;
   margin-top: 10px;
+  overflow-x: auto;
 }
 
 /* Linha de ações com wrapping automático. */
@@ -263,6 +272,10 @@ footer {
   flex-wrap: wrap;
   align-items: center;
   gap: 12px;
+}
+
+.action-row > * {
+  flex: 0 0 auto;
 }
 
 /* =========================
@@ -310,6 +323,11 @@ footer {
 
   .app-main {
     padding: 0 16px 24px;
+  }
+
+  .section-heading-space {
+    flex-direction: column;
+    align-items: stretch;
   }
 }
 
