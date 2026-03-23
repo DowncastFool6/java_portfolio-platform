@@ -105,3 +105,8 @@ label {
   margin-bottom: 8px;
   font-weight: 500;
 }
+
+/*  Margens do parágrafo */
+.p-margins {
+	margin-block: 20px;
+}

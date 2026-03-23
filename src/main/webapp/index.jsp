@@ -112,7 +112,9 @@
                 </div>
 
                 <div class="card">
-                    <h3 class="no-icon">A nossa equipa</h3>
+                   	<img src="${pageContext.request.contextPath}/images/team1.png" alt="HandsOn Icon" width="100">
+                
+                    <h3>A nossa equipa</h3>
                     <p>Alice Lombardi - Desenvolvedora Full Stack</p>
                     <p>Camila Rial - Product Owner</p>
                     <p>Vissolela Cundi - Scrum Master</p>
@@ -135,7 +137,9 @@
             <div class="cards about-cards">
 
                 <div class="card">
-                    <p class="no-icon">
+                   	<img src="${pageContext.request.contextPath}/images/webapp.png" alt="Web App Icon" width="100">
+                
+                    <p>
                         O CTRL+VAULT é uma aplicação web desenvolvida em Java, criada para armazenar
                         e organizar informações sensíveis de forma segura.
                     </p>
@@ -177,7 +181,9 @@
                 </div>
 
                 <div class="card">
-                    <h3 class="no-icon">Tecnologias</h3>
+                    <img src="${pageContext.request.contextPath}/images/java.png" alt="Java Icon" width="100">
+                
+                    <h3>Tecnologias</h3>
                     <p>Java</p>
                     <p>JSP / Servlets</p>
                     <p>MySQL</p>
@@ -210,7 +216,9 @@
                 </div>
 
                 <div class="card">
-                    <h3 class="no-icon">Conceitos aplicados</h3>
+                    <img src="${pageContext.request.contextPath}/images/mvc.png" alt="MVC Icon" width="100">
+                
+                    <h3>Conceitos aplicados</h3>
                     <p>Arquitetura MVC</p>
                     <p>Programação orientada a objetos</p>
                     <p>Segurança de dados</p>
@@ -260,7 +268,7 @@
                             aliceslombardi
                         </a>
                     </p>
-                    <p>
+                    <p class="p-margins">
                         Acompanhe o nosso trabalho e saiba mais sobre o desenvolvimento do projeto.
                     </p>
                 </div>
