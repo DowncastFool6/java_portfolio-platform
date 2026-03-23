@@ -43,7 +43,7 @@
                     <label class="checkbox-row">
                         <input type="checkbox" name="idProjeto" value="${projeto.id}"
                             <c:if test="${projetoMarcado}">checked</c:if>>
-                        <span><c:out value="${projeto.descricao}"/></span>
+                        <span><c:out value="${projeto.titulo}"/></span>
                     </label>
                 </c:forEach>
             </div>

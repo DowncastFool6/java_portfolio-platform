@@ -14,13 +14,14 @@
 
 <main class="app-main">
     <div class="app-container">
-    <section class="portal-panel">
-        <div class="section-heading">
+            <div class="section-heading">
             <div>
                 <h2>Contato do projeto</h2>
                 <p>Selecione o projeto e envie a mensagem de contato.</p>
             </div>
         </div>
+    <section class="portal-panel">
+
 
         <c:if test="${not empty mensagem}">
             <p class="sucesso"><c:out value="${mensagem}"/></p>

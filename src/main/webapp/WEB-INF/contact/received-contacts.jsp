@@ -14,13 +14,14 @@
 
 <main class="app-main">
     <div class="app-container">
-        <section class="portal-section">
-            <div class="section-heading">
-                <div>
-                    <h2>Contatos recebidos</h2>
-                    <p>Veja os contatos recebidos pelos projetos sob sua gestão, marque-os como lidos ou remova vários de uma vez.</p>
-                </div>
+        <div class="section-heading">
+            <div>
+                <h2>Contatos recebidos</h2>
+                <p>Veja os contatos recebidos pelos projetos sob sua gestão, marque-os como lidos ou remova vários de uma vez.</p>
             </div>
+        </div>    
+        <section class="portal-section">
+
 
             <c:if test="${not empty mensagem}">
                 <p class="sucesso"><c:out value="${mensagem}"/></p>

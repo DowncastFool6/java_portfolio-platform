@@ -29,7 +29,8 @@
             <c:forEach var="projeto" items="${projetos}">
                 <a class="project-card" href="<%= request.getContextPath() %>/projeto?id=${projeto.id}">
                     <span class="project-card-label">Projeto</span>
-                    <strong><c:out value="${projeto.descricao}"/></strong>
+                    <strong><c:out value="${projeto.titulo}"/></strong>
+                    <c:out value="${projeto.descricao}"/>
                     <span>Abrir página do projeto</span>
                 </a>
             </c:forEach>
