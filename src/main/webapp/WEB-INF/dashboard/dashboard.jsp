@@ -1,18 +1,17 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="pt">
 <head>
-    <meta charset="UTF-8">
     <title>Dashboard - CTRL+VAULT</title>
-    <link rel="stylesheet" href="<%= request.getContextPath()%>/css/styles.css">
+    <%@ include file="/WEB-INF/fragments/app-head.jspf" %>
 </head>
 <body>
 
 <div class="page-shell app-layout">
     <%@ include file="/WEB-INF/fragments/side-panel.jspf" %>
 
-<main class="app-main">
+<main class="page-shell">
     <div class="app-container">
     <section class="portal-section">
         <div>
@@ -52,6 +51,21 @@
     </div>
 </main>
 </div>
+
+<script
+  src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.9.3/dist/dotlottie-wc.js"
+  type="module"
+></script>
+
+<div class="lottie-corner">
+  <dotlottie-wc
+    src="https://lottie.host/1a969a32-fa37-4a03-a77f-c83eb822f7df/9ZzMgLVqMY.lottie"
+    style="width:300px;height:300px;"
+    autoplay
+    loop
+  ></dotlottie-wc>
+</div>
+
 <%@ include file="/WEB-INF/fragments/app-footer.jspf" %>
 
 </body>

@@ -1,18 +1,17 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="pt">
 <head>
-    <meta charset="UTF-8">
     <title>Projeto - CTRL+VAULT</title>
-    <link rel="stylesheet" href="<%= request.getContextPath()%>/css/styles.css">
+    <%@ include file="/WEB-INF/fragments/app-head.jspf" %>
 </head>
 <body>
 
 <div class="page-shell app-layout">
     <%@ include file="/WEB-INF/fragments/side-panel.jspf" %>
 
-    <main class="app-main">
+    <main class="page-shell">
         <div class="app-container">
         <section class="section-heading section-heading-space">
             <div>
@@ -96,12 +95,12 @@
 
                                 <div class="content-editor-card">
                                     <label>Titulo</label>
-                                    <input type="text" name="titulo_${conteudo.id}" value="<c:out value="${conteudo.titulo}"/>" class="input-field">
+                                    <input type="text" name="titulo_${conteudo.id}" value="<c:out value="${conteudo.titulo}"/>">
 
                                     <c:choose>
                                         <c:when test="${conteudo.tipoConteudo == 'TEXTO'}">
                                             <label>Texto</label>
-                                            <textarea name="texto_${conteudo.id}" class="textarea-field" rows="7"><c:out value="${conteudo.conteudo}"/></textarea>
+                                            <textarea name="texto_${conteudo.id}" rows="7"><c:out value="${conteudo.conteudo}"/></textarea>
                                         </c:when>
                                         <c:otherwise>
                                             <label>Substituir ficheiro</label>

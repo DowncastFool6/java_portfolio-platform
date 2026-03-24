@@ -81,9 +81,18 @@
   box-shadow: 0 8px 30px rgba(136, 73, 143, 0.15);
 }
 
+.portal-narrow .stack-form .btn-primary {
+  margin: 0 auto 16px;
+}
+
 /* Cor do título nas telas de autenticação. */
 .portal-narrow h2 {
   color: var(--color-grape-soda);
+  margin-bottom: 10px;
+}
+
+.portal-narrow .form-header {
+  margin-bottom: 24px;
 }
 
 /* Campos específicos do formulário de login. */
@@ -123,6 +132,15 @@
   background: #6f3fb5;
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(136, 73, 143, 0.3);
+}
+
+.lottie-corner {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.85;
 }
 
 /* =========================
@@ -224,5 +242,60 @@
   .hero {
     flex-direction: column;
     text-align: center;
+  }
+}
+
+/* =========================
+   Register Split Layout
+   ========================= */
+
+.register-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: calc(100vh - 120px);
+}
+
+/* LEFT SIDE */
+.register-visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(
+    135deg,
+    rgba(136, 73, 143, 0.15),
+    rgba(111, 63, 181, 0.2)
+  );
+}
+
+.register-visual img {
+  width: 60%;
+  max-width: 400px;
+  animation: heroFloat 6s ease-in-out infinite;
+}
+
+/* RIGHT SIDE */
+.register-form-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+
+/* Make form slightly wider on desktop */
+.register-form-wrapper .portal-narrow {
+  max-width: 420px;
+}
+
+/* =========================
+   Responsive
+   ========================= */
+
+@media (max-width: 900px) {
+  .register-split {
+    grid-template-columns: 1fr;
+  }
+
+  .register-visual {
+    display: none; /* cleaner mobile UX */
   }
 }

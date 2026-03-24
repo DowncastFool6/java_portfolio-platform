@@ -1,18 +1,17 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="pt">
 <head>
-    <meta charset="UTF-8">
     <title>Novo Conteúdo - CTRL+VAULT</title>
-    <link rel="stylesheet" href="<%= request.getContextPath()%>/css/styles.css">
+    <%@ include file="/WEB-INF/fragments/app-head.jspf" %>
 </head>
 <body>
 
 <div class="page-shell app-layout">
     <%@ include file="/WEB-INF/fragments/side-panel.jspf" %>
 
-    <main class="app-main">
+    <main class="page-shell">
         <div class="app-container form-container">
         <section class="section-heading">
             <div>
@@ -35,10 +34,10 @@
                 </div>
 
                 <label for="titulo">Título</label>
-                <input id="titulo" name="titulo" type="text" value="<c:out value="${tituloConteudo}"/>" class="input-field">
+                <input id="titulo" name="titulo" type="text" value="<c:out value="${tituloConteudo}"/>">
 
                 <label for="tipoConteudo">Tipo de conteúdo</label>
-                <select id="tipoConteudo" name="tipoConteudo" class="input-field" required>
+                <select id="tipoConteudo" name="tipoConteudo" required>
                     <option value="">Selecione</option>
                     <option value="TEXTO" <c:if test="${tipoConteudoSelecionado == 'TEXTO'}">selected</c:if>>Texto</option>
                     <option value="IMAGEM" <c:if test="${tipoConteudoSelecionado == 'IMAGEM'}">selected</c:if>>Imagem</option>
@@ -53,7 +52,7 @@
 
                 <div id="texto-wrapper" class="content-editor-body">
                     <label for="texto">Texto</label>
-                    <textarea id="texto" name="texto" rows="8" class="textarea-field"><c:out value="${textoConteudo}"/></textarea>
+                    <textarea id="texto" name="texto" rows="8"><c:out value="${textoConteudo}"/></textarea>
                 </div>
 
                 <div id="arquivo-wrapper" class="content-editor-body">

@@ -1,18 +1,17 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="pt">
 <head>
-    <meta charset="UTF-8">
     <title>Projetos - CTRL+VAULT</title>
-    <link rel="stylesheet" href="<%= request.getContextPath()%>/css/styles.css">
+    <%@ include file="/WEB-INF/fragments/app-head.jspf" %>
 </head>
 <body>
 
 <div class="page-shell app-layout">
     <%@ include file="/WEB-INF/fragments/side-panel.jspf" %>
 
-    <main class="app-main">
+    <main class="page-shell">
         <div class="app-container">
         <section class="section-heading">
             <div>

@@ -1,39 +1,64 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="pt">
 <head>
-    <meta charset="UTF-8">
     <title>Login - CTRL+VAULT</title>
-    <link rel="stylesheet" href="<%= request.getContextPath()%>/css/styles.css">
+    <%@ include file="/WEB-INF/fragments/app-head.jspf" %>
 </head>
-<body>
+<body class="landing-page">
 
-<div class="page-shell-login">
-<main class="app-container portal-narrow">
-     <div>
-         <h2>Login</h2>
-         <br>
-     </div>
+<%@ include file="/WEB-INF/fragments/app-header.jspf" %>
 
-    <form class="login-form" action="<%= request.getContextPath() %>/login" method="post">
-        <label>Email</label>
-        <input type="email" name="email" value="${param.email}" required>
+<div class="register-split">
 
-        <label>Senha</label>
-        <input type="password" name="senha" required>
+    <!-- Left side - Hero / Info -->
+    <div class="register-visual">
+        <img src="<%= request.getContextPath()%>/images/logo.svg" alt="Visual">
+    </div>
 
-        <button type="submit" class="btn-primary login-submit">Entrar</button>
-    </form>
+    <!-- Right side - Login form -->
+    <div class="register-form-wrapper">
+    	<main class="portal-narrow">
 
-    <c:if test="${not empty mensagem}">
-        <p class="sucesso"><c:out value="${mensagem}"/></p>
-    </c:if>
-    <c:if test="${not empty erro}">
-        <p class="erro"><c:out value="${erro}"/></p>
-    </c:if>
-</main>
+        <div class="form-header">
+            <h2>Entrar</h2>
+            <p>Introduza as suas credenciais para aceder ao portal.</p>
+        </div>
+
+        <c:if test="${not empty mensagem}">
+            <p class="sucesso"><c:out value="${mensagem}"/></p>
+        </c:if>
+
+        <c:if test="${not empty erro}">
+            <p class="erro"><c:out value="${erro}"/></p>
+        </c:if>
+
+        <form action="<%= request.getContextPath() %>/login" method="post" class="stack-form">
+            <label>Email</label>
+            <input type="email" name="email" value="${param.email}" required>
+
+            <label>Senha</label>
+            <input type="password" name="senha" required>
+
+            <div class="form-info-block">
+                <strong>Informações RGPD</strong>
+                <p>
+                    Ao fazer login, os seus dados serão tratados de acordo com o Regulamento Geral sobre a Proteção de Dados (RGPD) aplicável em Portugal.
+                </p>
+            </div>
+
+            <button type="submit" class="btn-primary">Entrar</button>
+        </form>
+
+        <p class="helper-text">
+            Não tem uma conta? <a href="<%= request.getContextPath() %>/register">Registe-se aqui</a>.
+        </p>
+
+    </main>
+    </div>
 </div>
+
 <%@ include file="/WEB-INF/fragments/app-footer.jspf" %>
 
 </body>

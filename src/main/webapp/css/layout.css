@@ -80,6 +80,9 @@ footer {
 /* Shell base das páginas autenticadas. */
 .page-shell {
   display: flex;
+  align-items: stretch;
+  gap: 24px;
+  width: 100%;
   min-height: 100vh;
   background:
     radial-gradient(circle at top right, rgba(136, 73, 143, 0.16), transparent 26%),
@@ -92,15 +95,6 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
-}
-
-/* Estrutura principal da área autenticada. */
-.app-layout {
-  display: flex;
-  align-items: stretch;
-  gap: 24px;
-  width: 100%;
   min-height: 100vh;
 }
 
@@ -308,9 +302,9 @@ footer {
     background: rgba(136, 73, 143, 0.06);
   }
 
-  .app-layout {
-    flex-direction: column;
-    gap: 18px;
+  .page-shell {
+	  flex-direction: column;
+	  gap: 18px;
   }
 
   .side-panel {
@@ -319,6 +313,33 @@ footer {
     min-height: auto;
     margin: 16px 16px 0;
     flex-direction: column;
+  }
+  
+  .side-panel {
+    position: static;
+    width: 100%;
+    min-height: auto;
+    margin: 16px 16px 0;
+    flex-direction: column;
+  }
+
+  .side-panel-nav {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .side-panel-link {
+    flex: 1;
+    min-width: 120px;
+    justify-content: center;
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+
+  .side-panel-badge {
+    display: none;
   }
 
   .app-main {

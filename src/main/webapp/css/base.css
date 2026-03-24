@@ -12,8 +12,8 @@
   --color-primary-hover: #5d33a1;
   --color-border: #e4e4e7;
   --color-muted: #6b6b6b;
-  --color-success: #22c55e;
-  --color-danger: #ef4444;
+  --color-success: #166534;
+  --color-danger: #991b1b;
   --color-grape-soda: #88498f;
   --radius-sm: 6px;
   --radius-md: 10px;
@@ -57,7 +57,6 @@ a {
   font-size: 16px;
   text-decoration: none;
   color: var(--color-grape-soda);
-  border-color: var(--color-primary);
   transition: var(--transition);
 }
 
@@ -76,11 +75,10 @@ input,
 textarea,
 select,
 button {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-sm);
+  box-sizing: border-box;
   font-family: "Poppins", sans-serif;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
 }
 
 button {
@@ -109,4 +107,8 @@ label {
 /*  Margens do parágrafo */
 .p-margins {
 	margin-block: 20px;
+}
+
+.top-margin {
+	margin-top: 30px
 }

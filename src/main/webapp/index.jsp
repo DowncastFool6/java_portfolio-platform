@@ -3,38 +3,14 @@
 <!DOCTYPE html>
 <html lang="pt">
 
-    <head>
-
-        <meta charset="UTF-8">
-        <title>CTRL+VAULT - Your Knowledge Under Control</title>
-
-        <link rel="stylesheet" href="<%= request.getContextPath()%>/css/styles.css">
-
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-
-    </head>
-
+<head>
+    <title>Your Knowledge Under Control</title>
+    <%@ include file="/WEB-INF/fragments/app-head.jspf" %>
+</head>
 
     <body class="landing-page">
 
-        <header>
-
-            <div class="logo">
-                <span class="ctrl">CTRL</span>
-                <span class="plus">+</span>
-                <span class="vault">VAULT</span>
-            </div>
-
-            <nav>
-                <a href="#">Home</a>
-                <a href="#features">Funcionalidades</a>
-                <a href="#sobre">Sobre</a>
-                <a href="<%= request.getContextPath()%>/login">Login</a>
-            </nav>
-
-        </header>
-
-
+        <%@ include file="/WEB-INF/fragments/app-header.jspf" %>
 
         <section class="hero">
 
@@ -43,12 +19,12 @@
                 <h1>Seu conhecimento sob controle</h1>
 
                 <p>
-                    Uma aplicação web segura para armazenar,
-                    organizar e gerir credenciais, documentos
-                    e dados confidenciais.
+                    O CTRL+VAULT é uma aplicação web segura para armazenar, organizar e gerir credenciais, documentos e dados confidenciais, assegurando proteção através de encriptação, autenticação multifator e controlo de acessos. 
+                    A plataforma permite uma navegação simples, com pesquisa e organização eficientes, bem como partilha controlada de informação. 
+                    Inclui ainda registo de atividades para garantir a integridade e rastreabilidade dos dados.	
                 </p>
 
-                <div class="btn-group">
+                <div>
 
                     <a href="<%= request.getContextPath()%>/register" class="btn btn-create">Criar Conta</a>
 
@@ -66,7 +42,7 @@
 
         <section id="features" class="features">
 
-            <h2>Funcionalidades</h2>
+            <h2 class="top-margin">Funcionalidades</h2>
 
             <div class="cards">
 
@@ -97,7 +73,7 @@
 
         <section id="sobre" class="features">
 
-            <h2>Quem Somos</h2>
+            <h2 class="top-margin">Quem Somos</h2>
 
             <div class="cards about-cards">
 
@@ -132,7 +108,7 @@
 
             </div>
 
-            <h2>Sobre o Projeto</h2>
+            <h2 class="top-margin">Sobre o Projeto</h2>
 
             <div class="cards about-cards">
 
@@ -167,7 +143,7 @@
 
             </div>
 
-            <h2>Tecnologias Utilizadas</h2>
+            <h2 class="top-margin">Tecnologias Utilizadas</h2>
 
             <div class="cards about-cards">
 
@@ -203,7 +179,7 @@
 
             </div>
 
-            <h2>Nosso Objetivo</h2>
+            <h2 class="top-margin">Nosso Objetivo</h2>
 
             <div class="cards about-cards">
 
@@ -238,7 +214,7 @@
 
             </div>
 
-            <h2>Contato</h2>
+            <h2 class="top-margin">Contato</h2>
 
             <div class="cards about-cards">
 

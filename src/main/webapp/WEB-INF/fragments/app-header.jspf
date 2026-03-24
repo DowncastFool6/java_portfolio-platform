@@ -1,0 +1,16 @@
+<header class="landing-page-header">
+
+    <div class="logo">
+        <span class="ctrl">CTRL</span>
+        <span class="plus">+</span>
+        <span class="vault">VAULT</span>
+    </div>
+
+    <nav>
+        <a href="<%= request.getContextPath()%>/">Home</a>
+        <a href="<%= request.getContextPath()%>/?#features">Funcionalidades</a>
+        <a href="<%= request.getContextPath()%>/?#sobre">Sobre</a>
+        <a href="<%= request.getContextPath()%>/login">Login</a>
+    </nav>
+
+</header>

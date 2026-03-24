@@ -1,18 +1,17 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="pt">
 <head>
-    <meta charset="UTF-8">
     <title>Contato do Projeto - CTRL+VAULT</title>
-    <link rel="stylesheet" href="<%= request.getContextPath()%>/css/styles.css">
+    <%@ include file="/WEB-INF/fragments/app-head.jspf" %>
 </head>
 <body>
 
 <div class="page-shell app-layout">
     <%@ include file="/WEB-INF/fragments/side-panel.jspf" %>
 
-<main class="app-main">
+<main class="page-shell">
     <div class="app-container">
         <div class="section-heading">
             <div>
@@ -33,7 +32,7 @@
         <c:if test="${not empty projetos}">
             <form action="<%= request.getContextPath() %>/contatos" method="post">
                 <label for="idProjeto">Projeto</label>
-                <select id="idProjeto" name="idProjeto" class="input-field" required>
+                <select id="idProjeto" name="idProjeto" required>
                     <option value="">Selecione um projeto</option>
                     <c:forEach var="projeto" items="${projetos}">
                         <c:choose>
@@ -52,7 +51,7 @@
                 </select>
 
                 <label for="mensagem">Mensagem</label>
-                <textarea id="mensagem" name="mensagem" rows="6" class="textarea-field" required><c:out value="${mensagemContato}"/></textarea>
+                <textarea id="mensagem" name="mensagem" rows="6" required><c:out value="${mensagemContato}"/></textarea>
 
                 <div class="action-row">
                     <button type="submit" class="btn-primary">Enviar contato</button>
