@@ -10,7 +10,9 @@
         <a href="<%= request.getContextPath()%>/">Home</a>
         <a href="<%= request.getContextPath()%>/?#features">Funcionalidades</a>
         <a href="<%= request.getContextPath()%>/?#sobre">Sobre</a>
+        <c:if test="${not requestScope.ocultarLoginHeader}">
         <a href="<%= request.getContextPath()%>/login">Login</a>
+        </c:if>
     </nav>
 
 </header>

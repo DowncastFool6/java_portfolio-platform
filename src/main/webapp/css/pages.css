@@ -260,11 +260,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(
-    135deg,
-    rgba(136, 73, 143, 0.15),
-    rgba(111, 63, 181, 0.2)
-  );
+
 }
 
 .register-visual img {
@@ -279,6 +275,15 @@
   align-items: center;
   justify-content: center;
   padding: 40px;
+}
+
+
+
+.login-page .portal-narrow {
+  background: rgba(255, 255, 255, 0.84);
+  border: 1px solid rgba(136, 73, 143, 0.12);
+  border-radius: 24px;
+  box-shadow: 0 14px 30px rgba(33, 18, 52, 0.08);
 }
 
 /* Make form slightly wider on desktop */
