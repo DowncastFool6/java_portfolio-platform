@@ -44,7 +44,7 @@
         </form>
 
         <p class="helper-text">
-            Nao tem uma conta? <a href="<%= request.getContextPath() %>/register">Registe-se aqui</a>.
+            Não tem uma conta? <a href="<%= request.getContextPath() %>/register">Registe-se aqui</a>.
         </p>
 
     </main>
