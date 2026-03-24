@@ -22,6 +22,9 @@ import pt.com.ctrl.vault.util.ServletUtil;
  */
 public class ContatoController extends HttpServlet {
 
+	/**
+	 * Carrega a lista de projetos para enviar um contato
+	 */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Usuario usuarioLogado = ServletUtil.obterUsuarioLogado(req, resp);
@@ -44,6 +47,9 @@ public class ContatoController extends HttpServlet {
         req.getRequestDispatcher("/WEB-INF/contact/contact.jsp").forward(req, resp);
     }
 
+    /**
+     * Envia o contato para um projeto
+     */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     	ServletUtil.configurarUtf8(req, resp);

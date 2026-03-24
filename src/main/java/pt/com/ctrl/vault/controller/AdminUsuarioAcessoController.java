@@ -25,6 +25,9 @@ import pt.com.ctrl.vault.util.ServletUtil;
 public class AdminUsuarioAcessoController extends HttpServlet {
 
     @Override
+    /**
+     * Carrega o usuario selecionado e os projetos para serem associados
+     */
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Usuario usuarioLogado = ServletUtil.obterUsuarioLogado(req, resp);
         if (usuarioLogado == null) {
@@ -45,6 +48,9 @@ public class AdminUsuarioAcessoController extends HttpServlet {
         }
     }
 
+    /**
+     * Associa um usuario a 1 ou mais projetos
+     */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Usuario usuarioLogado = ServletUtil.obterUsuarioLogado(req, resp);
@@ -57,18 +63,18 @@ public class AdminUsuarioAcessoController extends HttpServlet {
             return;
         }
 
-        Integer idUsuario = parseInt(req.getParameter("idUsuario"));
-        List<Integer> idsProjetos = parseIntList(req.getParameterValues("idProjeto"));
+        Integer idUsuarioSelecionado = parseInt(req.getParameter("idUsuario"));
+        List<Integer> idsProjetosSelecionados = parseIntList(req.getParameterValues("idProjeto"));
         Integer idTipoUsuario = parseInt(req.getParameter("idTipoUsuario"));
 
         UsuarioService usuarioService = new UsuarioService();
 
         try {
-            usuarioService.atualizarAcessoUsuario(idUsuario, idsProjetos, idTipoUsuario);
+            usuarioService.atualizarAcessoUsuario(idUsuarioSelecionado, idsProjetosSelecionados, idTipoUsuario);
             resp.sendRedirect(req.getContextPath() + "/admin/usuarios?sucesso=true");
         } catch (CampoObrigatorioException | UsuarioNaoEncontradoException e) {
             ServletUtil.addErro(req, e.getMessage());
-            carregarFormulario(req, idUsuario, idsProjetos, idTipoUsuario);
+            carregarFormulario(req, idUsuarioSelecionado, idsProjetosSelecionados, idTipoUsuario);
             req.getRequestDispatcher("/WEB-INF/admin/user-access.jsp").forward(req, resp);
         }
     }

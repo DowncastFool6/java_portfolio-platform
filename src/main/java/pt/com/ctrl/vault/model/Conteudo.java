@@ -78,11 +78,11 @@ public class Conteudo {
 		this.nomeArquivo = nomeArquivo;
 	}
 
-	public String getTipoMime() {
+	public String getTipoArquivo() {
 		return tipoArquivo;
 	}
 
-	public void setTipoMime(String tipoMime) {
+	public void setTipoArquivo(String tipoMime) {
 		this.tipoArquivo = tipoMime;
 	}
 

@@ -18,6 +18,9 @@ import pt.com.ctrl.vault.util.ServletUtil;
  */
 public class AdminUsuariosController extends HttpServlet {
 
+	/**
+	 * Carrega a lista de usuarios sem um projeto associado
+	 */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Usuario usuarioLogado = ServletUtil.obterUsuarioLogado(req, resp);
@@ -31,14 +34,14 @@ public class AdminUsuariosController extends HttpServlet {
         }
 
         UsuarioService usuarioService = new UsuarioService();
-        List<Usuario> usuariosPendentes = usuarioService.listarUsuariosSemAcesso();
+        List<Usuario> usuariosSemProjetoAssociado = usuarioService.listarUsuariosSemAcesso();
 
         if ("true".equals(req.getParameter("sucesso"))) {
             ServletUtil.addSucesso(req, "Acesso do utilizador atualizado com sucesso.");
         }
 
         req.setAttribute("usuario", usuarioLogado);
-        req.setAttribute("usuariosPendentes", usuariosPendentes);
+        req.setAttribute("usuariosPendentes", usuariosSemProjetoAssociado);
         ServletUtil.prepararSidePanel(req, usuarioLogado);
         req.getRequestDispatcher("/WEB-INF/admin/users.jsp").forward(req, resp);
     }

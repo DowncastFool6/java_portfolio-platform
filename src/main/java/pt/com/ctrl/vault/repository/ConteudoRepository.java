@@ -127,7 +127,7 @@ public class ConteudoRepository {
 			stmt.setString(1, conteudo.getTitulo());
 			stmt.setString(2, conteudo.getConteudo());
 			stmt.setString(3, conteudo.getNomeArquivo());
-			stmt.setString(4, conteudo.getTipoMime());
+			stmt.setString(4, conteudo.getTipoArquivo());
 			stmt.setBytes(5, conteudo.getArquivo());
 			stmt.setInt(6, conteudo.getOrdemExibicao() == null ? 0 : conteudo.getOrdemExibicao());
 			stmt.setTimestamp(7, conteudo.getDataEdicao() == null ? null : Timestamp.valueOf(conteudo.getDataEdicao()));
@@ -231,7 +231,7 @@ public class ConteudoRepository {
 		stmt.setString(3, conteudo.getTipoConteudo());
 		stmt.setString(4, conteudo.getConteudo());
 		stmt.setString(5, conteudo.getNomeArquivo());
-		stmt.setString(6, conteudo.getTipoMime());
+		stmt.setString(6, conteudo.getTipoArquivo());
 		stmt.setBytes(7, conteudo.getArquivo());
 		stmt.setInt(8, conteudo.getOrdemExibicao() == null ? 0 : conteudo.getOrdemExibicao());
 		stmt.setTimestamp(9, conteudo.getDataCriacao() == null ? null : Timestamp.valueOf(conteudo.getDataCriacao()));
@@ -258,7 +258,7 @@ public class ConteudoRepository {
 		conteudo.setTipoConteudo(rs.getString("tipo_conteudo"));
 		conteudo.setConteudo(rs.getString("conteudo"));
 		conteudo.setNomeArquivo(rs.getString("nome_arquivo"));
-		conteudo.setTipoMime(rs.getString("tipo_mime"));
+		conteudo.setTipoArquivo(rs.getString("tipo_mime"));
 		conteudo.setArquivoDisponivel(rs.getInt("arquivo_disponivel") == 1);
 		if (incluirArquivo) {
 			conteudo.setArquivo(rs.getBytes("arquivo"));

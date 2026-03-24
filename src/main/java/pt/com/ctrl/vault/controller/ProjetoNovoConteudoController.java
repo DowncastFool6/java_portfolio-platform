@@ -22,8 +22,11 @@ import pt.com.ctrl.vault.util.ServletUtil;
  */
 @MultipartConfig
 public class ProjetoNovoConteudoController extends HttpServlet {
-    private static final long TAMANHO_MAXIMO_IMAGEM_BYTES = 1024 * 1024;
+    private static final long tamanhoMaximoDoArquivo = 1024 * 1024; //1mb
 
+    /**
+     * Carrega tela para criar novo conteudo
+     */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Usuario usuarioLogado = ServletUtil.obterUsuarioLogado(req, resp);
@@ -49,6 +52,9 @@ public class ProjetoNovoConteudoController extends HttpServlet {
         }
     }
 
+    /**
+     * Salva novo conteudo
+     */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ServletUtil.configurarUtf8(req, resp);
@@ -66,7 +72,7 @@ public class ProjetoNovoConteudoController extends HttpServlet {
         try {
             ProjetoService projetoService = new ProjetoService();
             projetoService.validarProjetoAberto(idProjeto);
-            Part arquivo = obterPartValidado(req, "arquivo");
+            Part arquivo = obterTipoArquivo(req, "arquivo");
             ConteudoService conteudoService = new ConteudoService();
             conteudoService.criarConteudo(usuarioLogado, idProjeto, titulo, tipoConteudo, texto, arquivo);
             resp.sendRedirect(req.getContextPath() + "/projeto?id=" + idProjeto + "&sucesso=conteudo-criado");
@@ -97,10 +103,10 @@ public class ProjetoNovoConteudoController extends HttpServlet {
         }
     }
 
-    private Part obterPartValidado(HttpServletRequest req, String nome) {
+    private Part obterTipoArquivo(HttpServletRequest req, String nome) {
         try {
             Part part = req.getPart(nome);
-            if (part != null && part.getSize() > TAMANHO_MAXIMO_IMAGEM_BYTES) {
+            if (part != null && part.getSize() > tamanhoMaximoDoArquivo) {
                 throw new CampoObrigatorioException("A imagem deve ter no maximo 1 MB.");
             }
             return part;

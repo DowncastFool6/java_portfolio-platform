@@ -22,6 +22,9 @@ import pt.com.ctrl.vault.util.ServletUtil;
  */
 public class ContatosRecebidosController extends HttpServlet {
 
+	/**
+	 * Lista todos os contatos recebidos nos projetos que o usuario esta associado
+	 */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Usuario usuarioLogado = ServletUtil.obterUsuarioLogado(req, resp);
@@ -40,6 +43,9 @@ public class ContatosRecebidosController extends HttpServlet {
         req.getRequestDispatcher("/WEB-INF/contact/received-contacts.jsp").forward(req, resp);
     }
 
+    /**
+     * Exlui ou marca contatos como lidos
+     */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Usuario usuarioLogado = ServletUtil.obterUsuarioLogado(req, resp);
@@ -56,16 +62,16 @@ public class ContatosRecebidosController extends HttpServlet {
         ContatoService contatoService = new ContatoService();
 
         try {
-            List<Integer> idsContato = parseIntList(req.getParameterValues("idContato"));
+            List<Integer> idsContatoSelecionados = parseIntList(req.getParameterValues("idContato"));
             String acao = req.getParameter("acao");
 
             if ("remover".equals(acao)) {
-                contatoService.removerContatos(usuarioLogado, idsContato);
+                contatoService.removerContatos(usuarioLogado, idsContatoSelecionados);
                 resp.sendRedirect(req.getContextPath() + "/contatos/recebidos?sucesso=removidos");
                 return;
             }
 
-            contatoService.marcarContatosComoLidos(usuarioLogado, idsContato);
+            contatoService.marcarContatosComoLidos(usuarioLogado, idsContatoSelecionados);
             resp.sendRedirect(req.getContextPath() + "/contatos/recebidos?sucesso=selecionados");
 
         } catch (CampoObrigatorioException e) {
