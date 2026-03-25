@@ -74,7 +74,7 @@ footer {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 20px;
-  margin-top: 24px;
+  margin-top: 36px;
 }
 
 /* Shell base das páginas autenticadas. */
@@ -220,6 +220,9 @@ footer {
 .app-container {
   max-width: 1180px;
   width: 100%;
+  padding-top: 28px;
+  padding-right: 32px;
+  padding-bottom: 48px;
 }
 
 /* Superfícies principais usadas na área autenticada. */
@@ -373,4 +376,3 @@ footer {
     width: 100%;
     text-align: center;
   } 
-}
