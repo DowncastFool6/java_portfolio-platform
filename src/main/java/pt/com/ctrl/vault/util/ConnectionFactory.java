@@ -80,7 +80,7 @@ public class ConnectionFactory {
     }
 
     /**
-     * Extraido da internet
+     * 
      * @return
      */
     private static Map<String, String> loadEnvFile() {
