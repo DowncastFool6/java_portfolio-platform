@@ -309,14 +309,6 @@ footer {
 	  flex-direction: column;
 	  gap: 18px;
   }
-
-  .side-panel {
-    position: static;
-    width: 100%;
-    min-height: auto;
-    margin: 16px 16px 0;
-    flex-direction: column;
-  }
   
   .side-panel {
     position: static;
