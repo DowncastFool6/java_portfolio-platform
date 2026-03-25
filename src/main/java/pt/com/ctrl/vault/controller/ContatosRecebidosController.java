@@ -103,7 +103,7 @@ public class ContatosRecebidosController extends HttpServlet {
                 if (valor != null && !valor.isBlank()) {
                     ids.add(Integer.valueOf(valor));
                 }
-            } catch (NumberFormatException ignored) {}
+            } catch (NumberFormatException e) {}
         }
 
         return ids;
