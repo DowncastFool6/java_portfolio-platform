@@ -1,6 +1,8 @@
 package pt.com.ctrl.vault.util;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -20,12 +22,9 @@ import java.util.Map;
 public class ConnectionFactory {
 
     private static final Map<String, String> ENV_FILE_VALUES = loadEnvFile();
-    private static final String URL = getConfig(
-            "DB_URL",
-            "jdbc:mysql://localhost:3306/ctrlvault?useSSL=false&serverTimezone=UTC"
-    );
-    private static final String USER = getConfig("DB_USER", "root");
-    private static final String PASSWORD = getConfig("DB_PASSWORD", "");
+    private static final String URL = getRequiredConfig("DB_URL");
+    private static final String DB_USER = getRequiredConfig("DB_USER");
+    private static final String DB_PASSWORD = getRequiredConfigAllowingEmpty("DB_PASSWORD");
 
     static {
         try {
@@ -38,7 +37,7 @@ public class ConnectionFactory {
     public static Connection getConnection() {
 
         try {
-            return DriverManager.getConnection(URL, USER, PASSWORD);
+            return DriverManager.getConnection(URL, DB_USER, DB_PASSWORD);
         } catch (SQLException e) {
             throw new RuntimeException("Erro ao conectar ao banco de dados", e);
         }
@@ -79,12 +78,33 @@ public class ConnectionFactory {
         return defaultValue;
     }
 
-    /**
-     * 
-     * @return
-     */
+    private static String getRequiredConfig(String key) {
+        String value = getConfig(key, null);
+        if (value == null || value.isBlank()) {
+            throw new IllegalStateException("Configuracao obrigatoria ausente: " + key);
+        }
+
+        return value;
+    }
+
+    private static String getRequiredConfigAllowingEmpty(String key) {
+        String envValue = System.getenv(key);
+        if (envValue != null) {
+            return envValue;
+        }
+
+        if (ENV_FILE_VALUES.containsKey(key)) {
+            return ENV_FILE_VALUES.get(key);
+        }
+
+        throw new IllegalStateException("Configuracao obrigatoria ausente: " + key);
+    }
+
     private static Map<String, String> loadEnvFile() {
         Path envFilePath = resolveEnvFilePath();
+        if (envFilePath == null) {
+            return Map.of();
+        }
 
         Map<String, String> values = new HashMap<>();
 
@@ -114,27 +134,81 @@ public class ConnectionFactory {
     }
 
     private static Path resolveEnvFilePath() {
-        String configuredPath = System.getenv("CTRL_VAULT_ENV_FILE");
-        if (configuredPath != null && !configuredPath.isBlank()) {
-            Path path = Paths.get(configuredPath).toAbsolutePath().normalize();
-            if (Files.exists(path)) {
-                return path;
-            }
+        Path configuredPath = resolveConfiguredEnvFilePath();
+        if (configuredPath != null) {
+            return configuredPath;
         }
 
-        Path currentDirectory = Paths.get("").toAbsolutePath().normalize();
-        Path[] candidates = new Path[] {
-                currentDirectory.resolve(".env"),
-                currentDirectory.getParent() != null ? currentDirectory.getParent().resolve(".env") : null,
-                currentDirectory.getParent() != null && currentDirectory.getParent().getParent() != null
-                        ? currentDirectory.getParent().getParent().resolve(".env")
-                        : null
-        };
+        Path pathFromWorkingDirectory = findEnvInParents(Paths.get("").toAbsolutePath().normalize(), 6);
+        if (pathFromWorkingDirectory != null) {
+            return pathFromWorkingDirectory;
+        }
 
-        for (Path candidate : candidates) {
-            if (candidate != null && Files.exists(candidate)) {
+        Path pathFromClasses = resolveFromClassesLocation();
+        if (pathFromClasses != null) {
+            return pathFromClasses;
+        }
+
+        Path pathFromCatalinaBase = resolveFromSystemDirectory("catalina.base");
+        if (pathFromCatalinaBase != null) {
+            return pathFromCatalinaBase;
+        }
+
+        Path pathFromCatalinaHome = resolveFromSystemDirectory("catalina.home");
+        if (pathFromCatalinaHome != null) {
+            return pathFromCatalinaHome;
+        }
+
+        return null;
+    }
+
+    private static Path resolveConfiguredEnvFilePath() {
+        String configuredPath = System.getenv("CTRL_VAULT_ENV_FILE");
+        if (configuredPath == null || configuredPath.isBlank()) {
+            configuredPath = System.getProperty("ctrl.vault.env.file");
+        }
+
+        if (configuredPath == null || configuredPath.isBlank()) {
+            return null;
+        }
+
+        Path path = Paths.get(configuredPath).toAbsolutePath().normalize();
+        return Files.exists(path) ? path : null;
+    }
+
+    private static Path resolveFromClassesLocation() {
+        try {
+            URL location = ConnectionFactory.class.getProtectionDomain().getCodeSource().getLocation();
+            if (location == null) {
+                return null;
+            }
+
+            Path classesPath = Paths.get(location.toURI()).toAbsolutePath().normalize();
+            return findEnvInParents(classesPath, 8);
+        } catch (URISyntaxException e) {
+            return null;
+        }
+    }
+
+    private static Path resolveFromSystemDirectory(String propertyName) {
+        String directory = System.getProperty(propertyName);
+        if (directory == null || directory.isBlank()) {
+            return null;
+        }
+
+        return findEnvInParents(Paths.get(directory).toAbsolutePath().normalize(), 4);
+    }
+
+    private static Path findEnvInParents(Path startPath, int maxLevels) {
+        Path current = startPath;
+
+        for (int level = 0; current != null && level <= maxLevels; level++) {
+            Path candidate = current.resolve(".env");
+            if (Files.exists(candidate)) {
                 return candidate;
             }
+
+            current = current.getParent();
         }
 
         return null;
