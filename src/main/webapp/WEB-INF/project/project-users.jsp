@@ -15,10 +15,11 @@
         <div class="app-container">
         <section class="section-heading section-heading-space">
             <div>
-                <h2>Utilizadores do projeto</h2> <strong><c:out value="${projeto.titulo}"/>
-                <div class="action-row">
-                    <a class="btn-primary" href="<%= request.getContextPath() %>/projeto?id=${projeto.id}&modo=editar">Voltar ao projeto</a>
-                </div>
+                <h2>Utilizadores do projeto</h2>
+                <p>Projeto: <strong><c:out value="${projeto.descricao}"/></strong></p>
+            </div>
+            <div class="action-row">
+                <a class="btn-primary" href="<%= request.getContextPath() %>/projeto?id=${projeto.id}&modo=editar">Voltar ao projeto</a>
             </div>
         </section>
 

@@ -16,15 +16,11 @@ import pt.com.ctrl.vault.util.ServletUtil;
 
 /**
  * Controller para gestao de utilizadores do projeto.
- * Configurando seus status de participacao
  * 
  * @author aliceslombardi, CamilaRial, VissolelaCundi
  */
 public class ProjetoUsuariosController extends HttpServlet {
 
-	/**
-	 * Carrega usuarios e seus status no projeto
-	 */
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		Usuario usuarioLogado = ServletUtil.obterUsuarioLogado(req, resp);
@@ -48,9 +44,6 @@ public class ProjetoUsuariosController extends HttpServlet {
 		}
 	}
 
-	/**
-	 * Atualiza status do usuario no projeto
-	 */
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		Usuario usuarioLogado = ServletUtil.obterUsuarioLogado(req, resp);

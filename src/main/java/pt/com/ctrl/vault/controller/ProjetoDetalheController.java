@@ -26,9 +26,6 @@ import pt.com.ctrl.vault.util.ServletUtil;
 @MultipartConfig
 public class ProjetoDetalheController extends HttpServlet {
 
-	/**
-	 * Carrega pagina de detalhe
-	 */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Usuario usuarioLogado = ServletUtil.obterUsuarioLogado(req, resp);
@@ -60,9 +57,6 @@ public class ProjetoDetalheController extends HttpServlet {
         }
     }
 
-    /**
-     * Salva os detalhes do projeto
-     */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ServletUtil.configurarUtf8(req, resp);
@@ -107,7 +101,7 @@ public class ProjetoDetalheController extends HttpServlet {
             for (Integer idConteudo : idsConteudo) {
                 String titulo = req.getParameter("titulo_" + idConteudo);
                 String texto = req.getParameter("texto_" + idConteudo);
-                Part arquivoPart = obterTipoArquivo(req, "arquivo_" + idConteudo);
+                Part arquivoPart = obterPartSilencioso(req, "arquivo_" + idConteudo);
                 Conteudo conteudo = conteudoService.montarAtualizacao(
                         usuarioLogado, idProjeto, idConteudo, titulo, texto, arquivoPart);
 
@@ -185,7 +179,7 @@ public class ProjetoDetalheController extends HttpServlet {
         return ids;
     }
 
-    private Part obterTipoArquivo(HttpServletRequest req, String nome) {
+    private Part obterPartSilencioso(HttpServletRequest req, String nome) {
         try {
             return req.getPart(nome);
         } catch (IOException | ServletException e) {

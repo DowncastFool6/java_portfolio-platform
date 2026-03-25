@@ -97,7 +97,7 @@ public class ConteudoService {
             existente.setTitulo(conteudoAtualizado.getTitulo());
             existente.setConteudo(conteudoAtualizado.getConteudo());
             existente.setNomeArquivo(conteudoAtualizado.getNomeArquivo());
-            existente.setTipoArquivo(conteudoAtualizado.getTipoArquivo());
+            existente.setTipoMime(conteudoAtualizado.getTipoMime());
             existente.setArquivo(conteudoAtualizado.getArquivo());
             existente.setOrdemExibicao(conteudoAtualizado.getOrdemExibicao());
             existente.setDataEdicao(LocalDateTime.now());
@@ -124,7 +124,7 @@ public class ConteudoService {
             }
             atualizado.setConteudo(texto.trim());
             atualizado.setNomeArquivo(null);
-            atualizado.setTipoArquivo(null);
+            atualizado.setTipoMime(null);
             atualizado.setArquivo(null);
             return atualizado;
         }
@@ -134,11 +134,11 @@ public class ConteudoService {
         if (arquivoPart != null && arquivoPart.getSize() > 0) {
             validarTamanhoArquivo(arquivoPart);
             atualizado.setNomeArquivo(extrairNomeArquivo(arquivoPart));
-            atualizado.setTipoArquivo(arquivoPart.getContentType());
+            atualizado.setTipoMime(arquivoPart.getContentType());
             atualizado.setArquivo(lerBytes(arquivoPart));
         } else {
             atualizado.setNomeArquivo(existente.getNomeArquivo());
-            atualizado.setTipoArquivo(existente.getTipoArquivo());
+            atualizado.setTipoMime(existente.getTipoMime());
             atualizado.setArquivo(existente.getArquivo());
         }
 
@@ -180,7 +180,7 @@ public class ConteudoService {
             }
             conteudo.setConteudo(texto.trim());
             conteudo.setNomeArquivo(null);
-            conteudo.setTipoArquivo(null);
+            conteudo.setTipoMime(null);
             conteudo.setArquivo(null);
             return;
         }
@@ -193,7 +193,7 @@ public class ConteudoService {
 
         conteudo.setConteudo(null);
         conteudo.setNomeArquivo(extrairNomeArquivo(arquivoPart));
-        conteudo.setTipoArquivo(arquivoPart.getContentType());
+        conteudo.setTipoMime(arquivoPart.getContentType());
         conteudo.setArquivo(lerBytes(arquivoPart));
 
         if (conteudo.getArquivo() == null || conteudo.getArquivo().length == 0) {

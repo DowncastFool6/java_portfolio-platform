@@ -350,6 +350,10 @@ footer {
     flex-direction: column;
     align-items: stretch;
   }
+  
+  .lottie-corner {
+    display: none;
+  }
 }
 
 @media (max-width: 560px) {
@@ -368,5 +372,5 @@ footer {
   .landing-page nav a {
     width: 100%;
     text-align: center;
-  }
+  } 
 }

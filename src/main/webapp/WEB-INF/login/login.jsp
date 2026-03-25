@@ -6,19 +6,20 @@
     <title>Login - CTRL+VAULT</title>
     <%@ include file="/WEB-INF/fragments/app-head.jspf" %>
 </head>
-<body class="landing-page login-page">
+<body class="landing-page">
 
-<c:set var="ocultarLoginHeader" value="true" scope="request"/>
 <%@ include file="/WEB-INF/fragments/app-header.jspf" %>
 
 <div class="register-split">
 
+    <!-- Left side - Hero / Info -->
     <div class="register-visual">
         <img src="<%= request.getContextPath()%>/images/logo.svg" alt="Visual">
     </div>
 
+    <!-- Right side - Login form -->
     <div class="register-form-wrapper">
-        <main class="portal-narrow">
+    	<main class="portal-narrow">
 
         <div class="form-header">
             <h2>Entrar</h2>
@@ -39,6 +40,13 @@
 
             <label>Senha</label>
             <input type="password" name="senha" required>
+
+            <div class="form-info-block">
+                <strong>Informações RGPD</strong>
+                <p>
+                    Ao fazer login, os seus dados serão tratados de acordo com o Regulamento Geral sobre a Proteção de Dados (RGPD) aplicável em Portugal.
+                </p>
+            </div>
 
             <button type="submit" class="btn-primary">Entrar</button>
         </form>

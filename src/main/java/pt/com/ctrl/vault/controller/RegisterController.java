@@ -19,17 +19,11 @@ import pt.com.ctrl.vault.util.ServletUtil;
  */
 public class RegisterController extends HttpServlet {
 
-	/**
-	 * Carrega pagina de resgistro
-	 */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getRequestDispatcher("/WEB-INF/register/register.jsp").forward(req, resp);
     }
-    
-    /**
-     * Registra um novo usuario com senha criptografada
-     */
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String nome = req.getParameter("nome");

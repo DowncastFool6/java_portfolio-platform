@@ -22,18 +22,12 @@ import pt.com.ctrl.vault.util.ServletUtil;
  */
 public class LoginController extends HttpServlet {
 
-	/**
-	 * Exibe Login
-	 */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        verificaSeFoiFeitoNovoRegisto(req);
+        verificaSeNovoRegisto(req);
         req.getRequestDispatcher("/WEB-INF/login/login.jsp").forward(req, resp);
     }
 
-    /**
-     * Efetua Login
-     */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -64,7 +58,7 @@ public class LoginController extends HttpServlet {
         req.getRequestDispatcher("/WEB-INF/login/login.jsp").forward(req, resp);
     }
     
-    private void verificaSeFoiFeitoNovoRegisto(HttpServletRequest req) {
+    private void verificaSeNovoRegisto(HttpServletRequest req) {
         String registo = req.getParameter("registo");
 
         if ("true".equals(registo)) {

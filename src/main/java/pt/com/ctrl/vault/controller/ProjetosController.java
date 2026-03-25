@@ -19,9 +19,6 @@ import pt.com.ctrl.vault.util.ServletUtil;
  */
 public class ProjetosController extends HttpServlet {
 
-	/**
-	 * Lista dos projetos
-	 */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Usuario usuarioLogado = ServletUtil.obterUsuarioLogado(req, resp);

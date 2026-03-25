@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-    <title>Gestão de Acessos - CTRL+VAULT</title>
+    <title>Gestao de Acessos - CTRL+VAULT</title>
     <%@ include file="/WEB-INF/fragments/app-head.jspf" %>
 </head>
 <body>

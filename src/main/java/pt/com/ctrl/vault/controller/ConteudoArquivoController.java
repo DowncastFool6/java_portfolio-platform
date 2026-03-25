@@ -34,16 +34,17 @@ public class ConteudoArquivoController extends HttpServlet {
             Conteudo conteudo = conteudoService.buscarConteudoDoProjeto(usuarioLogado, idProjeto, idConteudo);
 
             if (conteudo.getArquivo() == null || conteudo.getArquivo().length == 0) {
+                resp.sendError(HttpServletResponse.SC_NOT_FOUND);
                 return;
             }
 
-            resp.setContentType(conteudo.getTipoArquivo() == null ? "application/octet-stream" : conteudo.getTipoArquivo());
+            resp.setContentType(conteudo.getTipoMime() == null ? "application/octet-stream" : conteudo.getTipoMime());
             if (conteudo.getNomeArquivo() != null) {
                 resp.setHeader("Content-Disposition", "inline; filename=\"" + conteudo.getNomeArquivo() + "\"");
             }
             resp.getOutputStream().write(conteudo.getArquivo());
         } catch (CampoObrigatorioException e) {
-            ServletUtil.addErro(req, "Erro ao abrir conteudo");
+            resp.sendError(HttpServletResponse.SC_FORBIDDEN);
         }
     }
 
