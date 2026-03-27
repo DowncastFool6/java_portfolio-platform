@@ -306,15 +306,17 @@ footer {
   }
 
   .page-shell {
-	  flex-direction: column;
-	  gap: 18px;
+    flex-direction: column;
+    gap: 18px;
+    overflow-x: hidden;
   }
   
   .side-panel {
     position: static;
-    width: 100%;
+    width: calc(100% - 32px);
+    align-self: center;
     min-height: auto;
-    margin: 16px 16px 0;
+    margin: 16px 0 0 0;
     flex-direction: column;
   }
 
@@ -339,6 +341,12 @@ footer {
 
   .app-main {
     padding: 0 16px 24px;
+  }
+
+  /* Symmetric horizontal padding for app-container on narrow screens. */
+  .app-container {
+    padding-right: 16px;
+    padding-left: 16px;
   }
 
   .section-heading-space {
@@ -369,4 +377,3 @@ footer {
     text-align: center;
   } 
 }
-
