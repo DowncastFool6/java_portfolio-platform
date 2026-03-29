@@ -26,10 +26,12 @@ public class ConteudoRepository {
 				+ "c.tipo_mime, c.ordem_exibicao, c.data_criacao, c.data_edicao, "
 				+ "c.id_usuario_criacao, uc.nome AS usuario_criacao_nome, "
 				+ "c.id_usuario_edicao, ue.nome AS usuario_edicao_nome, "
-				+ "CASE WHEN c.arquivo IS NULL THEN 0 ELSE 1 END AS arquivo_disponivel " + "FROM tb_conteudo c "
-				+ "LEFT JOIN tb_usuario uc ON uc.id = c.id_usuario_criacao "
-				+ "LEFT JOIN tb_usuario ue ON ue.id = c.id_usuario_edicao " + "WHERE c.id_projeto = ? "
-				+ "ORDER BY c.ordem_exibicao, c.id";
+				+ "CASE WHEN c.arquivo IS NULL THEN 0 ELSE 1 END AS arquivo_disponivel "
+				+ "FROM tb_conteudo c "
+				+ "INNER JOIN tb_usuario uc ON uc.id = c.id_usuario_criacao "
+				+ "LEFT JOIN tb_usuario ue ON ue.id = c.id_usuario_edicao "
+				+ "WHERE c.id_projeto = ? "
+				+ "ORDER BY c.ordem_exibicao";
 
 		Connection conn = null;
 		PreparedStatement stmt = null;
@@ -59,9 +61,11 @@ public class ConteudoRepository {
 				+ "c.tipo_mime, c.arquivo, c.ordem_exibicao, c.data_criacao, c.data_edicao, "
 				+ "c.id_usuario_criacao, uc.nome AS usuario_criacao_nome, "
 				+ "c.id_usuario_edicao, ue.nome AS usuario_edicao_nome, "
-				+ "CASE WHEN c.arquivo IS NULL THEN 0 ELSE 1 END AS arquivo_disponivel " + "FROM tb_conteudo c "
-				+ "LEFT JOIN tb_usuario uc ON uc.id = c.id_usuario_criacao "
-				+ "LEFT JOIN tb_usuario ue ON ue.id = c.id_usuario_edicao " + "WHERE c.id = ?";
+				+ "CASE WHEN c.arquivo IS NULL THEN 0 ELSE 1 END AS arquivo_disponivel "
+				+ "FROM tb_conteudo c "
+				+ "INNER JOIN tb_usuario uc ON uc.id = c.id_usuario_criacao "
+				+ "LEFT JOIN tb_usuario ue ON ue.id = c.id_usuario_edicao "
+				+ "WHERE c.id = ?";
 
 		Connection conn = null;
 		PreparedStatement stmt = null;
@@ -88,8 +92,8 @@ public class ConteudoRepository {
 	public Integer salvar(Conteudo conteudo) {
 		String sql = "INSERT INTO tb_conteudo "
 				+ "(id_projeto, titulo, tipo_conteudo, conteudo, nome_arquivo, tipo_mime, arquivo, ordem_exibicao, "
-				+ "data_criacao, data_edicao, id_usuario_criacao, id_usuario_edicao) "
-				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+				+ "data_criacao, id_usuario_criacao) "
+				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 		Connection conn = null;
 		PreparedStatement stmt = null;
@@ -98,7 +102,21 @@ public class ConteudoRepository {
 		try {
 			conn = ConnectionFactory.getConnection();
 			stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-			preencherComum(stmt, conteudo, false);
+			stmt.setInt(1, conteudo.getProjeto().getId());
+			stmt.setString(2, conteudo.getTitulo());
+			stmt.setString(3, conteudo.getTipoConteudo());
+			stmt.setString(4, conteudo.getConteudo());
+			stmt.setString(5, conteudo.getNomeArquivo());
+			stmt.setString(6, conteudo.getTipoMime());
+			stmt.setBytes(7, conteudo.getArquivo());
+			stmt.setInt(8, conteudo.getOrdemExibicao() == null ? 0 : conteudo.getOrdemExibicao());
+			stmt.setTimestamp(9, conteudo.getDataCriacao() == null ? null : Timestamp.valueOf(conteudo.getDataCriacao()));
+			if (conteudo.getUsuarioCriacao() != null && conteudo.getUsuarioCriacao().getId() != null) {
+				stmt.setInt(10, conteudo.getUsuarioCriacao().getId());
+			} else {
+				stmt.setObject(10, null);
+			}
+
 			stmt.executeUpdate();
 			rs = stmt.getGeneratedKeys();
 
@@ -222,29 +240,6 @@ public class ConteudoRepository {
 			throw new RuntimeException("Erro ao remover conteudo", e);
 		} finally {
 			ConnectionFactory.close(conn, stmt);
-		}
-	}
-
-	private void preencherComum(PreparedStatement stmt, Conteudo conteudo, boolean atualizacao) throws SQLException {
-		stmt.setInt(1, conteudo.getProjeto().getId());
-		stmt.setString(2, conteudo.getTitulo());
-		stmt.setString(3, conteudo.getTipoConteudo());
-		stmt.setString(4, conteudo.getConteudo());
-		stmt.setString(5, conteudo.getNomeArquivo());
-		stmt.setString(6, conteudo.getTipoMime());
-		stmt.setBytes(7, conteudo.getArquivo());
-		stmt.setInt(8, conteudo.getOrdemExibicao() == null ? 0 : conteudo.getOrdemExibicao());
-		stmt.setTimestamp(9, conteudo.getDataCriacao() == null ? null : Timestamp.valueOf(conteudo.getDataCriacao()));
-		stmt.setTimestamp(10, conteudo.getDataEdicao() == null ? null : Timestamp.valueOf(conteudo.getDataEdicao()));
-		if (conteudo.getUsuarioCriacao() != null && conteudo.getUsuarioCriacao().getId() != null) {
-			stmt.setInt(11, conteudo.getUsuarioCriacao().getId());
-		} else {
-			stmt.setObject(11, null);
-		}
-		if (conteudo.getUsuarioEdicao() != null && conteudo.getUsuarioEdicao().getId() != null) {
-			stmt.setInt(12, conteudo.getUsuarioEdicao().getId());
-		} else {
-			stmt.setObject(12, null);
 		}
 	}
 

@@ -1,13 +1,16 @@
 package pt.com.ctrl.vault.service;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import pt.com.ctrl.vault.exception.CampoObrigatorioException;
 import pt.com.ctrl.vault.model.Projeto;
 import pt.com.ctrl.vault.model.Usuario;
 import pt.com.ctrl.vault.repository.ProjetoRepository;
+import pt.com.ctrl.vault.repository.UsuarioRepository;
 
 /**
  * Classe com logica de negocio referente aos projetos.
@@ -27,11 +30,6 @@ public class ProjetoService {
     public List<Projeto> listarProjetos() {
         ProjetoRepository projetoRepository = new ProjetoRepository();
         return projetoRepository.listarTodos();
-    }
-    
-    public Projeto buscarProjetoDoUsuario(Integer idUsuario) {
-    	ProjetoRepository projetoRepository = new ProjetoRepository();
-        return projetoRepository.buscarProjetoDoUsuario(idUsuario);
     }
     
     public Projeto buscarProjetoPorUsuarioEProjeto(Integer idUsuario, Integer idProjeto) {
@@ -90,8 +88,8 @@ public class ProjetoService {
 
         verificaSeUsuarioPertenceAoProjeto(idProjeto, idUsuario);
 
-        ProjetoRepository projetoRepository = new ProjetoRepository();
-        projetoRepository.atualizarStatusUsuario(idUsuario, ativo);
+        UsuarioRepository usuarioRepository = new UsuarioRepository();
+        usuarioRepository.atualizarStatusUsuario(idUsuario, ativo);
     }
 
     public Projeto fecharProjeto(Integer idProjeto) {
@@ -101,7 +99,7 @@ public class ProjetoService {
         }
 
         ProjetoRepository projetoRepository = new ProjetoRepository();
-        projetoRepository.atualizarDataFimProjeto(idProjeto, Date.valueOf(LocalDate.now()));
+        projetoRepository.atualizarDataFimProjeto(idProjeto, LocalDateTime.now());
         return buscarProjetoPorId(idProjeto);
     }
 

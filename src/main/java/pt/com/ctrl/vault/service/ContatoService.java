@@ -73,7 +73,7 @@ public class ContatoService {
         usuarioService.validarUsuarioAtivoParaExecutarAcao(usuario);
 
         ContatoRepository contatoRepository = new ContatoRepository();
-        contatoRepository.marcarContatosComoLidos(usuario.getId(), idsContato);
+        contatoRepository.marcarContatosComoLidos(idsContato);
     }
 
     public void removerContatos(Usuario usuario, List<Integer> idsContato) {

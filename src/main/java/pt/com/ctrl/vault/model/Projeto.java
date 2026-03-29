@@ -17,7 +17,7 @@ public class Projeto {
     private String titulo;
     private String descricao;
     private LocalDate dataInicio;
-    private LocalDate dataFim;
+    private LocalDateTime dataFim;
     private LocalDateTime dataCriacao;
 
     public Projeto() {}
@@ -54,11 +54,11 @@ public class Projeto {
         this.dataInicio = dataInicio;
     }
 
-    public LocalDate getDataFim() {
+    public LocalDateTime getDataFim() {
         return dataFim;
     }
 
-    public void setDataFim(LocalDate dataFim) {
+    public void setDataFim(LocalDateTime dataFim) {
         this.dataFim = dataFim;
     }
 
@@ -75,7 +75,7 @@ public class Projeto {
     }
 
     public String getDataFimFormatada() {
-        return dataFim == null ? "" : dataFim.format(DATA_FORMATTER);
+        return dataFim == null ? "" : dataFim.format(DATA_HORA_FORMATTER);
     }
 
     public boolean isFechado() {

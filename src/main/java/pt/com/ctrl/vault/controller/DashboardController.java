@@ -28,14 +28,12 @@ public class DashboardController extends HttpServlet {
         }
 
         ProjetoService projetoService = new ProjetoService();
-        Projeto projetoUsuario = projetoService.buscarProjetoDoUsuario(usuarioLogado.getId());
         List<Projeto> projetosUsuario = projetoService.listarProjetosDoUsuario(usuarioLogado.getId());
 
         req.setAttribute("usuario", usuarioLogado);
         req.setAttribute("isAdmin", ServletUtil.usuarioEhAdmin(usuarioLogado));
         req.setAttribute("isGestor", ServletUtil.usuarioEhGestor(usuarioLogado));
         req.setAttribute("isUsuarioAtivo", ServletUtil.usuarioEstaAtivo(usuarioLogado));
-        req.setAttribute("projetoUsuario", projetoUsuario);
         req.setAttribute("projetosUsuario", projetosUsuario);
         req.setAttribute("mostrarBotaoHome", false);
         req.setAttribute("mostrarBotaoVoltar", false);
@@ -47,11 +45,11 @@ public class DashboardController extends HttpServlet {
             req.getSession().removeAttribute("mensagemDashboard");
         }
 
-        if (projetoUsuario == null) {
+        if (projetosUsuario == null || projetosUsuario.isEmpty()) {
             ServletUtil.addErro(req, "Seu utilizador nao tem projetos associados. Entre em contacto com o administrador.");
         }
 
-        req.getRequestDispatcher("/WEB-INF/dashboard/dashboard.jsp")
-           .forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/dashboard/dashboard.jsp").forward(req, resp);
     }
+    
 }

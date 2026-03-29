@@ -36,8 +36,9 @@
                     </c:if>
                 </div>
                 <div class="action-row">
-                    <c:if test="${usuarioPodeGerirUsuariosProjeto}">
+                    <c:if test="${usuarioPodeGerirUsuariosProjeto and modoEdicao}">
                         <a class="btn-primary" href="<%= request.getContextPath() %>/projeto/usuarios?idProjeto=${projeto.id}">Gerir utilizadores</a>
+                        <a class="btn-primary" href="<%= request.getContextPath() %>/projeto?id=${projeto.id}">Voltar ao projeto</a>
                     </c:if>
                     <c:if test="${usuarioPodeAlterarStatusProjeto and not modoEdicao}">
                         <form action="<%= request.getContextPath() %>/projeto" method="post">
@@ -140,7 +141,6 @@
 
                     <div class="action-row">
                         <button type="submit" name="acao" value="guardar" class="btn-primary">Guardar alteracoes</button>
-                        <a class="btn-primary" href="<%= request.getContextPath() %>/projeto?id=${projeto.id}">Cancelar edicao</a>
                     </div>
                 </form>
             </c:when>

@@ -41,7 +41,7 @@ public class UsuarioRepository {
             rs = stmt.executeQuery();
 
             if (rs.next()) {
-                return mapearUsuario(rs);
+                return mapearUsuario(rs, true);
             }
 
             return null;
@@ -73,7 +73,7 @@ public class UsuarioRepository {
             rs = stmt.executeQuery();
 
             if (rs.next()) {
-                return mapearUsuario(rs);
+                return mapearUsuario(rs, false);
             }
 
             return null;
@@ -107,7 +107,7 @@ public class UsuarioRepository {
             rs = stmt.executeQuery();
 
             while (rs.next()) {
-                usuarios.add(mapearUsuario(rs));
+                usuarios.add(mapearUsuario(rs, false));
             }
 
             return usuarios;
@@ -210,13 +210,34 @@ public class UsuarioRepository {
             ConnectionFactory.close(conn, stmt, rs);
         }
     }
+    
+    public void atualizarStatusUsuario(Integer idUsuario, boolean ativo) {
+        String sql = "UPDATE tb_usuario SET ativo = ? WHERE id = ?";
 
-    private Usuario mapearUsuario(ResultSet rs) throws SQLException {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+
+        try {
+            conn = ConnectionFactory.getConnection();
+            stmt = conn.prepareStatement(sql);
+            stmt.setBoolean(1, ativo);
+            stmt.setInt(2, idUsuario);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao atualizar status do usuario", e);
+        } finally {
+            ConnectionFactory.close(conn, stmt);
+        }
+    }
+
+    private Usuario mapearUsuario(ResultSet rs, boolean carregaSenha) throws SQLException {
         Usuario usuario = new Usuario();
         usuario.setId(rs.getInt("id"));
         usuario.setNome(rs.getString("nome"));
         usuario.setEmail(rs.getString("email"));
-        usuario.setSenha(rs.getString("senha"));
+        if(carregaSenha) {        	
+        	usuario.setSenha(rs.getString("senha"));
+        }
         usuario.setAtivo(rs.getBoolean("ativo"));
 
         Timestamp dataCriacao = rs.getTimestamp("data_criacao");

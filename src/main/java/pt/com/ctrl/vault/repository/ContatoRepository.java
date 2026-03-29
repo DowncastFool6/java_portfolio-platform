@@ -24,11 +24,12 @@ public class ContatoRepository {
     public Integer salvar(Contato contato) {
         String sql =
                 "INSERT INTO tb_contato " +
-                "(id_projeto, id_usuario, mensagem, flg_lida, data_envio) " +
-                "VALUES (?, ?, ?, ?, ?)";
+                "(id_projeto, id_usuario, mensagem, data_envio) " +
+                "VALUES (?, ?, ?, ?)";
 
         Connection conn = null;
         PreparedStatement stmt = null;
+        ResultSet rs = null;
 
         try {
             conn = ConnectionFactory.getConnection();
@@ -36,14 +37,13 @@ public class ContatoRepository {
             stmt.setInt(1, contato.getProjeto().getId());
             stmt.setInt(2, contato.getUsuario().getId());
             stmt.setString(3, contato.getMensagem());
-            stmt.setBoolean(4, contato.getFlgLida());
-            stmt.setTimestamp(5, Timestamp.valueOf(contato.getDataEnvio()));
-            stmt.executeUpdate();
-
-            try (var rs = stmt.getGeneratedKeys()) {
-                if (rs.next()) {
-                    return rs.getInt(1);
-                }
+            stmt.setTimestamp(4, Timestamp.valueOf(contato.getDataEnvio()));
+            
+            stmt.executeUpdate();            
+            rs = stmt.getGeneratedKeys();
+            
+            if (rs.next()) {
+            	return rs.getInt(1);
             }
 
             return null;
@@ -51,17 +51,16 @@ public class ContatoRepository {
         } catch (SQLException e) {
             throw new RuntimeException("Erro ao salvar contato", e);
         } finally {
-            ConnectionFactory.close(conn, stmt);
+            ConnectionFactory.close(conn, stmt, rs);
         }
     }
 
     public boolean usuarioTemContatosPendentes(Integer idUsuario) {
         String sql =
-                "SELECT 1 " +
+                "SELECT count(1) " +
                 "FROM tb_contato c " +
                 "INNER JOIN tb_usuario_projeto up ON up.id_projeto = c.id_projeto " +
-                "WHERE up.id_usuario = ? AND c.flg_lida = false " +
-                "LIMIT 1";
+                "WHERE up.id_usuario = ? AND c.flg_lida = false ";
 
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -72,7 +71,9 @@ public class ContatoRepository {
             stmt = conn.prepareStatement(sql);
             stmt.setInt(1, idUsuario);
             rs = stmt.executeQuery();
-            return rs.next();
+            rs.next();
+            int contatosPendentes = rs.getInt(1);
+            return contatosPendentes > 0;
 
         } catch (SQLException e) {
             throw new RuntimeException("Erro ao verificar contatos pendentes", e);
@@ -86,8 +87,8 @@ public class ContatoRepository {
                 "SELECT c.id, c.mensagem, c.flg_lida, c.data_envio, " +
                 "p.id AS projeto_id, p.titulo AS projeto_titulo, " +
                 "u.id AS usuario_id, u.nome AS usuario_nome, u.email AS usuario_email " +
-                "FROM tb_contato c " +
-                "INNER JOIN tb_usuario_projeto up ON up.id_projeto = c.id_projeto " +
+                "FROM tb_usuario_projeto up " +
+                "INNER JOIN tb_contato c ON up.id_projeto = c.id_projeto " +
                 "INNER JOIN tb_projeto p ON p.id = c.id_projeto " +
                 "INNER JOIN tb_usuario u ON u.id = c.id_usuario " +
                 "WHERE up.id_usuario = ? " +
@@ -117,13 +118,12 @@ public class ContatoRepository {
         }
     }
 
-    public void marcarContatosComoLidos(Integer idUsuario, List<Integer> idsContato) {
+    public void marcarContatosComoLidos(List<Integer> idsContato) {
         String sql =
                 "UPDATE tb_contato c " +
-                "INNER JOIN tb_usuario_projeto up ON up.id_projeto = c.id_projeto " +
                 "SET c.flg_lida = true " +
-                "WHERE up.id_usuario = ? AND c.id = ?";
-
+                "WHERE c.id = ?";
+        
         Connection conn = null;
         PreparedStatement stmt = null;
 
@@ -132,8 +132,7 @@ public class ContatoRepository {
             stmt = conn.prepareStatement(sql);
 
             for (Integer idContato : idsContato) {
-                stmt.setInt(1, idUsuario);
-                stmt.setInt(2, idContato);
+                stmt.setInt(1, idContato);
                 stmt.addBatch();
             }
 

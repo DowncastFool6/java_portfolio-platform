@@ -17,6 +17,9 @@
             <div>
                 <h2>Novo conteúdo</h2>
                 <p>Projeto: <strong><c:out value="${projeto.descricao}"/></strong></p>
+                <div class="action-row">
+	                <a class="btn-primary" href="<%= request.getContextPath() %>/projeto?id=${projeto.id}">Voltar ao projeto</a>
+	            </div>
             </div>
         </section>
 
