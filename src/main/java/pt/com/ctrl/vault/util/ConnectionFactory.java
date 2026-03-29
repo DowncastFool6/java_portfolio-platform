@@ -37,6 +37,10 @@ public class ConnectionFactory {
     public static Connection getConnection() {
 
         try {
+        	// 🔍 DEBUG (temporary)
+            /*System.out.println("URL = " + URL);
+            System.out.println("USER = " + DB_USER);
+            System.out.println("PASS = " + DB_PASSWORD);*/
             return DriverManager.getConnection(URL, DB_USER, DB_PASSWORD);
         } catch (SQLException e) {
             throw new RuntimeException("Erro ao conectar ao banco de dados", e);

@@ -18,7 +18,7 @@
                 <h2>Utilizadores do projeto</h2>
                 <p>Projeto: <strong><c:out value="${projeto.descricao}"/></strong></p>
             </div>
-            <div class="action-row">
+            <div class="action-row section-heading-action">
                 <a class="btn-primary" href="<%= request.getContextPath() %>/projeto?id=${projeto.id}&modo=editar">Voltar ao projeto</a>
             </div>
         </section>

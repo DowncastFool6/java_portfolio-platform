@@ -14,7 +14,7 @@
 
     <!-- LEFT SIDE -->
     <div class="register-visual">
-        <img src="<%= request.getContextPath()%>/images/logo.svg" alt="Visual">
+        <img src="<%= request.getContextPath()%>/images/logo1.svg" alt="Visual">
     </div>
 
     <!-- RIGHT SIDE -->
@@ -64,5 +64,9 @@
 
 <%@ include file="/WEB-INF/fragments/app-footer.jspf" %>
 
+<script
+  src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.9.3/dist/dotlottie-wc.js"
+  type="module"
+></script>
 </body>
 </html>

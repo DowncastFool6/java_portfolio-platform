@@ -32,8 +32,7 @@
 
             </div>
 
-
-            <img src="<%= request.getContextPath()%>/images/logo.svg"
+            <img src="<%= request.getContextPath()%>/images/logo1.svg"
                  class="hero-img">
 
         </section>
@@ -254,18 +253,7 @@
 
         </section>
 
-
-
-        <footer>
-
-            <p>© 2026 CTRL+VAULT - Academic Project</p>
-
-            <p>
-                Projeto desenvolvido por
-                Camila Rial • Alice Lombardi • Vissolela Cundi
-            </p>
-
-        </footer>
+		<%@ include file="/WEB-INF/fragments/app-footer.jspf" %>
 
     </body>
 </html>

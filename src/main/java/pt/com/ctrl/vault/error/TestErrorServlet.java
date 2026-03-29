@@ -18,7 +18,7 @@ import java.io.IOException;
  *   /test-error?code=404
  *   /test-error?code=500
  */
-@WebServlet("/test-error")
+
 public class TestErrorServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
