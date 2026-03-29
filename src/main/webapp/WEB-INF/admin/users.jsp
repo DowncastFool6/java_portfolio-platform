@@ -10,7 +10,7 @@
 
 <div class="page-shell app-layout">
     <%@ include file="/WEB-INF/fragments/side-panel.jspf" %>
-<main class="page-shell">
+<main class="app-main">
     <div class="app-container">
     <section class="section-heading">
         <div>

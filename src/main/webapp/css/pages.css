@@ -272,11 +272,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(
-    135deg,
-    rgba(136, 73, 143, 0.15),
-    rgba(111, 63, 181, 0.2)
-  );
 }
 
 .register-visual img {
