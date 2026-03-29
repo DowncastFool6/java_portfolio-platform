@@ -15,8 +15,7 @@ import javax.servlet.http.HttpSession;
 public class LogoutController extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp
-    ) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         removerUsuarioDaSessao(req);
 

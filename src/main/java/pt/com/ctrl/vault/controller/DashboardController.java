@@ -24,7 +24,8 @@ public class DashboardController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Usuario usuarioLogado = ServletUtil.obterUsuarioLogado(req, resp);
         if (usuarioLogado == null) {
-            return;
+        	req.getRequestDispatcher("/WEB-INF/error/error-401.jsp").forward(req, resp);
+        	return;
         }
 
         ProjetoService projetoService = new ProjetoService();
