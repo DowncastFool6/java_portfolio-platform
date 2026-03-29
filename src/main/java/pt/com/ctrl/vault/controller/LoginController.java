@@ -37,6 +37,8 @@ public class LoginController extends HttpServlet {
         try {
             UsuarioService usuarioService = new UsuarioService();
             Usuario usuario = usuarioService.autenticar(email, senha);
+            usuario.setSenha(null);
+            usuario.setDataCriacao(null);
 
             HttpSession session = req.getSession();
             session.setAttribute("usuarioLogado", usuario);

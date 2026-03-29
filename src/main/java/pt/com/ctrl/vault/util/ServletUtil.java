@@ -50,26 +50,26 @@ public class ServletUtil {
         req.setAttribute("mensagem", mensagem);
     }
 
-    public static boolean usuarioEhAdmin(Usuario usuario) {
+    public static boolean isUsuarioAdmin(Usuario usuario) {
         return usuario != null
                 && usuario.getTipoUsuario() != null
                 && usuario.getTipoUsuario().getDescricao() != null
                 && usuario.getTipoUsuario().getDescricao().trim().toUpperCase().contains("ADMIN");
     }
 
-    public static boolean usuarioEhGestor(Usuario usuario) {
+    public static boolean isUsuarioGestor(Usuario usuario) {
         return usuario != null
                 && usuario.getTipoUsuario() != null
                 && usuario.getTipoUsuario().getDescricao() != null
                 && usuario.getTipoUsuario().getDescricao().trim().toUpperCase().contains("GESTOR");
     }
 
-    public static boolean usuarioEstaAtivo(Usuario usuario) {
+    public static boolean isUsuarioAtivo(Usuario usuario) {
         return usuario != null && usuario.getAtivo();
     }
 
     public static boolean usuarioPodeGerirProjeto(Usuario usuario) {
-        return usuarioEstaAtivo(usuario) && (usuarioEhGestor(usuario) || usuarioEhAdmin(usuario));
+        return isUsuarioAtivo(usuario) && (isUsuarioGestor(usuario) || isUsuarioAdmin(usuario));
     }
 
     public static void prepararSidePanel(HttpServletRequest req, Usuario usuario) {

@@ -45,10 +45,11 @@ public class ContatosRecebidosController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Usuario usuarioLogado = ServletUtil.obterUsuarioLogado(req, resp);
         if (usuarioLogado == null) {
-            return;
+        	req.getRequestDispatcher("/WEB-INF/error/error-401.jsp").forward(req, resp);
+        	return;
         }
 
-        if (!ServletUtil.usuarioEstaAtivo(usuarioLogado)) {
+        if (!ServletUtil.isUsuarioAtivo(usuarioLogado)) {
             req.getSession().setAttribute("mensagemDashboard", "O seu utilizador esta inativo e apenas pode consultar informacao.");
             resp.sendRedirect(req.getContextPath() + "/dashboard");
             return;

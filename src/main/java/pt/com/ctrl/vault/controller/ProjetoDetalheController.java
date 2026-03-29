@@ -64,7 +64,8 @@ public class ProjetoDetalheController extends HttpServlet {
 
         Usuario usuarioLogado = ServletUtil.obterUsuarioLogado(req, resp);
         if (usuarioLogado == null) {
-            return;
+        	req.getRequestDispatcher("/WEB-INF/error/error-401.jsp").forward(req, resp);
+        	return;
         }
 
         Integer idProjeto = parseInt(req.getParameter("idProjeto"));
@@ -132,7 +133,7 @@ public class ProjetoDetalheController extends HttpServlet {
         ConteudoService conteudoService = new ConteudoService();
         List<Conteudo> conteudos = conteudoService.listarConteudosDoProjeto(usuarioLogado, idProjeto);
         boolean usuarioPodeGerirProjeto = ServletUtil.usuarioPodeGerirProjeto(usuarioLogado);
-        boolean usuarioPodeEditarProjeto = ServletUtil.usuarioEstaAtivo(usuarioLogado) && projeto != null && projeto.isAberto();
+        boolean usuarioPodeEditarProjeto = ServletUtil.isUsuarioAtivo(usuarioLogado) && projeto != null && projeto.isAberto();
         boolean modoEdicaoSolicitado = "editar".equalsIgnoreCase(req.getParameter("modo"));
 
         req.setAttribute("usuario", usuarioLogado);

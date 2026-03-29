@@ -26,7 +26,7 @@ public class AdminUsuariosController extends HttpServlet {
         	return;
         }
 
-        if (!ServletUtil.usuarioEhAdmin(usuarioLogado)) {
+        if (!ServletUtil.isUsuarioAdmin(usuarioLogado)) {
             resp.sendRedirect(req.getContextPath() + "/dashboard");
             return;
         }

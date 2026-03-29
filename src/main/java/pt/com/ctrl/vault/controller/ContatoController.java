@@ -30,7 +30,7 @@ public class ContatoController extends HttpServlet {
         	return;
         }
 
-        if (!ServletUtil.usuarioEstaAtivo(usuarioLogado)) {
+        if (!ServletUtil.isUsuarioAtivo(usuarioLogado)) {
             req.getSession().setAttribute("mensagemDashboard", "O seu utilizador esta inativo e apenas pode consultar informacao.");
             resp.sendRedirect(req.getContextPath() + "/dashboard");
             return;
@@ -50,7 +50,8 @@ public class ContatoController extends HttpServlet {
     	ServletUtil.configurarUtf8(req, resp);
         Usuario usuarioLogado = ServletUtil.obterUsuarioLogado(req, resp);
         if (usuarioLogado == null) {
-            return;
+        	req.getRequestDispatcher("/WEB-INF/error/error-401.jsp").forward(req, resp);
+        	return;
         }
 
         Integer idProjeto = parseInt(req.getParameter("idProjeto"));
@@ -74,8 +75,8 @@ public class ContatoController extends HttpServlet {
         List<Projeto> projetos = projetoService.listarProjetos();
 
         req.setAttribute("usuario", usuarioLogado);
-        req.setAttribute("isAdmin", ServletUtil.usuarioEhAdmin(usuarioLogado));
-        req.setAttribute("isUsuarioAtivo", ServletUtil.usuarioEstaAtivo(usuarioLogado));
+        req.setAttribute("isAdmin", ServletUtil.isUsuarioAdmin(usuarioLogado));
+        req.setAttribute("isUsuarioAtivo", ServletUtil.isUsuarioAtivo(usuarioLogado));
         req.setAttribute("projetos", projetos);
         ServletUtil.prepararSidePanel(req, usuarioLogado);
 

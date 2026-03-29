@@ -32,9 +32,9 @@ public class DashboardController extends HttpServlet {
         List<Projeto> projetosUsuario = projetoService.listarProjetosDoUsuario(usuarioLogado.getId());
 
         req.setAttribute("usuario", usuarioLogado);
-        req.setAttribute("isAdmin", ServletUtil.usuarioEhAdmin(usuarioLogado));
-        req.setAttribute("isGestor", ServletUtil.usuarioEhGestor(usuarioLogado));
-        req.setAttribute("isUsuarioAtivo", ServletUtil.usuarioEstaAtivo(usuarioLogado));
+        req.setAttribute("isAdmin", ServletUtil.isUsuarioAdmin(usuarioLogado));
+        req.setAttribute("isGestor", ServletUtil.isUsuarioGestor(usuarioLogado));
+        req.setAttribute("isUsuarioAtivo", ServletUtil.isUsuarioAtivo(usuarioLogado));
         req.setAttribute("projetosUsuario", projetosUsuario);
         req.setAttribute("mostrarBotaoHome", false);
         req.setAttribute("mostrarBotaoVoltar", false);
