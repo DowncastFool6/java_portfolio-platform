@@ -251,11 +251,14 @@ footer {
   padding: 26px 28px;
 }
 
+
 .section-heading-space {
   display: flex;
+  flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
   gap: 20px;
+  margin-top: 16px; /* Margem superior para botão de ação dentro do cabeçalho. */
 }
 
 /* Wrapper visual para tabelas grandes. */
@@ -264,6 +267,8 @@ footer {
   margin-top: 10px;
   overflow-x: auto;
 }
+
+
 
 /* Linha de ações com wrapping automático. */
 .action-row {

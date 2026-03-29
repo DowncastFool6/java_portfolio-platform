@@ -11,7 +11,7 @@
 <div class="page-shell app-layout">
     <%@ include file="/WEB-INF/fragments/side-panel.jspf" %>
 
-    <main class="app-main">
+    <main class="page-shell">
         <div class="app-container">
         <section class="section-heading section-heading-space">
             <div>

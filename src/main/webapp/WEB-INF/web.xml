@@ -135,6 +135,16 @@
     </error-page>
     <error-page>
         <error-code>401</error-code>
-        <location>/login</location>
+        <location>/WEB-INF/error/error-401.jsp</location>
     </error-page>
+
+    <!-- TestErrorServlet – only for development testing -->
+    <servlet>
+        <servlet-name>TestErrorServlet</servlet-name>
+        <servlet-class>pt.com.ctrl.vault.error.TestErrorServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TestErrorServlet</servlet-name>
+        <url-pattern>/test-error</url-pattern>
+    </servlet-mapping>
 </web-app>

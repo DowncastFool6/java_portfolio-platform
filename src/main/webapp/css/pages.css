@@ -246,18 +246,6 @@
 }
 
 /* =========================
-   Media Queries
-   ========================= */
-
-/* Empilha o hero em ecrãs médios. */
-@media (max-width: 960px) {
-  .hero {
-    flex-direction: column;
-    text-align: center;
-  }
-}
-
-/* =========================
    Register Split Layout
    ========================= */
 
@@ -293,11 +281,18 @@
   max-width: 420px;
 }
 
+
 /* =========================
-   Responsive
+   Media Queries
    ========================= */
 
-@media (max-width: 900px) {
+/* Empilha o hero em ecrãs médios. */
+@media (max-width: 960px) {
+  .hero {
+    flex-direction: column;
+    text-align: center;
+  }
+  
   .register-split {
     grid-template-columns: 1fr;
   }
@@ -306,3 +301,4 @@
     display: none; /* cleaner mobile UX */
   }
 }
+

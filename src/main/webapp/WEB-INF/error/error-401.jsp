@@ -4,22 +4,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>403 — Acesso negado · CTRL+VAULT</title>
+  <title>401 — Não autenticado · CTRL+VAULT</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="<%= request.getContextPath() %>/css/error-pages.css">
 </head>
-<body class="error-403">
+<body>
   <div class="error-card">
 
-    <div class="mascot-wrap mascot-float-run">
-      <img src="<%= request.getContextPath() %>/images/7.svg" alt="Mascote CTRL+VAULT" />
+    <div class="mascot-wrap mascot-float-bob">
+      <img src="<%= request.getContextPath() %>/images/9.svg" alt="Mascote CTRL+VAULT" />
     </div>
 
-    <div class="error-code error-code--danger">403</div>
-    <h1 class="error-title">Acesso negado</h1>
+    <div class="error-code">401</div>
+    <h1 class="error-title">Sessão não iniciada</h1>
     <p class="error-msg">
-      Não tens permissão para aceder a este recurso.<br>
-      Se achares que isto é um engano, contacta o administrador do sistema.
+      Precisas de iniciar sessão para aceder a esta página.<br>
+      As tuas credenciais podem ter expirado — entra novamente para continuar.
     </p>
 
     <div class="actions">
