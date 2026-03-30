@@ -22,11 +22,6 @@
       Se achares que isto é um engano, contacta o administrador do sistema.
     </p>
 
-    <div class="actions">
-      <a href="<%= request.getContextPath() %>/login" class="btn btn-primary">&#128100; Iniciar sessão</a>
-      <a href="<%= request.getContextPath() %>/index.jsp" class="btn btn-ghost">&#8962; Página inicial</a>
-    </div>
-
     <p class="brand">CTRL+VAULT</p>
   </div>
 </body>
