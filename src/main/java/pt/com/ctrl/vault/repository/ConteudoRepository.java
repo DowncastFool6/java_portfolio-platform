@@ -36,7 +36,7 @@ public class ConteudoRepository {
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
-		List<Conteudo> conteudos = new ArrayList<>();
+		List<Conteudo> conteudosList = new ArrayList<>();
 
 		try {
 			conn = ConnectionFactory.getConnection();
@@ -45,10 +45,10 @@ public class ConteudoRepository {
 			rs = stmt.executeQuery();
 
 			while (rs.next()) {
-				conteudos.add(mapearConteudo(rs, false));
+				conteudosList.add(mapearConteudo(rs, false));
 			}
 
-			return conteudos;
+			return conteudosList;
 		} catch (SQLException e) {
 			throw new RuntimeException("Erro ao listar conteudos do projeto", e);
 		} finally {

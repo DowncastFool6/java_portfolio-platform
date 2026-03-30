@@ -105,8 +105,8 @@ public class ConteudoService {
             conteudoRepository.atualizar(existente);
         }
 
-        List<Integer> idsNormalizados = new ArrayList<>(new LinkedHashSet<>(idsOrdenados));
-        conteudoRepository.atualizarOrdens(idProjeto, idsNormalizados, usuario.getId());
+        List<Integer> idsNormalizadosList = new ArrayList<>(new LinkedHashSet<>(idsOrdenados));
+        conteudoRepository.atualizarOrdens(idProjeto, idsNormalizadosList, usuario.getId());
     }
 
     public Conteudo montarAtualizacao(Usuario usuario, Integer idProjeto, Integer idConteudo, String titulo, String texto, Part arquivoPart) {
@@ -163,13 +163,13 @@ public class ConteudoService {
         conteudoRepository.remover(idProjeto, existente.getId());
 
         List<Conteudo> restantes = conteudoRepository.listarPorProjeto(idProjeto);
-        List<Integer> idsOrdenados = new ArrayList<>();
+        List<Integer> idsOrdenadosList = new ArrayList<>();
         for (Conteudo conteudo : restantes) {
-            idsOrdenados.add(conteudo.getId());
+            idsOrdenadosList.add(conteudo.getId());
         }
 
-        if (!idsOrdenados.isEmpty()) {
-            conteudoRepository.atualizarOrdens(idProjeto, idsOrdenados, usuario.getId());
+        if (!idsOrdenadosList.isEmpty()) {
+            conteudoRepository.atualizarOrdens(idProjeto, idsOrdenadosList, usuario.getId());
         }
     }
 

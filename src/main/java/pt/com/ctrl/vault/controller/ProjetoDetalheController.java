@@ -98,7 +98,7 @@ public class ProjetoDetalheController extends HttpServlet {
 
             List<Integer> idsConteudo = parseIntList(req.getParameterValues("conteudoId"));
             List<Integer> idsOrdenados = parseIntList(req.getParameterValues("conteudoOrdem"));
-            List<Conteudo> atualizacoes = new ArrayList<>();
+            List<Conteudo> atualizacoesList = new ArrayList<>();
 
             for (Integer idConteudo : idsConteudo) {
                 String titulo = req.getParameter("titulo_" + idConteudo);
@@ -109,14 +109,14 @@ public class ProjetoDetalheController extends HttpServlet {
 
                 Integer ordem = parseInt(req.getParameter("ordem_" + idConteudo));
                 conteudo.setOrdemExibicao(ordem == null ? 0 : ordem);
-                atualizacoes.add(conteudo);
+                atualizacoesList.add(conteudo);
             }
 
             if (idsOrdenados.isEmpty()) {
                 idsOrdenados = idsConteudo;
             }
 
-            conteudoService.atualizarConteudos(usuarioLogado, idProjeto, atualizacoes, idsOrdenados);
+            conteudoService.atualizarConteudos(usuarioLogado, idProjeto, atualizacoesList, idsOrdenados);
             resp.sendRedirect(req.getContextPath() + "/projeto?id=" + idProjeto + "&sucesso=conteudos-atualizados");
         } catch (CampoObrigatorioException e) {
             ServletUtil.addErro(req, e.getMessage());
@@ -165,20 +165,20 @@ public class ProjetoDetalheController extends HttpServlet {
     }
 
     private List<Integer> parseIntList(String[] valores) {
-        List<Integer> ids = new ArrayList<>();
+        List<Integer> idsList = new ArrayList<>();
 
         if (valores == null) {
-            return ids;
+            return idsList;
         }
 
         for (String valor : valores) {
             Integer id = parseInt(valor);
             if (id != null) {
-                ids.add(id);
+                idsList.add(id);
             }
         }
 
-        return ids;
+        return idsList;
     }
 
     private Part obterPartSilencioso(HttpServletRequest req, String nome) {

@@ -84,11 +84,11 @@ public class AdminUsuarioAcessoController extends HttpServlet {
         Usuario usuario = usuarioService.buscarPorId(idUsuario);
         List<TipoUsuario> tiposUsuario = usuarioService.listarTiposUsuario();
 
-        List<Integer> projetoSelecionadoIds = idsProjetosSelecionados;
-        if (projetoSelecionadoIds == null || projetoSelecionadoIds.isEmpty()) {
-            projetoSelecionadoIds = new ArrayList<>();
+        List<Integer> projetoSelecionadoIdsList = idsProjetosSelecionados;
+        if (projetoSelecionadoIdsList == null || projetoSelecionadoIdsList.isEmpty()) {
+            projetoSelecionadoIdsList = new ArrayList<>();
             for (Projeto projetoAtual : projetosDoUsuario) {
-                projetoSelecionadoIds.add(projetoAtual.getId());
+                projetoSelecionadoIdsList.add(projetoAtual.getId());
             }
         }
 
@@ -101,7 +101,7 @@ public class AdminUsuarioAcessoController extends HttpServlet {
         req.setAttribute("projetosAtuais", projetosDoUsuario);
         req.setAttribute("projetos", todosOsProjetos);
         req.setAttribute("tiposUsuario", tiposUsuario);
-        req.setAttribute("projetoSelecionadoIds", projetoSelecionadoIds);
+        req.setAttribute("projetoSelecionadoIds", projetoSelecionadoIdsList);
         req.setAttribute("tipoSelecionadoId", tipoUsuarioId);
         ServletUtil.prepararSidePanel(req, (Usuario) req.getSession(false).getAttribute("usuarioLogado"));
     }
@@ -115,19 +115,19 @@ public class AdminUsuarioAcessoController extends HttpServlet {
     }
 
     private List<Integer> parseIntList(String[] valores) {
-        List<Integer> ids = new ArrayList<>();
+        List<Integer> idsList = new ArrayList<>();
 
         if (valores == null) {
-            return ids;
+            return idsList;
         }
 
         for (String valor : valores) {
             Integer id = parseInt(valor);
             if (id != null) {
-                ids.add(id);
+                idsList.add(id);
             }
         }
 
-        return ids;
+        return idsList;
     }
 }

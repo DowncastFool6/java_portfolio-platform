@@ -97,7 +97,7 @@ public class ContatoRepository {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        List<Contato> contatos = new ArrayList<>();
+        List<Contato> contatosList = new ArrayList<>();
 
         try {
             conn = ConnectionFactory.getConnection();
@@ -106,10 +106,10 @@ public class ContatoRepository {
             rs = stmt.executeQuery();
 
             while (rs.next()) {
-                contatos.add(mapearContatoRecebido(rs));
+                contatosList.add(mapearContatoRecebido(rs));
             }
 
-            return contatos;
+            return contatosList;
 
         } catch (SQLException e) {
             throw new RuntimeException("Erro ao listar contatos recebidos", e);

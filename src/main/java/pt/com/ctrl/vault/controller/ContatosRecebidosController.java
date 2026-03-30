@@ -88,20 +88,20 @@ public class ContatosRecebidosController extends HttpServlet {
     }
 
     private List<Integer> parseIntList(String[] valores) {
-        List<Integer> ids = new ArrayList<>();
+        List<Integer> idsList = new ArrayList<>();
 
         if (valores == null) {
-            return ids;
+            return idsList;
         }
 
         for (String valor : valores) {
             try {
                 if (valor != null && !valor.isBlank()) {
-                    ids.add(Integer.valueOf(valor));
+                    idsList.add(Integer.valueOf(valor));
                 }
             } catch (NumberFormatException ignored) {}
         }
 
-        return ids;
+        return idsList;
     }
 }

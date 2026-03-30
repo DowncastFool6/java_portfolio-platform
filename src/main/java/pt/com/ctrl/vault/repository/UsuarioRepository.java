@@ -99,7 +99,7 @@ public class UsuarioRepository {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        List<Usuario> usuarios = new ArrayList<>();
+        List<Usuario> usuariosList = new ArrayList<>();
 
         try {
             conn = ConnectionFactory.getConnection();
@@ -107,10 +107,10 @@ public class UsuarioRepository {
             rs = stmt.executeQuery();
 
             while (rs.next()) {
-                usuarios.add(mapearUsuario(rs, false));
+                usuariosList.add(mapearUsuario(rs, false));
             }
 
-            return usuarios;
+            return usuariosList;
 
         } catch (SQLException e) {
             throw new RuntimeException("Erro ao listar usuarios sem acesso", e);

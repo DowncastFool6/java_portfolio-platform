@@ -56,7 +56,7 @@ public class ProjetoRepository {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        List<Projeto> projetos = new ArrayList<>();
+        List<Projeto> projetosList = new ArrayList<>();
 
         try {
             conn = ConnectionFactory.getConnection();
@@ -66,10 +66,10 @@ public class ProjetoRepository {
             while (rs.next()) {
                 Projeto projeto = mapearProjeto(rs);
 
-                projetos.add(projeto);
+                projetosList.add(projeto);
             }
 
-            return projetos;
+            return projetosList;
 
         } catch (SQLException e) {
             throw new RuntimeException("Erro ao listar projetos", e);
@@ -90,7 +90,7 @@ public class ProjetoRepository {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        List<Projeto> projetos = new ArrayList<>();
+        List<Projeto> projetosList = new ArrayList<>();
 
         try {
             conn = ConnectionFactory.getConnection();
@@ -101,10 +101,10 @@ public class ProjetoRepository {
             while (rs.next()) {
                 Projeto projeto = mapearProjeto(rs);
 
-                projetos.add(projeto);
+                projetosList.add(projeto);
             }
 
-            return projetos;
+            return projetosList;
 
         } catch (SQLException e) {
             throw new RuntimeException("Erro ao listar projetos do usuario", e);
@@ -125,7 +125,7 @@ public class ProjetoRepository {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        List<Usuario> usuarios = new ArrayList<>();
+        List<Usuario> usuariosList = new ArrayList<>();
 
         try {
             conn = ConnectionFactory.getConnection();
@@ -134,10 +134,10 @@ public class ProjetoRepository {
             rs = stmt.executeQuery();
 
             while (rs.next()) {
-                usuarios.add(mapearUsuario(rs));
+                usuariosList.add(mapearUsuario(rs));
             }
 
-            return usuarios;
+            return usuariosList;
         } catch (SQLException e) {
             throw new RuntimeException("Erro ao listar usuarios do projeto", e);
         } finally {

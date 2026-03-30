@@ -22,7 +22,7 @@ public class TipoUsuarioRepository {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        List<TipoUsuario> tipos = new ArrayList<>();
+        List<TipoUsuario> tiposList = new ArrayList<>();
 
         try {
             conn = ConnectionFactory.getConnection();
@@ -33,10 +33,10 @@ public class TipoUsuarioRepository {
                 TipoUsuario tipoUsuario = new TipoUsuario();
                 tipoUsuario.setId(rs.getInt("id"));
                 tipoUsuario.setDescricao(rs.getString("descricao"));
-                tipos.add(tipoUsuario);
+                tiposList.add(tipoUsuario);
             }
 
-            return tipos;
+            return tiposList;
 
         } catch (SQLException e) {
             throw new RuntimeException("Erro ao listar tipos de usuario", e);
