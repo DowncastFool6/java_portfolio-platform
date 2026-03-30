@@ -88,31 +88,31 @@
                     <input type="hidden" name="idConteudoRemover" id="idConteudoRemover">
 
                     <div class="content-list content-list-edit" id="content-list">
-                        <c:forEach var="conteudo" items="${conteudos}">
-                            <article class="content-card editable-card" draggable="true" data-content-id="${conteudo.id}">
-                                <input type="hidden" name="conteudoId" value="${conteudo.id}">
-                                <input type="hidden" name="ordem_${conteudo.id}" class="ordem-input" value="${conteudo.ordemExibicao}">
-                                <input type="hidden" name="conteudoOrdem" class="ordem-id-input" value="${conteudo.id}">
+                        <c:forEach var="conteudoItem" items="${conteudos}">
+                            <article class="content-card editable-card" draggable="true" data-content-id="${conteudoItem.id}">
+                                <input type="hidden" name="conteudoId" value="${conteudoItem.id}">
+                                <input type="hidden" name="ordem_${conteudoItem.id}" class="ordem-input" value="${conteudoItem.ordemExibicao}">
+                                <input type="hidden" name="conteudoOrdem" class="ordem-id-input" value="${conteudoItem.id}">
 
                                 <div class="content-editor-card">
                                     <label>Titulo</label>
-                                    <input type="text" name="titulo_${conteudo.id}" value="<c:out value="${conteudo.titulo}"/>">
+                                    <input type="text" name="titulo_${conteudoItem.id}" value="<c:out value="${conteudoItem.titulo}"/>">
 
                                     <c:choose>
-                                        <c:when test="${conteudo.tipoConteudo == 'TEXTO'}">
+                                        <c:when test="${conteudoItem.tipoConteudo == 'TEXTO'}">
                                             <label>Texto</label>
-                                            <textarea name="texto_${conteudo.id}" rows="7"><c:out value="${conteudo.conteudo}"/></textarea>
+                                            <textarea name="texto_${conteudoItem.id}" rows="7"><c:out value="${conteudoItem.conteudo}"/></textarea>
                                         </c:when>
                                         <c:otherwise>
                                             <label>Substituir ficheiro</label>
-                                            <input type="file" name="arquivo_${conteudo.id}" accept="image/*">
-                                            <img class="content-media content-image content-image-preview" src="<%= request.getContextPath() %>/conteudos/arquivo?idProjeto=${projeto.id}&idConteudo=${conteudo.id}" alt="<c:out value="${conteudo.titulo}"/>">
+                                            <input type="file" name="arquivo_${conteudoItem.id}" accept="image/*">
+                                            <img class="content-media content-image content-image-preview" src="<%= request.getContextPath() %>/conteudos/arquivo?idProjeto=${projeto.id}&idConteudo=${conteudoItem.id}" alt="<c:out value="${conteudoItem.titulo}"/>">
                                         </c:otherwise>
                                     </c:choose>
 
                                     <div class="action-row content-actions">
                                         <button type="submit" name="acao" value="remover" class="btn-primary remove-content-button"
-                                                data-remover-conteudo-id="${conteudo.id}"
+                                                data-remover-conteudo-id="${conteudoItem.id}"
                                                 formnovalidate>
                                             Remover conteudo
                                         </button>
@@ -121,16 +121,16 @@
                                     <div class="content-card-footer">
                                         <p>
                                             Criado por
-                                            <strong><c:out value="${empty conteudo.usuarioCriacao ? 'Utilizador desconhecido' : conteudo.usuarioCriacao.nome}"/></strong>
+                                            <strong><c:out value="${empty conteudoItem.usuarioCriacao ? 'Utilizador desconhecido' : conteudoItem.usuarioCriacao.nome}"/></strong>
                                             em
-                                            <strong><c:out value="${conteudo.dataCriacaoFormatada}"/></strong>
+                                            <strong><c:out value="${conteudoItem.dataCriacaoFormatada}"/></strong>
                                         </p>
-                                        <c:if test="${conteudo.editado}">
+                                        <c:if test="${conteudoItem.editado}">
                                             <p>
                                                 Editado por
-                                                <strong><c:out value="${empty conteudo.usuarioEdicao ? 'Utilizador desconhecido' : conteudo.usuarioEdicao.nome}"/></strong>
+                                                <strong><c:out value="${empty conteudoItem.usuarioEdicao ? 'Utilizador desconhecido' : conteudoItem.usuarioEdicao.nome}"/></strong>
                                                 em
-                                                <strong><c:out value="${conteudo.dataEdicaoFormatada}"/></strong>
+                                                <strong><c:out value="${conteudoItem.dataEdicaoFormatada}"/></strong>
                                             </p>
                                         </c:if>
                                     </div>
@@ -146,21 +146,21 @@
             </c:when>
             <c:otherwise>
                 <div class="content-list">
-                    <c:forEach var="conteudo" items="${conteudos}">
+                    <c:forEach var="conteudoItem" items="${conteudos}">
                         <article class="content-card content-card-view">
-                            <c:if test="${not empty conteudo.titulo}">
+                            <c:if test="${not empty conteudoItem.titulo}">
                                 <div class="content-card-header">
-                                    <h3 class="content-card-title"><c:out value="${conteudo.titulo}"/></h3>
+                                    <h3 class="content-card-title"><c:out value="${conteudoItem.titulo}"/></h3>
                                 </div>
                             </c:if>
 
                             <div class="content-card-body">
                                 <c:choose>
-                                    <c:when test="${conteudo.tipoConteudo == 'TEXTO'}">
-                                        <div class="content-text"><c:out value="${conteudo.conteudo}"/></div>
+                                    <c:when test="${conteudoItem.tipoConteudo == 'TEXTO'}">
+                                        <div class="content-text"><c:out value="${conteudoItem.conteudo}"/></div>
                                     </c:when>
-                                    <c:when test="${conteudo.tipoConteudo == 'IMAGEM'}">
-                                        <img class="content-media content-image" src="<%= request.getContextPath() %>/conteudos/arquivo?idProjeto=${projeto.id}&idConteudo=${conteudo.id}" alt="<c:out value="${conteudo.titulo}"/>" loading="lazy">
+                                    <c:when test="${conteudoItem.tipoConteudo == 'IMAGEM'}">
+                                        <img class="content-media content-image" src="<%= request.getContextPath() %>/conteudos/arquivo?idProjeto=${projeto.id}&idConteudo=${conteudoItem.id}" alt="<c:out value="${conteudoItem.titulo}"/>" loading="lazy">
                                     </c:when>
                                 </c:choose>
                             </div>
@@ -168,16 +168,16 @@
                             <div class="content-card-footer">
                                 <p>
                                     Criado por
-                                    <strong><c:out value="${empty conteudo.usuarioCriacao ? 'Utilizador desconhecido' : conteudo.usuarioCriacao.nome}"/></strong>
+                                    <strong><c:out value="${empty conteudoItem.usuarioCriacao ? 'Utilizador desconhecido' : conteudoItem.usuarioCriacao.nome}"/></strong>
                                     em
-                                    <strong><c:out value="${conteudo.dataCriacaoFormatada}"/></strong>
+                                    <strong><c:out value="${conteudoItem.dataCriacaoFormatada}"/></strong>
                                 </p>
-                                <c:if test="${conteudo.editado}">
+                                <c:if test="${conteudoItem.editado}">
                                     <p>
                                         Editado por
-                                        <strong><c:out value="${empty conteudo.usuarioEdicao ? 'Utilizador desconhecido' : conteudo.usuarioEdicao.nome}"/></strong>
+                                        <strong><c:out value="${empty conteudoItem.usuarioEdicao ? 'Utilizador desconhecido' : conteudoItem.usuarioEdicao.nome}"/></strong>
                                         em
-                                        <strong><c:out value="${conteudo.dataEdicaoFormatada}"/></strong>
+                                        <strong><c:out value="${conteudoItem.dataEdicaoFormatada}"/></strong>
                                     </p>
                                 </c:if>
                             </div>

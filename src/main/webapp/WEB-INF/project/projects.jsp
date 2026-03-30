@@ -25,11 +25,11 @@
         </c:if>
 
         <div class="project-grid">
-            <c:forEach var="projeto" items="${projetos}">
-                <a class="project-card" href="<%= request.getContextPath() %>/projeto?id=${projeto.id}">
+            <c:forEach var="projetoItem" items="${projetos}">
+                <a class="project-card" href="<%= request.getContextPath() %>/projeto?id=${projetoItem.id}">
                     <span class="project-card-label">Projeto</span>
-                    <strong><c:out value="${projeto.titulo}"/></strong>
-                    <c:out value="${projeto.descricao}"/>
+                    <strong><c:out value="${projetoItem.titulo}"/></strong>
+                    <c:out value="${projetoItem.descricao}"/>
                     <span>Abrir página do projeto</span>
                 </a>
             </c:forEach>

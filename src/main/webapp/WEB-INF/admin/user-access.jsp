@@ -32,17 +32,17 @@
 
             <label>Projetos</label>
             <div class="checkbox-list">
-                <c:forEach var="projeto" items="${projetos}">
-                    <c:set var="projetoMarcado" value="false"/>
-                    <c:forEach var="idSelecionado" items="${projetoSelecionadoIds}">
-                        <c:if test="${idSelecionado == projeto.id}">
-                            <c:set var="projetoMarcado" value="true"/>
+                <c:forEach var="projetoItem" items="${projetos}">
+                    <c:set var="projetoSelecionado" value="false"/>
+                    <c:forEach var="projetoSelecionadoId" items="${projetoSelecionadoIds}">
+                        <c:if test="${projetoSelecionadoId == projetoItem.id}">
+                            <c:set var="projetoSelecionado" value="true"/>
                         </c:if>
                     </c:forEach>
                     <label class="checkbox-row">
-                        <input type="checkbox" name="idProjeto" value="${projeto.id}"
-                            <c:if test="${projetoMarcado}">checked</c:if>>
-                        <span><c:out value="${projeto.titulo}"/></span>
+                        <input type="checkbox" name="idProjeto" value="${projetoItem.id}"
+                            <c:if test="${projetoSelecionado}">checked</c:if>>
+                        <span><c:out value="${projetoItem.titulo}"/></span>
                     </label>
                 </c:forEach>
             </div>

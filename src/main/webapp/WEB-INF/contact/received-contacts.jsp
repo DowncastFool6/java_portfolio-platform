@@ -59,25 +59,25 @@
 											</tr>
 										</thead>
 										<tbody>
-											<c:forEach var="contato" items="${contatosRecebidos}">
-												<c:set var="contatoMarcado" value="false" />
-												<c:forEach var="idSelecionado"
+											<c:forEach var="contatoItem" items="${contatosRecebidos}">
+												<c:set var="contatoSelecionado" value="false" />
+												<c:forEach var="contatoSelecionadoId"
 													items="${idsContatoSelecionados}">
-													<c:if test="${idSelecionado == contato.id}">
-														<c:set var="contatoMarcado" value="true" />
+													<c:if test="${contatoSelecionadoId == contatoItem.id}">
+														<c:set var="contatoSelecionado" value="true" />
 													</c:if>
 												</c:forEach>
 												<tr>
 													<td><input type="checkbox" name="idContato"
-														value="${contato.id}"
-														<c:if test="${contatoMarcado}">checked</c:if>></td>
-													<td><c:out value="${contato.projeto.titulo}" /></td>
-													<td><c:out value="${contato.usuario.nome}" /></td>
-													<td><c:out value="${contato.usuario.email}" /></td>
-													<td><c:out value="${contato.mensagem}" /></td>
-													<td><c:out value="${contato.dataEnvio}" /></td>
+														value="${contatoItem.id}"
+														<c:if test="${contatoSelecionado}">checked</c:if>></td>
+													<td><c:out value="${contatoItem.projeto.titulo}" /></td>
+													<td><c:out value="${contatoItem.usuario.nome}" /></td>
+													<td><c:out value="${contatoItem.usuario.email}" /></td>
+													<td><c:out value="${contatoItem.mensagem}" /></td>
+													<td><c:out value="${contatoItem.dataEnvio}" /></td>
 													<td><span class="status-chip"> <c:choose>
-																<c:when test="${contato.flgLida}">Lido</c:when>
+																<c:when test="${contatoItem.flgLida}">Lido</c:when>
 																<c:otherwise>Pendente</c:otherwise>
 															</c:choose>
 													</span></td>

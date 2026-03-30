@@ -43,23 +43,23 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <c:forEach var="usuarioProjeto" items="${usuariosProjeto}">
+                    <c:forEach var="usuarioProjetoItem" items="${usuariosProjeto}">
                         <tr>
-                            <td><c:out value="${usuarioProjeto.nome}"/></td>
-                            <td><c:out value="${usuarioProjeto.email}"/></td>
-                            <td><c:out value="${usuarioProjeto.tipoUsuario.descricao}"/></td>
+                            <td><c:out value="${usuarioProjetoItem.nome}"/></td>
+                            <td><c:out value="${usuarioProjetoItem.email}"/></td>
+                            <td><c:out value="${usuarioProjetoItem.tipoUsuario.descricao}"/></td>
                             <td>
                                 <c:choose>
-                                    <c:when test="${usuarioProjeto.ativo}">Ativo</c:when>
+                                    <c:when test="${usuarioProjetoItem.ativo}">Ativo</c:when>
                                     <c:otherwise>Inativo</c:otherwise>
                                 </c:choose>
                             </td>
                             <td>
                                 <form action="<%= request.getContextPath() %>/projeto/usuarios" method="post">
                                     <input type="hidden" name="idProjeto" value="${projeto.id}">
-                                    <input type="hidden" name="idUsuario" value="${usuarioProjeto.id}">
+                                    <input type="hidden" name="idUsuario" value="${usuarioProjetoItem.id}">
                                     <c:choose>
-                                        <c:when test="${usuarioProjeto.ativo}">
+                                        <c:when test="${usuarioProjetoItem.ativo}">
                                             <button type="submit" name="acao" value="desativar" class="btn-primary">Desativar</button>
                                         </c:when>
                                         <c:otherwise>
